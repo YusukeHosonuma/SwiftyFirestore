@@ -15,6 +15,10 @@ setup: ## Install requirement development tools to system and setup (not include
 open: ## Open Xcode 11.3
 	open "/Applications/Xcode-11.3.app" SwiftyFirestore.xcworkspace
 
+.PHONY: build
+build: ## Build
+	bundle exec fastlane build
+
 .PHONY: test
 test: ## Run tests
 	./Script/run-unit-test.sh
