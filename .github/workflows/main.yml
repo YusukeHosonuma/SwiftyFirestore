@@ -13,6 +13,20 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Cache node-modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: node-${{ hashFiles('package-lock.json') }}
+        restore-keys: node-${{ hashFiles('package-lock.json') }}
+
+    - name: Cache Pods
+      uses: actions/cache@v1
+      with:
+        path: Pods
+        key: pods-${{ hashFiles('Podfile.lock') }}
+        restore-keys: pods-${{ hashFiles('Podfile.lock') }}
+
     - name: Install Firebase Tools
       run: make setup
 
