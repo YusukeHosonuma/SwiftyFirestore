@@ -36,5 +36,8 @@ jobs:
     - name: Pod install
       run: bundle exec pod install
 
+    - name: Build
+      run: bundle exec fastlane build
+
     - name: Run Unit Test
       run: make test
