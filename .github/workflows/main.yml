@@ -19,5 +19,8 @@ jobs:
     - name: Bundle install
       run: bundle
 
+    - name: Pod install
+      run: bundle exec pod install
+
     - name: Run Unit Test
       run: make test
