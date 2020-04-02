@@ -4,7 +4,8 @@ platform :ios do
   desc "Run unit test"
   lane :build do
     build_app(
-      scheme: "SwiftyFirestore"
+      scheme: "SwiftyFirestore",
+      skip_package_ipa: true
     )
   end
 
