@@ -97,6 +97,7 @@ vendor/bundle
 Brewfile.lock.json
 
 # Firebase
+firebase-debug.log
 firestore-debug.log
 
 # Node.js
