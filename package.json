@@ -1,0 +1,23 @@
+{
+  "name": "swiftyfirestore",
+  "version": "1.0.0",
+  "description": "*a.k.a S線上のFirestore - Firestore on the S(wift) strings*",
+  "main": "index.js",
+  "dependencies": {
+    "firebase-tools": "^8.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YusukeHosonuma/SwiftyFirestore.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YusukeHosonuma/SwiftyFirestore/issues"
+  },
+  "homepage": "https://github.com/YusukeHosonuma/SwiftyFirestore#readme"
+}

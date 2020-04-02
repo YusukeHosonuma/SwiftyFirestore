@@ -8,33 +8,24 @@ help:
 
 .PHONY: setup
 setup: ## Install requirement development tools to system and setup (not include Xcode 11.3)
-	npm i -g firebase-tools
-	brew bundle
-	pre-commit install
+	npm i
+	npx firebase setup:emulators:firestore
 
 .PHONY: open
 open: ## Open Xcode 11.3
 	open "/Applications/Xcode-11.3.app" SwiftyFirestore.xcworkspace
 
 .PHONY: build
-build: ## Run build
-	swift build
-
-.PHONY: generate
-generate: build ## Generate source
-	.build/debug/SHListGen
+build: ## Build
+	bundle exec fastlane build
 
 .PHONY: test
 test: ## Run tests
-	swift test --enable-test-discovery
-
-.PHONY: xcode
-xcode: ## swift - generate xcode project
-	swift package generate-xcodeproj
+	./Script/run-unit-test.sh
 
 .PHONY: start-emulator
 start-emulator: ## Start Firestore emulator
-	firebase emulators:start --only firestore
+	npx firebase emulators:start --only firestore
 
 .PHONY: lint
 lint: ## cocoapods - lint podspec
