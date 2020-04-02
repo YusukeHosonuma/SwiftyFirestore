@@ -30,6 +30,6 @@ final class SwiftyFirestoreTests: XCTestCase {
             exp.fulfill()
         }
         
-        wait(for: [exp], timeout: 3)
+        wait(for: [exp], timeout: 10)
     }
 }
