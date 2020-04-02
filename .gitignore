@@ -94,3 +94,6 @@ vendor/bundle
 
 # Homebrew
 Brewfile.lock.json
+
+# Firebase
+firestore-debug.log

@@ -8,6 +8,7 @@ help:
 
 .PHONY: setup
 setup: ## Install requirement development tools to system and setup (not include Xcode 11.3)
+	npm i -g firebase-tools
 	brew bundle
 	pre-commit install
 
@@ -30,6 +31,10 @@ test: ## Run tests
 .PHONY: xcode
 xcode: ## swift - generate xcode project
 	swift package generate-xcodeproj
+
+.PHONY: start-emulator
+start-emulator: ## Start Firestore emulator
+	firebase emulators:start --only firestore
 
 .PHONY: lint
 lint: ## cocoapods - lint podspec
