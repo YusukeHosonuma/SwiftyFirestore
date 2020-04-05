@@ -8,7 +8,7 @@
 
 import SwiftyFirestore
 
-struct TodoDocument: FirestoreDocument {
+struct TodoDocument: FirestoreDocument, Equatable {
     var documentId: String!
     var title: String
     var done: Bool
