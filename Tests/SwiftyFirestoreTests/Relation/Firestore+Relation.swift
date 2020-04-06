@@ -27,13 +27,7 @@ extension AccountDocumentRef {
     }
 }
 
-class AccountDocumentRef {
-    let ref: DocumentReference
-
-    init(_ ref: DocumentReference) {
-        self.ref = ref
-    }
-}
+class AccountDocumentRef: FirestoreDocumentRef<AccountDocument> {}
 
 class RepositoryCollectionRef: FirestoreCollectionRef {
     typealias Document = RepositoryDocument
@@ -44,4 +38,3 @@ class RepositoryCollectionRef: FirestoreCollectionRef {
         self.ref = ref
     }
 }
-

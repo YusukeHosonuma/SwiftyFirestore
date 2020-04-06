@@ -44,6 +44,55 @@ final class SwiftyFirestoreTests: XCTestCase {
         )
     }
     
+    func testGet() throws {
+        FirestoreTestHelper.setupFirebaseApp()
+
+        Firestore.firestore()
+            .collection("account")
+            .document("YusukeHosonuma")
+            .setData(try! Firestore.Encoder().encode(AccountDocument(name: "Yusuke Hosonuma")))
+        
+        // document is exist
+        do {
+            let accountID = "YusukeHosonuma"
+            
+            assertSameResult(
+                resultType: AccountDocument?.self,
+                swifty: { completion in
+                    //
+                    // 🐤 Swifty
+                    //
+                    Firestore.root
+                        .account(id: accountID)
+                        .get { result in
+                            guard case .success(let document) = result else { XCTFail(); return }
+                            
+                            completion(document)
+                        }
+                },
+                original: { completion in
+                    //
+                    // 🔥 Original
+                    //
+                    Firestore.firestore()
+                        .collection("account")
+                        .document(accountID)
+                        .getDocument { (snapshot, error) in
+                            guard let snapshot = snapshot else { XCTFail(); return }
+                            var document = try? snapshot.data(as: AccountDocument.self)
+                            document?.documentId = snapshot.documentID
+                            
+                            completion(document)
+                        }
+                }
+            )
+        }
+        
+        // TODO: not found
+        
+        FirestoreTestHelper.deleteFirebaseApp()
+    }
+    
     func testGetAll() throws {
         FirestoreTestHelper.setupFirebaseApp()
         
