@@ -9,6 +9,14 @@
 import SwiftyFirestore
 import FirebaseFirestore
 
+// MARK: - Ref
+
+class TodoCollectionRef: FirestoreCollectionRefBase<TodoDocument> {}
+class AccountDocumentRef: FirestoreDocumentRef<AccountDocument> {}
+class RepositoryCollectionRef: FirestoreCollectionRefBase<RepositoryDocument> {}
+
+// MARK: - Relation
+
 extension RootRef {
     var todos: TodoCollectionRef {
         TodoCollectionRef(ref.collection("todos"))
@@ -24,17 +32,5 @@ extension RootRef {
 extension AccountDocumentRef {
     var repository: RepositoryCollectionRef {
         RepositoryCollectionRef(ref.collection("repository"))
-    }
-}
-
-class AccountDocumentRef: FirestoreDocumentRef<AccountDocument> {}
-
-class RepositoryCollectionRef: FirestoreCollectionRef {
-    typealias Document = RepositoryDocument
-
-    let ref: CollectionReference
-
-    init(_ ref: CollectionReference) {
-        self.ref = ref
     }
 }
