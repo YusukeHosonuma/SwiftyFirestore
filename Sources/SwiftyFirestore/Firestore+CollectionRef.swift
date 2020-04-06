@@ -14,9 +14,9 @@ public protocol FirestoreCollectionRef: FirestoreQueryRef {
     var ref: CollectionReference { get }
 }
 
-extension FirestoreCollectionRef {
-    public var queryRef: Query { ref as Query }
-}
+// extension FirestoreCollectionRef {
+//    public var queryRef: Query { ref as Query }
+// }
 
 extension FirestoreCollectionRef {
     // MARK: - Rx
