@@ -51,10 +51,6 @@ extension FirestoreQueryRef {
         query.whereBy(FirestoreCriteria(key: key, value: value, op: op))
     }
 
-    public func orderBy(_ key: Key, sort: FirestoreSort = .ascending) -> QueryWrapper<Document> {
-        query.orderBy(key.stringValue, sort: sort)
-    }
-
     // TODO: ↑ の API で十分な気はするので、以下は削除することも検討
 
     // `==`
@@ -80,6 +76,20 @@ extension FirestoreQueryRef {
     // `>=`
     public func whereBy(_ key: Key, isGreaterThanOrEqualTo value: Any) -> QueryWrapper<Document> {
         whereBy(by: key, .isGreaterThanOrEqualTo, value)
+    }
+
+    public func orderBy(_ key: Key, sort: FirestoreSort = .ascending) -> QueryWrapper<Document> {
+        query.orderBy(key.stringValue, sort: sort)
+    }
+
+    // TODO: should more swifty API or not...
+
+    public func limitTo(_ limit: Int) -> QueryWrapper<Document> {
+        query.limitTo(limit)
+    }
+
+    public func limitToLast(_ limit: Int) -> QueryWrapper<Document> {
+        query.limitToLast(limit)
     }
 
     // `{start} <= value && value <= {end}`

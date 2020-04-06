@@ -58,4 +58,12 @@ public class QueryWrapper<Document: FirestoreDocument>: FirestoreQueryRef {
     public func orderBy(_ key: String, sort: FirestoreSort) -> QueryWrapper {
         QueryWrapper(queryRef.order(by: key, descending: sort == .descending))
     }
+
+    public func limitTo(_ limit: Int) -> QueryWrapper {
+        QueryWrapper(queryRef.limit(to: limit))
+    }
+
+    public func limitToLast(_ limit: Int) -> QueryWrapper {
+        QueryWrapper(queryRef.limit(toLast: limit))
+    }
 }
