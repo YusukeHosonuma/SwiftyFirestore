@@ -51,6 +51,10 @@ extension FirestoreQueryRef {
         query.whereBy(FirestoreCriteria(key: key, value: value, op: op))
     }
 
+    public func orderBy(_ key: Key, sort: FirestoreSort = .ascending) -> QueryWrapper<Document> {
+        query.orderBy(key.stringValue, sort: sort)
+    }
+
     // TODO: ↑ の API で十分な気はするので、以下は削除することも検討
 
     // `==`

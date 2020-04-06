@@ -12,11 +12,13 @@ struct TodoDocument: FirestoreDocument, Equatable {
     var documentId: String!
     var title: String
     var done: Bool
+    var priority: Int = 0
 
     enum CodingKeys: String, CodingKey {
         case documentId
         case title
         case done
+        case priority
     }
 }
 

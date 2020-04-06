@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		48436B021343DD47886DEB10 /* Pods_SwiftyFirestore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9C813270F6F56C21A064B8 /* Pods_SwiftyFirestore.framework */; };
 		8B1018F9B791BFC44F8E9599 /* Pods_SwiftyFirestore_SwiftyFirestoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B6A86C5232EFD46DBEE5B6 /* Pods_SwiftyFirestore_SwiftyFirestoreTests.framework */; };
+		E52D58EF243B41EA00FBFEBE /* CollectionRefTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52D58EE243B41EA00FBFEBE /* CollectionRefTests.swift */; };
 		E5502C992435DB91007EC1F1 /* Firestore+RootRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C982435DB91007EC1F1 /* Firestore+RootRef.swift */; };
 		E5502C9C2435DBF0007EC1F1 /* TodoDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C9A2435DBC9007EC1F1 /* TodoDocument.swift */; };
 		E5502CA02435DC56007EC1F1 /* Firestore+Ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C9F2435DC56007EC1F1 /* Firestore+Ref.swift */; };
@@ -53,6 +54,7 @@
 		4B9C813270F6F56C21A064B8 /* Pods_SwiftyFirestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyFirestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74B6A86C5232EFD46DBEE5B6 /* Pods_SwiftyFirestore_SwiftyFirestoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyFirestore_SwiftyFirestoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B1BA6E215EC034DCA73097 /* Pods-SwiftyFirestore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyFirestore.debug.xcconfig"; path = "Target Support Files/Pods-SwiftyFirestore/Pods-SwiftyFirestore.debug.xcconfig"; sourceTree = "<group>"; };
+		E52D58EE243B41EA00FBFEBE /* CollectionRefTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRefTests.swift; sourceTree = "<group>"; };
 		E5502C982435DB91007EC1F1 /* Firestore+RootRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firestore+RootRef.swift"; sourceTree = "<group>"; };
 		E5502C9A2435DBC9007EC1F1 /* TodoDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDocument.swift; sourceTree = "<group>"; };
 		E5502C9D2435DC16007EC1F1 /* Firestore+Relation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firestore+Relation.swift"; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				E5502C972435DB3F007EC1F1 /* Relation */,
 				E57DE0132434A59D00308FC0 /* Info.plist */,
 				E57DE0102434A54500308FC0 /* SwiftyFirestoreTests.swift */,
+				E52D58EE243B41EA00FBFEBE /* CollectionRefTests.swift */,
 			);
 			name = SwiftyFirestoreTests;
 			path = Tests/SwiftyFirestoreTests;
@@ -372,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5502CA02435DC56007EC1F1 /* Firestore+Ref.swift in Sources */,
+				E52D58EF243B41EA00FBFEBE /* CollectionRefTests.swift in Sources */,
 				E5502CA42435E121007EC1F1 /* FirestoreTestHelper.swift in Sources */,
 				E5502C9C2435DBF0007EC1F1 /* TodoDocument.swift in Sources */,
 				E57DE0122434A54500308FC0 /* SwiftyFirestoreTests.swift in Sources */,

@@ -7,6 +7,11 @@
 //
 import FirebaseFirestore
 
+public enum FirestoreSort {
+    case ascending
+    case descending
+}
+
 public enum FirestoreOperator: String, ExpressibleByStringLiteral {
     case isEqualTo = "=="
     case isLessThan = "<"
@@ -48,5 +53,9 @@ public class QueryWrapper<Document: FirestoreDocument>: FirestoreQueryRef {
         case .isGreaterThanOrEqualTo:
             return QueryWrapper(queryRef.whereField(field, isGreaterThanOrEqualTo: value))
         }
+    }
+
+    public func orderBy(_ key: String, sort: FirestoreSort) -> QueryWrapper {
+        QueryWrapper(queryRef.order(by: key, descending: sort == .descending))
     }
 }
