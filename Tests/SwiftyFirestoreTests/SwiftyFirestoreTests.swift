@@ -9,7 +9,7 @@ final class SwiftyFirestoreTests: XCTestCase {
     
     override class func tearDown() {
     }
-    
+
     func testAdd() throws {
         
         let document = TodoDocument(documentId: nil, title: "Hello", done: false)
@@ -83,6 +83,68 @@ final class SwiftyFirestoreTests: XCTestCase {
             }
         )
         
+        FirestoreTestHelper.deleteFirebaseApp()
+    }
+    
+    func testRelation() throws {
+        
+        FirestoreTestHelper.setupFirebaseApp()
+        
+        //
+        // - account: Account
+        //   - documentId: "YusukeHosonuma"
+        //   - name: "Yusuke Hosonuma"
+        //   - repository: Repository
+        //     - documentId: "SwiftyFirestore"
+        //     - language: "Swift"
+        //
+
+        Firestore.firestore()
+            .collection("account")
+            .document("YusukeHosonuma")
+            .setData(try! Firestore.Encoder().encode(AccountDocument(name: "Yusuke Hosonuma")))
+
+        Firestore.firestore()
+            .collection("account")
+            .document("YusukeHosonuma")
+            .collection("repository")
+            .document("SwiftyFirestore")
+            .setData(try! Firestore.Encoder().encode(RepositoryDocument(language: "Swift")))
+
+        assertSameResult(
+            resultType: [RepositoryDocument].self,
+            swifty: { completion in
+                //
+                // Swifty 🐤
+                //
+                Firestore.root
+                    .account(id: "YusukeHosonuma")
+                    .repository
+                    .getAll { result in
+                        guard case .success(let documents) = result else { XCTFail(); return }
+                        completion(documents)
+                    }
+            },
+            original: { completion in
+                //
+                // Original 🔥
+                //
+                Firestore.firestore()
+                    .collection("account")
+                    .document("YusukeHosonuma")
+                    .collection("repository")
+                    .getDocuments { (snapshot, error) in
+                        guard let snapshot = snapshot else { XCTFail(); return }
+                        let documents: [RepositoryDocument] = snapshot.documents.compactMap {
+                            var document = try? Firestore.Decoder().decode(RepositoryDocument.self, from: $0.data())
+                            document?.documentId = $0.documentID
+                            return document
+                        }
+                        completion(documents)
+                    }
+            }
+        )
+
         FirestoreTestHelper.deleteFirebaseApp()
     }
     

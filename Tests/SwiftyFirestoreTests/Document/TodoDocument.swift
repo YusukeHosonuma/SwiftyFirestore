@@ -19,3 +19,23 @@ struct TodoDocument: FirestoreDocument, Equatable {
         case done
     }
 }
+
+struct AccountDocument: FirestoreDocument, Equatable {
+    var documentId: String!
+    var name: String
+    
+    enum CodingKeys: String, CodingKey {
+        case documentId
+        case name
+    }
+}
+
+struct RepositoryDocument: FirestoreDocument, Equatable {
+    var documentId: String!
+    var language: String // TODO: enum
+    
+    enum CodingKeys: String, CodingKey {
+        case documentId
+        case language
+    }
+}

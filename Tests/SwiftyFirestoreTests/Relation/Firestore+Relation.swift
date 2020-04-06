@@ -7,9 +7,41 @@
 //
 
 import SwiftyFirestore
+import FirebaseFirestore
 
 extension RootRef {
     var todos: TodoCollectionRef {
         TodoCollectionRef(ref.collection("todos"))
     }
 }
+
+extension RootRef {
+    func account(id: String) -> AccountDocumentRef {
+        AccountDocumentRef(ref.collection("account").document(id))
+    }
+}
+
+extension AccountDocumentRef {
+    var repository: RepositoryCollectionRef {
+        RepositoryCollectionRef(ref.collection("repository"))
+    }
+}
+
+class AccountDocumentRef {
+    let ref: DocumentReference
+
+    init(_ ref: DocumentReference) {
+        self.ref = ref
+    }
+}
+
+class RepositoryCollectionRef: FirestoreCollectionRef {
+    typealias Document = RepositoryDocument
+
+    let ref: CollectionReference
+
+    init(_ ref: CollectionReference) {
+        self.ref = ref
+    }
+}
+
