@@ -6,7 +6,7 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
 
 ## TODO
 
-T.B.Ds
+T.B.D
 
 ## Preparation
 
@@ -85,7 +85,7 @@ Firestore.root
     .whereBy(.star, ">", "10")
     .orderBy(.star, sort: .descending)
     .limitTo(3)
-    .getAll { (result) in
+    .getAll { result in
         guard case .success(let documents) = result else { return }
         print(documents) // [RepositoryDocument]
     }
