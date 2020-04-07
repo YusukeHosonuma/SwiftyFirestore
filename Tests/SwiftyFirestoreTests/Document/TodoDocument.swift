@@ -9,6 +9,8 @@
 import SwiftyFirestore
 
 struct TodoDocument: FirestoreDocument, Equatable {
+    static let collectionId: String = "todos"
+    
     var documentId: String!
     var title: String
     var done: Bool
@@ -23,6 +25,8 @@ struct TodoDocument: FirestoreDocument, Equatable {
 }
 
 struct AccountDocument: FirestoreDocument, Equatable {
+    static let collectionId: String = "account"
+
     var documentId: String!
     var name: String
     
@@ -33,6 +37,8 @@ struct AccountDocument: FirestoreDocument, Equatable {
 }
 
 struct RepositoryDocument: FirestoreDocument, Equatable {
+    static let collectionId: String = "repository"
+
     var documentId: String!
     var language: String // TODO: enum
     

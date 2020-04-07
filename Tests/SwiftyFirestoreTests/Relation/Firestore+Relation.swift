@@ -9,28 +9,25 @@
 import SwiftyFirestore
 import FirebaseFirestore
 
-// MARK: - Ref
+//
+// Data structure:
+//
+// - Todo
+// - Account
+//   - Repository
+//
+
+extension RootRef {
+    var todos: TodoCollectionRef { TodoCollectionRef(ref) }
+
+    // TODO: not needed?
+    func account(id: String) -> AccountDocumentRef { AccountDocumentRef(ref, id: id) }
+}
 
 class TodoCollectionRef: FirestoreCollectionRefBase<TodoDocument> {}
-class AccountDocumentRef: FirestoreDocumentRef<AccountDocument> {}
+
+class AccountDocumentRef: FirestoreDocumentRef<AccountDocument> {
+    var repository: RepositoryCollectionRef { RepositoryCollectionRef(ref) }
+}
+
 class RepositoryCollectionRef: FirestoreCollectionRefBase<RepositoryDocument> {}
-
-// MARK: - Relation
-
-extension RootRef {
-    var todos: TodoCollectionRef {
-        TodoCollectionRef(ref.collection("todos"))
-    }
-}
-
-extension RootRef {
-    func account(id: String) -> AccountDocumentRef {
-        AccountDocumentRef(ref.collection("account").document(id))
-    }
-}
-
-extension AccountDocumentRef {
-    var repository: RepositoryCollectionRef {
-        RepositoryCollectionRef(ref.collection("repository"))
-    }
-}

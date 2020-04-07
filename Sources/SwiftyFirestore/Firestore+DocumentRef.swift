@@ -14,8 +14,12 @@ open class FirestoreDocumentRef<Document: FirestoreDocument> {
 
     public let ref: DocumentReference
 
-    public init(_ ref: DocumentReference) {
-        self.ref = ref
+//    public init(_ ref: DocumentReference) {
+//        self.ref = ref
+//    }
+
+    public init(_ ref: Firestore, id: String) {
+        self.ref = ref.collection(Document.collectionId).document(id)
     }
 }
 
