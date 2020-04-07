@@ -34,6 +34,75 @@ final class CollectionRefeTests: FirestoreTestCase {
         super.tearDown()
     }
     
+    func testWhere() {
+        defer { waitExpectations() } // ⏳
+        
+        // `==`
+        wait { exp in
+            Firestore.root
+                .todos
+                .whereBy(.priority, isEqualTo: 2)
+                .orderBy(.priority)
+                .getAll { result in
+                    guard case .success(let documents) = result else { XCTFail(); return } // ✅
+                    XCTAssertEqual(documents.map { $0.priority }, [2])
+                    exp.fulfill() // ⏰
+                }
+        }
+        
+        // `<`
+        wait { exp in
+            Firestore.root
+                .todos
+                .whereBy(.priority, isLessThan: 2)
+                .orderBy(.priority)
+                .getAll { result in
+                    guard case .success(let documents) = result else { XCTFail(); return } // ✅
+                    XCTAssertEqual(documents.map { $0.priority }, [1])
+                    exp.fulfill() // ⏰
+                }
+        }
+        
+        // `<=`
+        wait { exp in
+            Firestore.root
+                .todos
+                .whereBy(.priority, isLessThanOrEqualTo: 2)
+                .orderBy(.priority)
+                .getAll { result in
+                    guard case .success(let documents) = result else { XCTFail(); return } // ✅
+                    XCTAssertEqual(documents.map { $0.priority }, [1, 2])
+                    exp.fulfill() // ⏰
+                }
+        }
+
+        // `>`
+        wait { exp in
+            Firestore.root
+                .todos
+                .whereBy(.priority, isGreaterThan: 2)
+                .orderBy(.priority)
+                .getAll { result in
+                    guard case .success(let documents) = result else { XCTFail(); return } // ✅
+                    XCTAssertEqual(documents.map { $0.priority }, [3])
+                    exp.fulfill() // ⏰
+                }
+        }
+        
+        // `>=`
+        wait { exp in
+            Firestore.root
+                .todos
+                .whereBy(.priority, isGreaterThanOrEqualTo: 2)
+                .orderBy(.priority)
+                .getAll { result in
+                    guard case .success(let documents) = result else { XCTFail(); return } // ✅
+                    XCTAssertEqual(documents.map { $0.priority }, [2, 3])
+                    exp.fulfill() // ⏰
+                }
+        }
+    }
+    
     func testOrder() {
         defer { waitExpectations() } // ⏳
         

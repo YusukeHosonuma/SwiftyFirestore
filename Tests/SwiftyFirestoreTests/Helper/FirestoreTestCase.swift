@@ -27,6 +27,6 @@ class FirestoreTestCase: XCTestCase {
     }
     
     func waitExpectations() {
-        wait(for: expectations, timeout: 3)
+        wait(for: expectations, timeout: 5)
     }
 }
