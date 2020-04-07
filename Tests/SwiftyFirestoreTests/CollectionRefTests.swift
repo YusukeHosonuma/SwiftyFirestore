@@ -13,10 +13,7 @@ import XCTest
 import Firebase
 import FirebaseFirestore
 
-final class CollectionRefeTests: XCTestCase {
-    override func setUp() {}
-    
-    override class func tearDown() {}
+final class CollectionRefeTests: FirestoreTestCase {
     
     let documents = [
         TodoDocument(documentId: nil, title: "Apple",  done: true, priority: 3),
@@ -24,105 +21,87 @@ final class CollectionRefeTests: XCTestCase {
         TodoDocument(documentId: nil, title: "Banana", done: true, priority: 1),
     ]
     
-    func testOrder() {
-        FirestoreTestHelper.setupFirebaseApp()
+    override func setUp() {
+        super.setUp()
         
+        // 🔨
         for document in documents {
             Firestore.root.todos.add(document)
         }
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+    }
+    
+    func testOrder() {
+        defer { waitExpectations() } // ⏳
         
-        var exps: [XCTestExpectation] = []
-        
-        // TODO: refactor - Expectation
-        
-        // ascending
-        do {
-            exps.append(expectation(description: "#0"))
+        // 🔼 ascending
+        wait { exp in
             Firestore.root
                 .todos
                 .orderBy(.priority, sort: .ascending)
                 .getAll { result in
-                    guard case .success(let documents) = result else { XCTFail(); return }
-                    XCTAssertEqual(documents.count, 3)
+                    guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [1, 2, 3])
-                    exps[0].fulfill()
+                    exp.fulfill() // ⏰
                 }
         }
 
-        // descending
-        do {
-            exps.append(expectation(description: "#1"))
+        // 🔽 descending
+        wait { exp in
             Firestore.root
                 .todos
                 .orderBy(.priority, sort: .descending)
                 .getAll { result in
-                    guard case .success(let documents) = result else { XCTFail(); return }
-                    XCTAssertEqual(documents.count, 3)
+                    guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [3, 2, 1])
-                    exps[1].fulfill()
+                    exp.fulfill() // ⏰
                 }
         }
 
-        // combination
-        do {
-            exps.append(expectation(description: "#2"))
+        // ➕ combination
+        wait { exp in
             Firestore.root
                 .todos
                 .orderBy(.title, sort: .ascending)
                 .orderBy(.priority, sort: .ascending)
                 .getAll { result in
-                    guard case .success(let documents) = result else { XCTFail(); return }
-                    XCTAssertEqual(documents.count, 3)
+                    guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [3, 1, 2])
-                    exps[2].fulfill()
+                    exp.fulfill() // ⏰
                 }
         }
-        
-        wait(for: exps, timeout: 3)
-        
-        FirestoreTestHelper.deleteFirebaseApp()
     }
     
     func testLimit() {
-        FirestoreTestHelper.setupFirebaseApp()
+        defer { waitExpectations() } // ⏳
 
-        
-        for document in documents {
-            Firestore.root.todos.add(document)
-        }
-        
-        var exps: [XCTestExpectation] = []
-        
-        // 🔥 limit(to:)
-        do {
-            exps.append(expectation(description: "#0"))
+        // ⤴️ limit(to:)
+        wait { exp in
             Firestore.root
                 .todos
                 .orderBy(.priority, sort: .ascending)
                 .limitTo(2)
                 .getAll { result in
-                    guard case .success(let documents) = result else { XCTFail(); return }
+                    guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [1, 2])
-                    exps[0].fulfill()
+                    exp.fulfill() // ⏳
                 }
         }
         
-        // 🔥 limit(toLast:)
-        do {
-            exps.append(expectation(description: "#1"))
+        // ⤴️ limit(toLast:)
+        wait { exp in
             Firestore.root
                 .todos
                 .orderBy(.priority, sort: .ascending)
                 .limitToLast(2)
                 .getAll { result in
-                    guard case .success(let documents) = result else { XCTFail(); return }
+                    guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [2, 3])
-                    exps[1].fulfill()
+                    exp.fulfill() // ⏳
                 }
         }
-        
-        wait(for: exps, timeout: 3)
-
-        FirestoreTestHelper.deleteFirebaseApp()
     }
 }
