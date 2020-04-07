@@ -9,15 +9,23 @@
 import FirebaseFirestore
 
 open class FirestoreCollectionRefBase<T: FirestoreDocument>: FirestoreCollectionRef {
-    public typealias Document = T
+    public var ref: CollectionReference
 
-    public let ref: CollectionReference
+    public typealias Document = T
 
     public var queryRef: Query {
         ref as Query
     }
 
-    public init(_ ref: CollectionReference) {
-        self.ref = ref
+//    public init(_ ref: CollectionReference) {
+//        self.ref = ref
+//    }
+
+    public init(_ ref: Firestore) {
+        self.ref = ref.collection(T.collectionId)
+    }
+
+    public init(_ ref: DocumentReference) {
+        self.ref = ref.collection(T.collectionId)
     }
 }

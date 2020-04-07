@@ -12,9 +12,12 @@ import FirebaseFirestoreSwift
 public protocol FirestoreDocument: Codable {
     associatedtype CodingKeys: CodingKey
 
+    static var collectionId: String { get }
+
     var documentId: String! { get set }
 
     init(_ snapshot: QueryDocumentSnapshot) throws
+
     func asData() throws -> [String: Any]
 }
 
