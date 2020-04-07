@@ -82,6 +82,9 @@ extension FirestoreQueryRef {
         query.orderBy(key.stringValue, sort: sort)
     }
 
+    // TODO: support `arrayContains`
+    // ref: https://firebase.google.com/docs/firestore/query-data/queries?hl=ja#array_membership
+
     // TODO: should more swifty API or not...
 
     public func limitTo(_ limit: Int) -> QueryWrapper<Document> {
