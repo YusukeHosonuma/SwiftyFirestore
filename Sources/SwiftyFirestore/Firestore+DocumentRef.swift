@@ -63,4 +63,27 @@ extension FirestoreDocumentRef {
             completion?(error)
         }
     }
+
+    // MARK: - Listen
+
+    @discardableResult
+    public func listen(completion: @escaping DocumentCompletion) -> ListenerRegistration {
+        ref.addSnapshotListener { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                if let snapshot = snapshot {
+                    do {
+                        var document = try snapshot.data(as: Document.self)
+                        document?.documentId = snapshot.documentID
+                        completion(.success(document))
+                    } catch {
+                        completion(.failure(error))
+                    }
+                } else {
+                    completion(.failure(FirestoreError.unknown))
+                }
+            }
+        }
+    }
 }

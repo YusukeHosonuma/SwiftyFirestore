@@ -41,11 +41,11 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
     - [x] `limit(to:)`
     - [x] `limit(toLast:)`
   - [Listen](https://firebase.google.com/docs/firestore/query-data/listen?hl=ja)
-    - [ ] `addSnapshotListener()`
+    - [x] `addSnapshotListener()`
     - [ ] `addSnapshotListener(includeMetadataChanges:)`
     - [ ] `metadata.hasPendingWrites`
     - [ ] `snapshot.documentChanges`
-    - [ ] `listener.remove()`
+    - [x] `listener.remove()`
   - [Query cursors](https://firebase.google.com/docs/firestore/query-data/query-cursors?hl=ja)
     - [ ] `start(at:)`
     - [ ] `start(after:)`
