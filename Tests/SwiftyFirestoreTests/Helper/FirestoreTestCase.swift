@@ -31,7 +31,7 @@ class FirestoreTestCase: XCTestCase {
     func wait(file: StaticString = #file, line: UInt = #line, _ handler: (XCTestExpectation) -> Void) {
         let exp = expectation(description: "\(file) #\(line)")
         handler(exp)
-        wait(for: [exp], timeout: 5)
+        wait(for: [exp], timeout: 10)
     }
     
     func addWait(file: StaticString = #file, line: UInt = #line, _ handler: (XCTestExpectation) -> Void) {
@@ -41,6 +41,6 @@ class FirestoreTestCase: XCTestCase {
     }
 
     func waitExpectations() {
-        wait(for: expectations, timeout: 5)
+        wait(for: expectations, timeout: 10)
     }
 }
