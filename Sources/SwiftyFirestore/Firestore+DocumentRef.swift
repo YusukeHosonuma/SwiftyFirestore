@@ -8,7 +8,7 @@
 
 import FirebaseFirestore
 
-open class FirestoreDocumentRef<Document: FirestoreDocument> {
+open class FirestoreDocumentRef<Document: FirestoreDocument>: Codable {
     public typealias VoidCompletion = ((Error?) -> Void)
     public typealias DocumentCompletion = (Result<Document?, Error>) -> Void
 
@@ -20,6 +20,15 @@ open class FirestoreDocumentRef<Document: FirestoreDocument> {
 
     public init(_ ref: Firestore, id: String) {
         self.ref = ref.collection(Document.collectionId).document(id)
+    }
+
+    public init(ref: DocumentReference) {
+        self.ref = ref
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        ref = try values.decode(DocumentReference.self, forKey: .ref)
     }
 }
 

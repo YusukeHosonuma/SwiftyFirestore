@@ -65,6 +65,7 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
 - Batch
   - [ ] `commit()`
 - Other
+  - [x] Document Reference Type
   - [ ] `FieldValue.serverTimestamp()`
 
 ## API Difference (WIP)

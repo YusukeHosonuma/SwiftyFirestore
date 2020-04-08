@@ -7,6 +7,7 @@
 //
 
 import SwiftyFirestore
+import FirebaseFirestore
 
 struct TodoDocument: FirestoreDocument, Equatable {
     static let collectionId: String = "todos"
@@ -47,5 +48,19 @@ struct RepositoryDocument: FirestoreDocument, Equatable {
         case documentId
         case name
         case language
+    }
+}
+
+struct GistDocument: FirestoreDocument {
+    static let collectionId: String = "gist"
+
+    var documentId: String!
+    var url: String
+    var account: AccountDocumentRef
+    
+    enum CodingKeys: String, CodingKey {
+        case documentId
+        case url
+        case account
     }
 }
