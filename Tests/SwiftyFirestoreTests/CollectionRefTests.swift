@@ -33,7 +33,7 @@ final class CollectionRefeTests: FirestoreTestCase {
     override func tearDown() {
         super.tearDown()
     }
-    
+
     func testWhere() {
         defer { waitExpectations() } // ⏳
         

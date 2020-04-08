@@ -24,6 +24,7 @@
 		E57DE01F2434A6A000308FC0 /* Firestore+CollectionRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0192434A6A000308FC0 /* Firestore+CollectionRef.swift */; };
 		E57DE0202434A6A000308FC0 /* Firestore+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE01A2434A6A000308FC0 /* Firestore+Error.swift */; };
 		E57DE0212434A6A000308FC0 /* Firestore+Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE01B2434A6A000308FC0 /* Firestore+Document.swift */; };
+		E5DC663D243CC54F005C82ED /* ListenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DC663C243CC54F005C82ED /* ListenTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		E57DE0192434A6A000308FC0 /* Firestore+CollectionRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Firestore+CollectionRef.swift"; sourceTree = "<group>"; };
 		E57DE01A2434A6A000308FC0 /* Firestore+Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Firestore+Error.swift"; sourceTree = "<group>"; };
 		E57DE01B2434A6A000308FC0 /* Firestore+Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Firestore+Document.swift"; sourceTree = "<group>"; };
+		E5DC663C243CC54F005C82ED /* ListenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 				E57DE0132434A59D00308FC0 /* Info.plist */,
 				E57DE0102434A54500308FC0 /* SwiftyFirestoreTests.swift */,
 				E52D58EE243B41EA00FBFEBE /* CollectionRefTests.swift */,
+				E5DC663C243CC54F005C82ED /* ListenTests.swift */,
 			);
 			name = SwiftyFirestoreTests;
 			path = Tests/SwiftyFirestoreTests;
@@ -378,6 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5DC663D243CC54F005C82ED /* ListenTests.swift in Sources */,
 				E52D58EF243B41EA00FBFEBE /* CollectionRefTests.swift in Sources */,
 				E5256288243BF56E009AE249 /* FirestoreTestCase.swift in Sources */,
 				E5502CA42435E121007EC1F1 /* FirestoreTestHelper.swift in Sources */,
