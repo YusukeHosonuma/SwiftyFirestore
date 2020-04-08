@@ -38,7 +38,7 @@ class ListenTests: FirestoreTestCase {
         var callCount = 0
         
         // Listen
-        wait { exp in
+        addWait { exp in
             Firestore.root
                 .account(id: "YusukeHosonuma")
                 .listen { result in
@@ -51,7 +51,7 @@ class ListenTests: FirestoreTestCase {
                         
                     case 2:
                         XCTAssertEqual(document?.name, "Tobi")
-                        exp.fulfill()
+                        exp.fulfill() // 🔓
 
                     default:
                         XCTFail()
@@ -68,8 +68,6 @@ class ListenTests: FirestoreTestCase {
     }
     
     func testRemoveSwifty() {
-        defer { waitExpectations() } // ⏳
-
         let before = AccountDocument(name: "Yusuke Hosonuma")
         let after  = AccountDocument(name: "Tobi")
         
@@ -104,10 +102,11 @@ class ListenTests: FirestoreTestCase {
                 XCTAssertNil(error)
             }
         
+        // TODO: refactor
         // Wait
         wait { exp in
             DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
-                exp.fulfill()
+                exp.fulfill() // 🔓
             }
         }
     }
@@ -129,7 +128,7 @@ class ListenTests: FirestoreTestCase {
         var callCount = 0
         
         // Listen
-        wait { exp in
+        addWait { exp in
             Firestore.firestore()
                 .collection("account")
                 .document("YusukeHosonuma")
@@ -161,8 +160,6 @@ class ListenTests: FirestoreTestCase {
     }
     
     func testRemoveFirestore() {
-        defer { waitExpectations() } // ⏳
-
         let account = AccountDocument(name: "Yusuke Hosonuma")
         
         // Add
