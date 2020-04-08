@@ -40,10 +40,12 @@ struct RepositoryDocument: FirestoreDocument, Equatable {
     static let collectionId: String = "repository"
 
     var documentId: String!
+    var name: String
     var language: String // TODO: enum
     
     enum CodingKeys: String, CodingKey {
         case documentId
+        case name
         case language
     }
 }

@@ -31,3 +31,9 @@ class AccountDocumentRef: FirestoreDocumentRef<AccountDocument> {
 }
 
 class RepositoryCollectionRef: FirestoreCollectionRefBase<RepositoryDocument> {}
+
+extension CollectionGroupRef {
+    var repository: CollectionGroupBase<RepositoryDocument> {
+        CollectionGroupBase()
+    }
+}

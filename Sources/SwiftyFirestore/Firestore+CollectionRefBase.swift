@@ -17,10 +17,6 @@ open class FirestoreCollectionRefBase<T: FirestoreDocument>: FirestoreCollection
         ref as Query
     }
 
-//    public init(_ ref: CollectionReference) {
-//        self.ref = ref
-//    }
-
     public init(_ ref: Firestore) {
         self.ref = ref.collection(T.collectionId)
     }
