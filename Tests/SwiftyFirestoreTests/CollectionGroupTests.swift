@@ -66,8 +66,6 @@ class CollectionGroupTests: FirestoreTestCase {
     // MARK: - Swifty 🐤
     
     func testSwifty() throws {
-        defer { waitExpectations() } // ⏳
-
         wait { exp in
             Firestore
                 .collectionGroup
@@ -78,7 +76,7 @@ class CollectionGroupTests: FirestoreTestCase {
                     guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     
                     self.assertDocuments(documents)
-                    exp.fulfill() // ⏱
+                    exp.fulfill() // 🔓
                 }
         }
     }
@@ -86,8 +84,6 @@ class CollectionGroupTests: FirestoreTestCase {
     // MARK: - Firestore 🔥
     
     func testFirestore() throws {
-        defer { waitExpectations() } // ⏳
-
         wait { exp in
             Firestore.firestore()
                 .collectionGroup("repository")
@@ -101,7 +97,7 @@ class CollectionGroupTests: FirestoreTestCase {
                     }
                     
                     self.assertDocuments(documents)
-                    exp.fulfill() // ⏱
+                    exp.fulfill() // 🔓
                 }
         }
     }

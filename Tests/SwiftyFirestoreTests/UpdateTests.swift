@@ -30,8 +30,6 @@ class UpdateTests: FirestoreTestCase {
     // MARK: - Swifty 🐤
     
     func testSwifty() {
-        defer { waitExpectations() } // ⏳
-        
         // ▶️ Update
         Firestore.root
             .todos
@@ -56,8 +54,6 @@ class UpdateTests: FirestoreTestCase {
     }
     
     func testSwiftyCompletion() {
-        defer { waitExpectations() } // ⏳
-        
         // ▶️ Update
         wait { exp in
             Firestore.root
@@ -89,8 +85,6 @@ class UpdateTests: FirestoreTestCase {
     // MARK: - Firestore 🔥
     
     func testFirestore() {
-        defer { waitExpectations() } // ⏳
-        
         // ▶️ Update
         Firestore.firestore()
             .collection("todos")
@@ -114,9 +108,7 @@ class UpdateTests: FirestoreTestCase {
         }
     }
     
-    func testFirestoreCompletion() {
-        defer { waitExpectations() } // ⏳
-        
+    func testFirestoreCompletion() {        
         // ▶️ Update
         wait { exp in
             Firestore.firestore()

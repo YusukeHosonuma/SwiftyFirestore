@@ -35,8 +35,6 @@ final class CollectionRefeTests: FirestoreTestCase {
     }
 
     func testWhere() {
-        defer { waitExpectations() } // ⏳
-        
         // `==`
         wait { exp in
             Firestore.root
@@ -46,7 +44,7 @@ final class CollectionRefeTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [2])
-                    exp.fulfill() // ⏰
+                    exp.fulfill() // 🔓
                 }
         }
         
@@ -59,7 +57,7 @@ final class CollectionRefeTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [1])
-                    exp.fulfill() // ⏰
+                    exp.fulfill() // 🔓
                 }
         }
         
@@ -72,7 +70,7 @@ final class CollectionRefeTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [1, 2])
-                    exp.fulfill() // ⏰
+                    exp.fulfill() // 🔓
                 }
         }
 
@@ -85,7 +83,7 @@ final class CollectionRefeTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [3])
-                    exp.fulfill() // ⏰
+                    exp.fulfill() // 🔓
                 }
         }
         
@@ -98,7 +96,7 @@ final class CollectionRefeTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [2, 3])
-                    exp.fulfill() // ⏰
+                    exp.fulfill() // 🔓
                 }
         }
         
@@ -112,14 +110,12 @@ final class CollectionRefeTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [1])
-                    exp.fulfill() // ⏰
+                    exp.fulfill() // 🔓
                 }
         }
     }
     
     func testOrder() {
-        defer { waitExpectations() } // ⏳
-        
         // 🔼 ascending
         wait { exp in
             Firestore.root
@@ -128,7 +124,7 @@ final class CollectionRefeTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [1, 2, 3])
-                    exp.fulfill() // ⏰
+                    exp.fulfill() // 🔓
                 }
         }
 
@@ -140,7 +136,7 @@ final class CollectionRefeTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [3, 2, 1])
-                    exp.fulfill() // ⏰
+                    exp.fulfill() // 🔓
                 }
         }
 
@@ -153,14 +149,12 @@ final class CollectionRefeTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [3, 1, 2])
-                    exp.fulfill() // ⏰
+                    exp.fulfill() // 🔓
                 }
         }
     }
     
     func testLimit() {
-        defer { waitExpectations() } // ⏳
-
         // ⤴️ limit(to:)
         wait { exp in
             Firestore.root
@@ -170,7 +164,7 @@ final class CollectionRefeTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [1, 2])
-                    exp.fulfill() // ⏳
+                    exp.fulfill() // 🔓
                 }
         }
         
@@ -183,7 +177,7 @@ final class CollectionRefeTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     XCTAssertEqual(documents.map { $0.priority }, [2, 3])
-                    exp.fulfill() // ⏳
+                    exp.fulfill() // 🔓
                 }
         }
     }
