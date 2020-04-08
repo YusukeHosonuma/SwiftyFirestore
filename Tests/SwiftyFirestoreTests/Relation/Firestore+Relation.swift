@@ -19,14 +19,16 @@ import FirebaseFirestore
 
 extension RootRef {
     var todos: TodoCollectionRef { TodoCollectionRef(ref) }
+    var gist: GistCollectionRef { GistCollectionRef(ref) }
 
     // TODO: not needed?
     func account(id: String) -> AccountDocumentRef { AccountDocumentRef(ref, id: id) }
 }
 
 class TodoCollectionRef: FirestoreCollectionRefBase<TodoDocument> {}
+class GistCollectionRef: FirestoreCollectionRefBase<GistDocument> {}
 
-class AccountDocumentRef: FirestoreDocumentRef<AccountDocument> {
+final class AccountDocumentRef: FirestoreDocumentRef<AccountDocument> {
     var repository: RepositoryCollectionRef { RepositoryCollectionRef(ref) }
 }
 

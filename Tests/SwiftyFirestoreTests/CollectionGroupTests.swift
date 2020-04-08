@@ -15,10 +15,11 @@ class CollectionGroupTests: FirestoreTestCase {
     override func setUp() {
         super.setUp()
         
+        // Data:
         //
-        // "account": <AccountDocument> [
+        // 📚 "account": <📒 AccountDocument> [
         //   "YusukeHosonuma" {
-        //     "repository": <RepositoryDocument> [
+        //     📚 "repository": <📕 RepositoryDocument> [
         //       <id> {
         //         name: "SwiftyFirestore",
         //         language: "swift"
@@ -26,7 +27,7 @@ class CollectionGroupTests: FirestoreTestCase {
         //     ]
         //   },
         //   "penginmura" {
-        //     "repository": <RepositoryDocument> [
+        //     📚 "repository": <📕 RepositoryDocument> [
         //       <id> {
         //         name: "iosdc18-cfp-search",
         //         language: "HTML"

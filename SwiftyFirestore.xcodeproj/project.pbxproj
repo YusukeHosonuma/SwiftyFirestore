@@ -26,6 +26,7 @@
 		E57DE0212434A6A000308FC0 /* Firestore+Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE01B2434A6A000308FC0 /* Firestore+Document.swift */; };
 		E5811F69243D61FA00D58FE4 /* CollectionGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */; };
 		E5811F6B243D812700D58FE4 /* CollectionGroupBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F6A243D812700D58FE4 /* CollectionGroupBase.swift */; };
+		E5811F6D243D8A6D00D58FE4 /* DocumentReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */; };
 		E5DC663D243CC54F005C82ED /* ListenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DC663C243CC54F005C82ED /* ListenTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		E57DE01B2434A6A000308FC0 /* Firestore+Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Firestore+Document.swift"; sourceTree = "<group>"; };
 		E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupTests.swift; sourceTree = "<group>"; };
 		E5811F6A243D812700D58FE4 /* CollectionGroupBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupBase.swift; sourceTree = "<group>"; };
+		E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReferenceTests.swift; sourceTree = "<group>"; };
 		E5DC663C243CC54F005C82ED /* ListenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,6 +201,7 @@
 				E52D58EE243B41EA00FBFEBE /* CollectionRefTests.swift */,
 				E5DC663C243CC54F005C82ED /* ListenTests.swift */,
 				E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */,
+				E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */,
 			);
 			name = SwiftyFirestoreTests;
 			path = Tests/SwiftyFirestoreTests;
@@ -388,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5811F6D243D8A6D00D58FE4 /* DocumentReferenceTests.swift in Sources */,
 				E5DC663D243CC54F005C82ED /* ListenTests.swift in Sources */,
 				E5811F69243D61FA00D58FE4 /* CollectionGroupTests.swift in Sources */,
 				E52D58EF243B41EA00FBFEBE /* CollectionRefTests.swift in Sources */,
