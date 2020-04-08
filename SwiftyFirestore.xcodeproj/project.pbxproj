@@ -10,12 +10,13 @@
 		48436B021343DD47886DEB10 /* Pods_SwiftyFirestore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B9C813270F6F56C21A064B8 /* Pods_SwiftyFirestore.framework */; };
 		8B1018F9B791BFC44F8E9599 /* Pods_SwiftyFirestore_SwiftyFirestoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B6A86C5232EFD46DBEE5B6 /* Pods_SwiftyFirestore_SwiftyFirestoreTests.framework */; };
 		E505E6E5243DC41E00A3D25D /* UpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E505E6E4243DC41E00A3D25D /* UpdateTests.swift */; };
+		E505E6E9243DDD0700A3D25D /* OrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E505E6E8243DDD0700A3D25D /* OrderTests.swift */; };
 		E5256286243BEF82009AE249 /* Firestore+CollectionRefBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5256285243BEF82009AE249 /* Firestore+CollectionRefBase.swift */; };
 		E5256288243BF56E009AE249 /* FirestoreTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5256287243BF56E009AE249 /* FirestoreTestCase.swift */; };
-		E52D58EF243B41EA00FBFEBE /* CollectionRefTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52D58EE243B41EA00FBFEBE /* CollectionRefTests.swift */; };
+		E52D58EF243B41EA00FBFEBE /* QueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52D58EE243B41EA00FBFEBE /* QueryTests.swift */; };
 		E5502C992435DB91007EC1F1 /* Firestore+RootRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C982435DB91007EC1F1 /* Firestore+RootRef.swift */; };
-		E5502C9C2435DBF0007EC1F1 /* TodoDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C9A2435DBC9007EC1F1 /* TodoDocument.swift */; };
-		E5502CA12435DC88007EC1F1 /* Firestore+Relation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C9D2435DC16007EC1F1 /* Firestore+Relation.swift */; };
+		E5502C9C2435DBF0007EC1F1 /* FirestoreDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C9A2435DBC9007EC1F1 /* FirestoreDocuments.swift */; };
+		E5502CA12435DC88007EC1F1 /* FirestoreRelations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C9D2435DC16007EC1F1 /* FirestoreRelations.swift */; };
 		E5502CA42435E121007EC1F1 /* FirestoreTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502CA32435E121007EC1F1 /* FirestoreTestHelper.swift */; };
 		E57DE0062434A4E300308FC0 /* libSwiftyFirestore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5584A602434A3DD007035B6 /* libSwiftyFirestore.a */; };
 		E57DE0122434A54500308FC0 /* SwiftyFirestoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0102434A54500308FC0 /* SwiftyFirestoreTests.swift */; };
@@ -61,12 +62,13 @@
 		74B6A86C5232EFD46DBEE5B6 /* Pods_SwiftyFirestore_SwiftyFirestoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyFirestore_SwiftyFirestoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B1BA6E215EC034DCA73097 /* Pods-SwiftyFirestore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyFirestore.debug.xcconfig"; path = "Target Support Files/Pods-SwiftyFirestore/Pods-SwiftyFirestore.debug.xcconfig"; sourceTree = "<group>"; };
 		E505E6E4243DC41E00A3D25D /* UpdateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTests.swift; sourceTree = "<group>"; };
+		E505E6E8243DDD0700A3D25D /* OrderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTests.swift; sourceTree = "<group>"; };
 		E5256285243BEF82009AE249 /* Firestore+CollectionRefBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firestore+CollectionRefBase.swift"; sourceTree = "<group>"; };
 		E5256287243BF56E009AE249 /* FirestoreTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestCase.swift; sourceTree = "<group>"; };
-		E52D58EE243B41EA00FBFEBE /* CollectionRefTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRefTests.swift; sourceTree = "<group>"; };
+		E52D58EE243B41EA00FBFEBE /* QueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTests.swift; sourceTree = "<group>"; };
 		E5502C982435DB91007EC1F1 /* Firestore+RootRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firestore+RootRef.swift"; sourceTree = "<group>"; };
-		E5502C9A2435DBC9007EC1F1 /* TodoDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDocument.swift; sourceTree = "<group>"; };
-		E5502C9D2435DC16007EC1F1 /* Firestore+Relation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firestore+Relation.swift"; sourceTree = "<group>"; };
+		E5502C9A2435DBC9007EC1F1 /* FirestoreDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreDocuments.swift; sourceTree = "<group>"; };
+		E5502C9D2435DC16007EC1F1 /* FirestoreRelations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRelations.swift; sourceTree = "<group>"; };
 		E5502CA32435E121007EC1F1 /* FirestoreTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestHelper.swift; sourceTree = "<group>"; };
 		E5584A602434A3DD007035B6 /* libSwiftyFirestore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSwiftyFirestore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E57DE0012434A4E300308FC0 /* SwiftyFirestoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyFirestoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,20 +116,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E5502C962435DB32007EC1F1 /* Document */ = {
+		E5502C962435DB32007EC1F1 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				E5502C9A2435DBC9007EC1F1 /* TodoDocument.swift */,
+				E5502C9A2435DBC9007EC1F1 /* FirestoreDocuments.swift */,
+				E5502C9D2435DC16007EC1F1 /* FirestoreRelations.swift */,
 			);
-			path = Document;
-			sourceTree = "<group>";
-		};
-		E5502C972435DB3F007EC1F1 /* Relation */ = {
-			isa = PBXGroup;
-			children = (
-				E5502C9D2435DC16007EC1F1 /* Firestore+Relation.swift */,
-			);
-			path = Relation;
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		E5502CA22435E108007EC1F1 /* Helper */ = {
@@ -196,15 +191,15 @@
 			isa = PBXGroup;
 			children = (
 				E5502CA22435E108007EC1F1 /* Helper */,
-				E5502C962435DB32007EC1F1 /* Document */,
-				E5502C972435DB3F007EC1F1 /* Relation */,
-				E57DE0132434A59D00308FC0 /* Info.plist */,
+				E5502C962435DB32007EC1F1 /* Assets */,
 				E57DE0102434A54500308FC0 /* SwiftyFirestoreTests.swift */,
-				E52D58EE243B41EA00FBFEBE /* CollectionRefTests.swift */,
+				E52D58EE243B41EA00FBFEBE /* QueryTests.swift */,
+				E505E6E8243DDD0700A3D25D /* OrderTests.swift */,
+				E505E6E4243DC41E00A3D25D /* UpdateTests.swift */,
 				E5DC663C243CC54F005C82ED /* ListenTests.swift */,
 				E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */,
 				E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */,
-				E505E6E4243DC41E00A3D25D /* UpdateTests.swift */,
+				E57DE0132434A59D00308FC0 /* Info.plist */,
 			);
 			name = SwiftyFirestoreTests;
 			path = Tests/SwiftyFirestoreTests;
@@ -394,16 +389,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E505E6E9243DDD0700A3D25D /* OrderTests.swift in Sources */,
 				E5811F6D243D8A6D00D58FE4 /* DocumentReferenceTests.swift in Sources */,
 				E5DC663D243CC54F005C82ED /* ListenTests.swift in Sources */,
 				E5811F69243D61FA00D58FE4 /* CollectionGroupTests.swift in Sources */,
-				E52D58EF243B41EA00FBFEBE /* CollectionRefTests.swift in Sources */,
+				E52D58EF243B41EA00FBFEBE /* QueryTests.swift in Sources */,
 				E505E6E5243DC41E00A3D25D /* UpdateTests.swift in Sources */,
 				E5256288243BF56E009AE249 /* FirestoreTestCase.swift in Sources */,
 				E5502CA42435E121007EC1F1 /* FirestoreTestHelper.swift in Sources */,
-				E5502C9C2435DBF0007EC1F1 /* TodoDocument.swift in Sources */,
+				E5502C9C2435DBF0007EC1F1 /* FirestoreDocuments.swift in Sources */,
 				E57DE0122434A54500308FC0 /* SwiftyFirestoreTests.swift in Sources */,
-				E5502CA12435DC88007EC1F1 /* Firestore+Relation.swift in Sources */,
+				E5502CA12435DC88007EC1F1 /* FirestoreRelations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
