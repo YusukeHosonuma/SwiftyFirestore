@@ -9,6 +9,8 @@
 import FirebaseFirestore
 
 open class FirestoreDocumentRef<Document: FirestoreDocument>: Codable {
+    public typealias Key = Document.CodingKeys
+
     public typealias VoidCompletion = ((Error?) -> Void)
     public typealias DocumentCompletion = (Result<Document?, Error>) -> Void
 
@@ -60,6 +62,24 @@ extension FirestoreDocumentRef {
             }
         }
     }
+
+    // MARK: Update
+
+    public func update(_ keysAndValues: [(Key, Any)]) {
+        let data = keysAndValues.map { ($0.stringValue, $1) }
+        let fields = [String: Any](data) { a, _ in a }
+
+        ref.updateData(fields)
+    }
+
+    public func update(_ keysAndValues: [(Key, Any)], completion: @escaping VoidCompletion) {
+        let data = keysAndValues.map { ($0.stringValue, $1) }
+        let fields = [String: Any](data) { a, _ in a }
+
+        ref.updateData(fields, completion: completion)
+    }
+
+    // MARK: Delete
 
     public func delete(completion: VoidCompletion?) {
         ref.delete(completion: completion)
