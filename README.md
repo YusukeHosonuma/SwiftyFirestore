@@ -34,7 +34,7 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
       - [x] `>=`
       - [ ] `array-contains`
     - [x] Combination Query
-    - [ ] `collectionGroup()`
+    - [x] Collection Group - `collectionGroup()`
   - [x] [Order and Limit](https://firebase.google.com/docs/firestore/query-data/order-limit-data?hl=ja)
     - [x] `order(by:)`
     - [x] `order(by:, descending:)`
