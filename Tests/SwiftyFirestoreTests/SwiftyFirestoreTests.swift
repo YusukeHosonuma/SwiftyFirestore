@@ -158,7 +158,7 @@ final class SwiftyFirestoreTests: XCTestCase {
             .document("YusukeHosonuma")
             .collection("repository")
             .document("SwiftyFirestore")
-            .setData(try! Firestore.Encoder().encode(RepositoryDocument(language: "Swift")))
+            .setData(try! Firestore.Encoder().encode(RepositoryDocument(name: "SwiftyFirestore", language: "Swift")))
 
         assertSameResult(
             resultType: [RepositoryDocument].self,

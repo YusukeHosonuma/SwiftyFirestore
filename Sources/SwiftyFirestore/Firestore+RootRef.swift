@@ -16,8 +16,14 @@ public class RootRef {
     }
 }
 
+public class CollectionGroupRef {}
+
 extension Firestore {
     public static var root: RootRef {
         RootRef(Firestore.firestore())
+    }
+
+    public static var collectionGroup: CollectionGroupRef {
+        CollectionGroupRef()
     }
 }
