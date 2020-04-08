@@ -19,6 +19,14 @@ class FirestoreTestCase: XCTestCase {
     override func tearDown() {
         FirestoreTestHelper.deleteFirebaseApp()
     }
+    
+    func wait(time: Double, file: StaticString = #file, line: UInt = #line) {
+        wait { exp in
+            DispatchQueue.global().asyncAfter(deadline: .now() + time) {
+                exp.fulfill()
+            }
+        }
+    }
 
     func wait(file: StaticString = #file, line: UInt = #line, _ handler: (XCTestExpectation) -> Void) {
         let exp = expectation(description: "\(file) #\(line)")

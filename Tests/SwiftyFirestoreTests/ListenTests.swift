@@ -28,7 +28,7 @@ class ListenTests: FirestoreTestCase {
         let before = AccountDocument(name: "Yusuke Hosonuma")
         let after  = AccountDocument(name: "Tobi")
         
-        // Add
+        // ➕ Add
         Firestore.root
             .account(id: "YusukeHosonuma")
             .setData(before) { error in
@@ -37,7 +37,7 @@ class ListenTests: FirestoreTestCase {
 
         var callCount = 0
         
-        // Listen
+        // 📌 Listen
         addWait { exp in
             Firestore.root
                 .account(id: "YusukeHosonuma")
@@ -59,7 +59,7 @@ class ListenTests: FirestoreTestCase {
                 }
         }
         
-        // Update
+        // ▶️ Update
         Firestore.root
             .account(id: "YusukeHosonuma")
             .setData(after) { error in
@@ -71,7 +71,7 @@ class ListenTests: FirestoreTestCase {
         let before = AccountDocument(name: "Yusuke Hosonuma")
         let after  = AccountDocument(name: "Tobi")
         
-        // Add
+        // ➕ Add
         Firestore.root
             .account(id: "YusukeHosonuma")
             .setData(before) { error in
@@ -80,7 +80,7 @@ class ListenTests: FirestoreTestCase {
 
         var callCount = 0
         
-        // Listen
+        // 📌 Listen
         let listener = Firestore.root
             .account(id: "YusukeHosonuma")
             .listen { result in
@@ -92,23 +92,18 @@ class ListenTests: FirestoreTestCase {
                 }
             }
         
-        // Remove
+        // ❌ Remove
         listener.remove()
 
-        // Update
+        // ▶️ Update
         Firestore.root
             .account(id: "YusukeHosonuma")
             .setData(after) { error in
                 XCTAssertNil(error)
             }
         
-        // TODO: refactor
-        // Wait
-        wait { exp in
-            DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
-                exp.fulfill() // 🔓
-            }
-        }
+        // ⏳ Wait
+        wait(time: 0.5)
     }
     
     // MARK: - 🔥 Test to Firestore API
@@ -118,7 +113,7 @@ class ListenTests: FirestoreTestCase {
 
         let account = AccountDocument(name: "Yusuke Hosonuma")
         
-        // Add
+        // ➕ Add
         Firestore.root
             .account(id: "YusukeHosonuma")
             .setData(account) { (error) in
@@ -127,7 +122,7 @@ class ListenTests: FirestoreTestCase {
 
         var callCount = 0
         
-        // Listen
+        // 📌 Listen
         addWait { exp in
             Firestore.firestore()
                 .collection("account")
@@ -151,7 +146,7 @@ class ListenTests: FirestoreTestCase {
                 }
         }
 
-        // Update
+        // ▶️ Update
         Firestore.root
             .account(id: "YusukeHosonuma")
             .setData(AccountDocument(name: "Tobi")) { (error) in
@@ -162,7 +157,7 @@ class ListenTests: FirestoreTestCase {
     func testRemoveFirestore() {
         let account = AccountDocument(name: "Yusuke Hosonuma")
         
-        // Add
+        // ➕ Add
         Firestore.root
             .account(id: "YusukeHosonuma")
             .setData(account) { (error) in
@@ -171,7 +166,7 @@ class ListenTests: FirestoreTestCase {
 
         var callCount = 0
         
-        // Listen
+        // 📌 Listen
         let listener = Firestore.firestore()
             .collection("account")
             .document("YusukeHosonuma")
@@ -185,21 +180,17 @@ class ListenTests: FirestoreTestCase {
                 }
             }
         
-        // Remove
+        // ❌ Remove
         listener.remove()
 
-        // Update
+        // ▶️ Update
         Firestore.root
             .account(id: "YusukeHosonuma")
             .setData(AccountDocument(name: "Tobi")) { (error) in
                 XCTAssertNil(error)
             }
         
-        // Wait
-        wait { exp in
-            DispatchQueue.global().asyncAfter(deadline: .now() + 0.5) {
-                exp.fulfill()
-            }
-        }
+        // ⏳ Wait
+        wait(time: 0.5)
     }
 }

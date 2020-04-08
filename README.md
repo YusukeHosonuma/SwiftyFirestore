@@ -15,7 +15,7 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
   - [x] `setData()`
   - [ ] `setData(merge:)`
   - [x] `add()`
-  - [ ] `updateData()`
+  - [x] `updateData()`
   - [ ] `updateData()` - nested object
   - [ ] `FieldValue.arrayUnion()`
   - [ ] `FieldValue.arrayRemove()`
