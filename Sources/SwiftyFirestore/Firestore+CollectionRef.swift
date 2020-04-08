@@ -27,9 +27,9 @@ extension FirestoreCollectionRef {
 
     // MARK: - Reference
 
-//    public func document(_ path: String) -> FirestoreDocumentRef<Document> {
-//        FirestoreDocumentRef(ref.document(path))
-//    }
+    public func document(_ path: String) -> FirestoreDocumentRef<Document> {
+        FirestoreDocumentRef(ref: ref.document(path))
+    }
 
     // MARK: - Operator
 
@@ -41,6 +41,7 @@ extension FirestoreCollectionRef {
         }
     }
 
+    // TODO: delete?
     public func getBy(id: String) -> DocumentReference {
         ref.document(id)
     }
