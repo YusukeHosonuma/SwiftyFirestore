@@ -81,8 +81,18 @@ extension FirestoreDocumentRef {
 
     // MARK: Delete
 
+    public func delete() {
+        ref.delete()
+    }
+
     public func delete(completion: VoidCompletion?) {
         ref.delete(completion: completion)
+    }
+
+    // MARK: Update
+
+    public func setData(_ document: Document) {
+        ref.setData(try! document.asData())
     }
 
     public func setData(_ document: Document, completion: VoidCompletion?) {

@@ -57,8 +57,10 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
     - [ ] multi-cursor
   - [Enable offline](https://firebase.google.com/docs/firestore/manage-data/enable-offline?hl=ja)
     - T.B.D
+  - Other
+    - [ ] `exists`
 - Delete
-  - [ ] `delete()`
+  - [x] `delete()`
   - [ ] `FieldValue.delete`
 - Transaction
   - [ ] `runTransaction()`
