@@ -9,7 +9,7 @@
 import FirebaseFirestore
 // import RxSwift
 
-public protocol FirestoreQueryRef {
+public protocol QueryRef {
     associatedtype Document: FirestoreDocument
 
     typealias VoidCompletion = ((Error?) -> Void)
@@ -18,7 +18,7 @@ public protocol FirestoreQueryRef {
     var queryRef: Query { get }
 }
 
-extension FirestoreQueryRef {
+extension QueryRef {
     public typealias Key = Document.CodingKeys
 
     // MARK: - Rx
@@ -30,21 +30,7 @@ extension FirestoreQueryRef {
     // MARK: - Get
 
     public func getAll(completion: @escaping CollectionCompletion) {
-        queryRef.getDocuments { snapshot, error in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                if let snapshot = snapshot {
-                    do {
-                        completion(.success(try snapshot.documents.map(Document.init)))
-                    } catch {
-                        completion(.failure(error))
-                    }
-                } else {
-                    completion(.failure(FirestoreError.unknown))
-                }
-            }
-        }
+        getAll(source: .default, completion: completion)
     }
 
     public func getAll(source: FirestoreSource, completion: @escaping CollectionCompletion) {
@@ -67,7 +53,7 @@ extension FirestoreQueryRef {
 
     // MARK: - Where
 
-    public func whereBy(_ key: Key, _ op: FirestoreOperator, _ value: Any) -> QueryWrapper<Document> {
+    public func whereBy(_ key: Key, _ op: WhereOperator, _ value: Any) -> QueryWrapper<Document> {
         query.whereBy(FirestoreCriteria(key: key, value: value, op: op))
     }
 
@@ -103,7 +89,7 @@ extension FirestoreQueryRef {
 
     // MARK: Order
 
-    public func orderBy(_ key: Key, sort: FirestoreSort = .ascending) -> QueryWrapper<Document> {
+    public func orderBy(_ key: Key, sort: Sort = .ascending) -> QueryWrapper<Document> {
         query.orderBy(key.stringValue, sort: sort)
     }
 
@@ -131,7 +117,7 @@ extension FirestoreQueryRef {
     }
 
     private func whereBy(by key: Key,
-                         _ op: FirestoreOperator,
+                         _ op: WhereOperator,
                          _ value: Any) -> QueryWrapper<Document> {
         query
             .whereBy(FirestoreCriteria(key: key, value: value, op: op))

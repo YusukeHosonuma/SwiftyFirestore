@@ -8,7 +8,7 @@
 
 import FirebaseFirestore
 
-open class FirestoreCollectionRefBase<T: FirestoreDocument>: FirestoreCollectionRef {
+open class CollectionRefBase<T: FirestoreDocument>: CollectionRef {
     public var ref: CollectionReference
 
     public typealias Document = T

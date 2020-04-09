@@ -9,11 +9,13 @@
 import FirebaseFirestore
 
 public enum UpdateField<Document: FirestoreDocument> {
-    case value(Document.CodingKeys, Any)
-    case increment(Document.CodingKeys, Int)
-    case arrayUnion(Document.CodingKeys, [Any])
-    case arrayRemove(Document.CodingKeys, [Any])
-    case delete(Document.CodingKeys)
+    public typealias Key = Document.CodingKeys
+
+    case value(Key, Any)
+    case increment(Key, Int)
+    case arrayUnion(Key, [Any])
+    case arrayRemove(Key, [Any])
+    case delete(Key)
 
     func keyAndValue() -> (String, Any) {
         switch self {

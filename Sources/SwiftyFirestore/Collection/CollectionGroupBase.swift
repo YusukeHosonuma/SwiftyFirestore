@@ -8,7 +8,7 @@
 
 import FirebaseFirestore
 
-open class CollectionGroupBase<T: FirestoreDocument>: FirestoreQueryRef {
+open class CollectionGroupBase<T: FirestoreDocument>: QueryRef {
     public let queryRef: Query
 
     public typealias Document = T

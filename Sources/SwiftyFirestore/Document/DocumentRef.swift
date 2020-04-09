@@ -8,7 +8,7 @@
 
 import FirebaseFirestore
 
-open class FirestoreDocumentRef<Document: FirestoreDocument>: Codable {
+open class DocumentRef<Document: FirestoreDocument>: Codable {
     public typealias Key = Document.CodingKeys
 
     public typealias VoidCompletion = ((Error?) -> Void)
@@ -34,7 +34,7 @@ open class FirestoreDocumentRef<Document: FirestoreDocument>: Codable {
     }
 }
 
-extension FirestoreDocumentRef {
+extension DocumentRef {
     // MARK: - Rx
 
 //    func asObservable() -> FirestoreDocumentRefRx<Document> {
@@ -126,12 +126,7 @@ extension FirestoreDocumentRef {
     // MARK: - Listen
 
     @discardableResult
-    public func listen(completion: @escaping DocumentCompletion) -> ListenerRegistration {
-        listen(includeMetadataChanges: false, completion: completion)
-    }
-
-    @discardableResult
-    public func listen(includeMetadataChanges: Bool, completion: @escaping DocumentCompletion) -> ListenerRegistration {
+    public func listen(includeMetadataChanges: Bool = false, completion: @escaping DocumentCompletion) -> ListenerRegistration {
         ref.addSnapshotListener(includeMetadataChanges: includeMetadataChanges) { snapshot, error in
             if let error = error {
                 completion(.failure(error))
