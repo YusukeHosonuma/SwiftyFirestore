@@ -15,6 +15,7 @@
 		E5256286243BEF82009AE249 /* CollectionRefBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5256285243BEF82009AE249 /* CollectionRefBase.swift */; };
 		E5256288243BF56E009AE249 /* FirestoreTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5256287243BF56E009AE249 /* FirestoreTestCase.swift */; };
 		E52D58EF243B41EA00FBFEBE /* QueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52D58EE243B41EA00FBFEBE /* QueryTests.swift */; };
+		E53892A8243FE03500F72573 /* XCTestCase+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53892A6243FE01100F72573 /* XCTestCase+.swift */; };
 		E5502C992435DB91007EC1F1 /* Firestore+RootRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C982435DB91007EC1F1 /* Firestore+RootRef.swift */; };
 		E5502C9C2435DBF0007EC1F1 /* FirestoreDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C9A2435DBC9007EC1F1 /* FirestoreDocuments.swift */; };
 		E5502CA12435DC88007EC1F1 /* FirestoreRelations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C9D2435DC16007EC1F1 /* FirestoreRelations.swift */; };
@@ -74,6 +75,7 @@
 		E5256285243BEF82009AE249 /* CollectionRefBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRefBase.swift; sourceTree = "<group>"; };
 		E5256287243BF56E009AE249 /* FirestoreTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestCase.swift; sourceTree = "<group>"; };
 		E52D58EE243B41EA00FBFEBE /* QueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTests.swift; sourceTree = "<group>"; };
+		E53892A6243FE01100F72573 /* XCTestCase+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+.swift"; sourceTree = "<group>"; };
 		E5502C982435DB91007EC1F1 /* Firestore+RootRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firestore+RootRef.swift"; sourceTree = "<group>"; };
 		E5502C9A2435DBC9007EC1F1 /* FirestoreDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreDocuments.swift; sourceTree = "<group>"; };
 		E5502C9D2435DC16007EC1F1 /* FirestoreRelations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRelations.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			children = (
 				E5502CA32435E121007EC1F1 /* FirestoreTestHelper.swift */,
 				E5256287243BF56E009AE249 /* FirestoreTestCase.swift */,
+				E53892A6243FE01100F72573 /* XCTestCase+.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				E5502C9C2435DBF0007EC1F1 /* FirestoreDocuments.swift in Sources */,
 				E57DE0122434A54500308FC0 /* SwiftyFirestoreTests.swift in Sources */,
 				E5502CA12435DC88007EC1F1 /* FirestoreRelations.swift in Sources */,
+				E53892A8243FE03500F72573 /* XCTestCase+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
