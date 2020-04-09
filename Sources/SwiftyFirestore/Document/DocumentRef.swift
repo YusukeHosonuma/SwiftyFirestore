@@ -8,7 +8,7 @@
 
 import FirebaseFirestore
 
-open class FirestoreDocumentRef<Document: FirestoreDocument>: Codable {
+open class DocumentRef<Document: FirestoreDocument>: Codable {
     public typealias Key = Document.CodingKeys
 
     public typealias VoidCompletion = ((Error?) -> Void)
@@ -34,7 +34,7 @@ open class FirestoreDocumentRef<Document: FirestoreDocument>: Codable {
     }
 }
 
-extension FirestoreDocumentRef {
+extension DocumentRef {
     // MARK: - Rx
 
 //    func asObservable() -> FirestoreDocumentRefRx<Document> {

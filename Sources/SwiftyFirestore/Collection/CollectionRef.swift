@@ -8,7 +8,7 @@
 
 import FirebaseFirestore
 
-public protocol FirestoreCollectionRef: FirestoreQueryRef {
+public protocol CollectionRef: QueryRef {
     associatedtype Key = Document.CodingKeys
 
     var ref: CollectionReference { get }
@@ -18,7 +18,7 @@ public protocol FirestoreCollectionRef: FirestoreQueryRef {
 //    public var queryRef: Query { ref as Query }
 // }
 
-extension FirestoreCollectionRef {
+extension CollectionRef {
     // MARK: - Rx
 
 //    func asObservable() -> FirestoreCollectionRefRx<Document> {
@@ -27,8 +27,8 @@ extension FirestoreCollectionRef {
 
     // MARK: - Reference
 
-    public func document(_ path: String) -> FirestoreDocumentRef<Document> {
-        FirestoreDocumentRef(ref: ref.document(path))
+    public func document(_ path: String) -> DocumentRef<Document> {
+        DocumentRef(ref: ref.document(path))
     }
 
     // MARK: - Operator

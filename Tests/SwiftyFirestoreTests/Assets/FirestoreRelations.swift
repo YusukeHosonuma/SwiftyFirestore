@@ -26,15 +26,15 @@ extension RootRef {
     func account(id: String) -> AccountDocumentRef { AccountDocumentRef(ref, id: id) }
 }
 
-class TodoCollectionRef: FirestoreCollectionRefBase<TodoDocument> {}
-class GistCollectionRef: FirestoreCollectionRefBase<GistDocument> {}
-class AccountCollectionRef: FirestoreCollectionRefBase<AccountDocument> {}
+class TodoCollectionRef: CollectionRefBase<TodoDocument> {}
+class GistCollectionRef: CollectionRefBase<GistDocument> {}
+class AccountCollectionRef: CollectionRefBase<AccountDocument> {}
 
-final class AccountDocumentRef: FirestoreDocumentRef<AccountDocument> {
+final class AccountDocumentRef: DocumentRef<AccountDocument> {
     var repository: RepositoryCollectionRef { RepositoryCollectionRef(ref) }
 }
 
-class RepositoryCollectionRef: FirestoreCollectionRefBase<RepositoryDocument> {}
+class RepositoryCollectionRef: CollectionRefBase<RepositoryDocument> {}
 
 extension CollectionGroupRef {
     var repository: CollectionGroupBase<RepositoryDocument> {
