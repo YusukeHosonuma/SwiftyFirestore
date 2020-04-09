@@ -4,7 +4,7 @@
   "description": "*a.k.a S線上のFirestore - Firestore on the S(wift) strings*",
   "main": "index.js",
   "dependencies": {
-    "firebase-tools": "^8.0.0"
+    "firebase-tools": "^8.0.2"
   },
   "devDependencies": {},
   "scripts": {
