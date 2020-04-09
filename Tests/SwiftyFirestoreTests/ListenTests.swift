@@ -36,10 +36,15 @@ class ListenTests: FirestoreTestCase {
             }
 
         var callCount = 0
+        var listener: ListenerRegistration!
+        
+        func __removeListener() {
+            listener.remove() // 🧹 clean-up
+        }
         
         // 📌 Listen
         addWait { exp in
-            Firestore.root
+            listener = Firestore.root
                 .account(id: "YusukeHosonuma")
                 .listen { result in
                     guard case .success(let document) = result else { XCTFail(); return } // ✅
@@ -51,6 +56,7 @@ class ListenTests: FirestoreTestCase {
                         
                     case 2:
                         XCTAssertEqual(document?.name, "Tobi")
+                        __removeListener()
                         exp.fulfill() // 🔓
 
                     default:
@@ -83,7 +89,7 @@ class ListenTests: FirestoreTestCase {
         var listener: ListenerRegistration!
         
         func __removeListener() {
-            listener.remove() // clean-up
+            listener.remove() // 🧹 clean-up
         }
         
         // 📌 Listen
@@ -178,13 +184,18 @@ class ListenTests: FirestoreTestCase {
             }
 
         var callCount = 0
-        
+        var listener: ListenerRegistration!
+
+        func __removeListener() {
+            listener.remove() // 🧹 clean-up
+        }
+
         // 📌 Listen
         addWait { exp in
-            Firestore.firestore()
+            listener = Firestore.firestore()
                 .collection("account")
                 .document("YusukeHosonuma")
-                .addSnapshotListener { (snapshot, error) in // TODO: clean-up
+                .addSnapshotListener { (snapshot, error) in
                     guard let snapshot = snapshot else { XCTFail(); return }
                     
                     callCount += 1
@@ -195,6 +206,7 @@ class ListenTests: FirestoreTestCase {
                         
                     case 2:
                         XCTAssertEqual(snapshot.data()?["name"] as? String, "Tobi")
+                        __removeListener()
                         exp.fulfill()
 
                     default:
@@ -227,7 +239,7 @@ class ListenTests: FirestoreTestCase {
         var listener: ListenerRegistration!
         
         func __removeListener() {
-            listener.remove() // clean-up
+            listener.remove() // 🧹 clean-up
         }
         
         // 📌 Listen
