@@ -49,11 +49,12 @@ class ListenTests: FirestoreTestCase {
             listener = Firestore.root
                 .account(id: "YusukeHosonuma")
                 .listen { result in
-                    guard case .success(let document) = result else { XCTFail(); return } // ✅
+                    guard case .success(let (document, metadata)) = result else { XCTFail(); return } // ✅
                     callCount += 1
 
                     switch callCount {
                     case 1:
+                        XCTAssertTrue(metadata.hasPendingWrites) // TODO: always `true` in first-time❓
                         XCTAssertEqual(document?.name, "Yusuke Hosonuma")
                         
                     case 2:
@@ -101,7 +102,7 @@ class ListenTests: FirestoreTestCase {
             listener = Firestore.root
                 .account(id: "YusukeHosonuma")
                 .listen(includeMetadataChanges: true) { result in
-                    guard case .success(let document) = result else { XCTFail(); return } // ↩️
+                    guard case .success(let (document, _)) = result else { XCTFail(); return } // ↩️
                     
                     callCount += 1
 
@@ -208,6 +209,7 @@ class ListenTests: FirestoreTestCase {
 
                     switch callCount {
                     case 1:
+                        XCTAssertTrue(snapshot.metadata.hasPendingWrites) // TODO: always `true` in first-time❓
                         XCTAssertEqual(snapshot.data()?["name"] as? String, "Yusuke Hosonuma")
                         
                     case 2:
