@@ -10,8 +10,6 @@ import XCTest
 
 class FirestoreTestCase: XCTestCase {
 
-    var expectations: [XCTestExpectation] = []
-    
     override func setUp() {
         FirestoreTestHelper.setupFirebaseApp()
     }
@@ -60,13 +58,14 @@ class FirestoreTestCase: XCTestCase {
         }
     }
     
-    func addWait(file: StaticString = #file, line: UInt = #line, _ handler: (XCTestExpectation) -> Void) {
+    func wait(
+        queue: inout [XCTestExpectation],
+        file: StaticString = #file,
+        line: UInt = #line,
+        _ handler: (XCTestExpectation) -> Void
+    ) {
         let exp = expectation(description: "\(file) #\(line)")
-        expectations.append(exp) // 変数を引数で渡すようにしても良さそう
+        queue.append(exp)
         handler(exp)
-    }
-
-    func waitExpectations() {
-        wait(for: expectations, timeout: 10)
     }
 }
