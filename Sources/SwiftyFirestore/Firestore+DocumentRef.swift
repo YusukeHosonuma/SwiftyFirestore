@@ -126,12 +126,7 @@ extension FirestoreDocumentRef {
     // MARK: - Listen
 
     @discardableResult
-    public func listen(completion: @escaping DocumentCompletion) -> ListenerRegistration {
-        listen(includeMetadataChanges: false, completion: completion)
-    }
-
-    @discardableResult
-    public func listen(includeMetadataChanges: Bool, completion: @escaping DocumentCompletion) -> ListenerRegistration {
+    public func listen(includeMetadataChanges: Bool = false, completion: @escaping DocumentCompletion) -> ListenerRegistration {
         ref.addSnapshotListener(includeMetadataChanges: includeMetadataChanges) { snapshot, error in
             if let error = error {
                 completion(.failure(error))
