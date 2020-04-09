@@ -23,7 +23,6 @@ class ListenTests: FirestoreTestCase {
     // MARK: - 🐤 Test to SwiftyFirestore
     
     func testListenSwifty() {
-        defer { waitExpectations() } // ⏳
 
         let before = AccountDocument(name: "Yusuke Hosonuma")
         let after  = AccountDocument(name: "Tobi")
@@ -42,8 +41,11 @@ class ListenTests: FirestoreTestCase {
             listener.remove() // 🧹 clean-up
         }
         
+        var exps: [XCTestExpectation] = []
+        defer { wait(for: exps, timeout: 10) }
+        
         // 📌 Listen
-        addWait { exp in
+        wait(queue: &exps) { exp in
             listener = Firestore.root
                 .account(id: "YusukeHosonuma")
                 .listen { result in
@@ -74,7 +76,6 @@ class ListenTests: FirestoreTestCase {
     }
     
     func testAddIncludeMetadataChangesSwifty() {
-        defer { waitExpectations() } // ⏳
 
         let account = AccountDocument(name: "Yusuke Hosonuma")
         
@@ -92,8 +93,11 @@ class ListenTests: FirestoreTestCase {
             listener.remove() // 🧹 clean-up
         }
         
+        var exps: [XCTestExpectation] = []
+        defer { wait(for: exps, timeout: 10) }
+        
         // 📌 Listen
-        addWait { exp in
+        wait(queue: &exps) { exp in
             listener = Firestore.root
                 .account(id: "YusukeHosonuma")
                 .listen(includeMetadataChanges: true) { result in
@@ -120,12 +124,12 @@ class ListenTests: FirestoreTestCase {
         }
 
         // ▶️ Update
-        wait { exp in
+        waitUntil { done in
             Firestore.root
                 .account(id: "YusukeHosonuma")
                 .setData(AccountDocument(name: "Tobi")) { (error) in
                     XCTAssertNil(error)
-                    exp.fulfill()
+                    done() // 🔓
                 }
         }
     }
@@ -172,7 +176,6 @@ class ListenTests: FirestoreTestCase {
     // MARK: - 🔥 Test to Firestore API
 
     func testAddFirestore() {
-        defer { waitExpectations() } // ⏳
 
         let account = AccountDocument(name: "Yusuke Hosonuma")
         
@@ -190,8 +193,11 @@ class ListenTests: FirestoreTestCase {
             listener.remove() // 🧹 clean-up
         }
 
+        var exps: [XCTestExpectation] = []
+        defer { wait(for: exps, timeout: 10) }
+        
         // 📌 Listen
-        addWait { exp in
+        wait(queue: &exps) { exp in
             listener = Firestore.firestore()
                 .collection("account")
                 .document("YusukeHosonuma")
@@ -224,7 +230,6 @@ class ListenTests: FirestoreTestCase {
     }
 
     func testAddIncludeMetadataChangesFirestore() {
-        defer { waitExpectations() } // ⏳
 
         let account = AccountDocument(name: "Yusuke Hosonuma")
         
@@ -242,8 +247,11 @@ class ListenTests: FirestoreTestCase {
             listener.remove() // 🧹 clean-up
         }
         
+        var exps: [XCTestExpectation] = []
+        defer { wait(for: exps, timeout: 10) }
+        
         // 📌 Listen
-        addWait { exp in
+        wait(queue: &exps) { exp in
             listener = Firestore.firestore()
                 .collection("account")
                 .document("YusukeHosonuma")
@@ -271,12 +279,12 @@ class ListenTests: FirestoreTestCase {
         }
 
         // ▶️ Update
-        wait { exp in
+        waitUntil { done in
             Firestore.root
                 .account(id: "YusukeHosonuma")
                 .setData(AccountDocument(name: "Tobi")) { (error) in
                     XCTAssertNil(error)
-                    exp.fulfill()
+                    done() // 🔓
                 }
         }
     }

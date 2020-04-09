@@ -37,7 +37,7 @@ class DeleteTests: FirestoreTestCase {
             .delete()
 
         // ☑️
-        wait { exp in
+        waitUntil { done in
             Firestore.firestore()
                 .collection("todos")
                 .document("hello")
@@ -45,25 +45,25 @@ class DeleteTests: FirestoreTestCase {
                     guard let snapshot = snapshot else { XCTFail(); return } // ↩️
                     
                     XCTAssertFalse(snapshot.exists)
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
     }
     
     func testSwiftyCompletion() {
         // ❌ Delete
-        wait { exp in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .document("hello")
                 .delete { error in
                     XCTAssertNil(error)
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
 
         // ☑️
-        wait { exp in
+        waitUntil { done in
             Firestore.firestore()
                 .collection("todos")
                 .document("hello")
@@ -71,7 +71,7 @@ class DeleteTests: FirestoreTestCase {
                     guard let snapshot = snapshot else { XCTFail(); return } // ↩️
                     
                     XCTAssertFalse(snapshot.exists)
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
     }
@@ -86,7 +86,7 @@ class DeleteTests: FirestoreTestCase {
             .delete()
 
         // ☑️
-        wait { exp in
+        waitUntil { done in
             Firestore.firestore()
                 .collection("todos")
                 .document("hello")
@@ -94,25 +94,25 @@ class DeleteTests: FirestoreTestCase {
                     guard let snapshot = snapshot else { XCTFail(); return } // ↩️
                     
                     XCTAssertFalse(snapshot.exists)
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
     }
     
     func testFirestoreCompletion() {
         // ❌ Delete
-        wait { exp in
+        waitUntil { done in
             Firestore.firestore()
                 .collection("todos")
                 .document("hello")
                 .delete { error in
                     XCTAssertNil(error)
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
 
         // ☑️
-        wait { exp in
+        waitUntil { done in
             Firestore.firestore()
                 .collection("todos")
                 .document("hello")
@@ -120,7 +120,7 @@ class DeleteTests: FirestoreTestCase {
                     guard let snapshot = snapshot else { XCTFail(); return } // ↩️
                     
                     XCTAssertFalse(snapshot.exists)
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
     }

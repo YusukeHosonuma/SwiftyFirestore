@@ -50,7 +50,7 @@ class DocumentReferenceTests: FirestoreTestCase {
     // MARK: - Swifty 🐤
     
     func testSwifty() {
-        wait { exp in
+        waitUntil { done in
             Firestore.root
                 .gist
                 .getAll { result in
@@ -60,7 +60,7 @@ class DocumentReferenceTests: FirestoreTestCase {
                         guard case .success(let account) = result else { XCTFail(); return } // ✅
                         
                         self.assert(account: account)
-                        exp.fulfill() // 🔓
+                        done() // 🔓
                     }
                 }
         }
@@ -69,7 +69,7 @@ class DocumentReferenceTests: FirestoreTestCase {
     // MARK: - Firestore 🔥
     
     func testFirestore() {
-        wait { exp in
+        waitUntil { done in
             Firestore.firestore()
                 .collection("gist")
                 .getDocuments { (snapshot, error) in
@@ -85,7 +85,7 @@ class DocumentReferenceTests: FirestoreTestCase {
                         let account = try? Firestore.Decoder().decode(AccountDocument.self, from: data)
 
                         self.assert(account: account)
-                        exp.fulfill() // 🔓
+                        done() // 🔓
                     }
                 }
         }

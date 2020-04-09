@@ -32,31 +32,31 @@ class OrderTests: FirestoreTestCase {
 
     func testOrder() {
         // 🔼 ascending
-        wait { exp in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .orderBy(.priority, sort: .ascending)
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
                     XCTAssertEqual(documents.map { $0.priority }, [1, 2, 3])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
 
         // 🔽 descending
-        wait { exp in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .orderBy(.priority, sort: .descending)
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
                     XCTAssertEqual(documents.map { $0.priority }, [3, 2, 1])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
 
         // ➕ combination
-        wait { exp in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .orderBy(.title, sort: .ascending)
@@ -64,14 +64,14 @@ class OrderTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
                     XCTAssertEqual(documents.map { $0.priority }, [3, 1, 2])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
     }
     
     func testLimit() {
         // ⤴️ limit(to:)
-        wait { exp in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .orderBy(.priority, sort: .ascending)
@@ -79,12 +79,12 @@ class OrderTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
                     XCTAssertEqual(documents.map { $0.priority }, [1, 2])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
         
         // ⤴️ limit(toLast:)
-        wait { exp in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .orderBy(.priority, sort: .ascending)
@@ -92,7 +92,7 @@ class OrderTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
                     XCTAssertEqual(documents.map { $0.priority }, [2, 3])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
     }
