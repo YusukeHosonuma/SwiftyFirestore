@@ -15,7 +15,7 @@ class UpdateTests: FirestoreTestCase {
     override func setUp() {
         super.setUp()
         
-        let document = TodoDocument(documentId: "hello", title: "Buy", done: false, priority: 1)
+        let document = TodoDocument(documentId: "hello", title: "Buy", done: false, priority: 1, tags: ["home", "hobby"])
         
         Firestore.firestore()
             .collection("todos")
@@ -31,14 +31,20 @@ class UpdateTests: FirestoreTestCase {
     
     func testSwifty() {
         // ▶️ Update
-        Firestore.root
+        let documentRef = Firestore.root
             .todos
             .document("hello")
-            .update([
-                (.done, true),
-                (.priority, 2)
-            ])
         
+        documentRef.update([
+            (.done, true),
+            (.priority, FieldValue.increment(Int64(1))),
+            (.tags, FieldValue.arrayUnion(["work"])) // ➕ Union
+        ])
+        
+        documentRef.update([
+            (.tags, FieldValue.arrayRemove(["home"])) // ❌ Remove
+        ])
+
         // ✅ Assert
         wait { exp in
             Firestore.root
@@ -55,17 +61,28 @@ class UpdateTests: FirestoreTestCase {
     
     func testSwiftyCompletion() {
         // ▶️ Update
+        let documentRef = Firestore.root
+            .todos
+            .document("hello")
+        
         wait { exp in
-            Firestore.root
-                .todos
-                .document("hello")
-                .update([
-                    (.done, true),
-                    (.priority, 2)
-                ]) { error in
-                    XCTAssertNil(error)
-                    exp.fulfill() // 🔓
-                }
+            documentRef.update([
+                (.done, true),
+                (.priority, FieldValue.increment(Int64(1))),
+                (.tags, FieldValue.arrayUnion(["work"])) // ➕ Union
+            ]) { error in
+                XCTAssertNil(error)
+                exp.fulfill() // 🔓
+            }
+        }
+        
+        wait { exp in
+            documentRef.update([
+                (.tags, FieldValue.arrayRemove(["home"])) // ❌ Remove
+            ]) { error in
+                XCTAssertNil(error)
+                exp.fulfill() // 🔓
+            }
         }
         
         // ✅ Assert
@@ -86,14 +103,20 @@ class UpdateTests: FirestoreTestCase {
     
     func testFirestore() {
         // ▶️ Update
-        Firestore.firestore()
+        let documentRef = Firestore.firestore()
             .collection("todos")
             .document("hello")
-            .updateData([
-                "done": true,
-                "priority": 2
-            ])
-        
+            
+        documentRef.updateData([
+            "done": true,
+            "priority": FieldValue.increment(Int64(1)),
+            "tags": FieldValue.arrayUnion(["work"]) // ➕ Union
+        ])
+            
+        documentRef.updateData([
+            "tags": FieldValue.arrayRemove(["home"]) // ❌ Remove
+        ])
+
         // ✅ Assert
         wait { exp in
             Firestore.root
@@ -108,21 +131,32 @@ class UpdateTests: FirestoreTestCase {
         }
     }
     
-    func testFirestoreCompletion() {        
+    func testFirestoreCompletion() {
         // ▶️ Update
+        let documentRef = Firestore.firestore()
+            .collection("todos")
+            .document("hello")
+        
         wait { exp in
-            Firestore.firestore()
-                .collection("todos")
-                .document("hello")
-                .updateData([
-                    "done": true,
-                    "priority": 2
-                ]) { error in
-                    XCTAssertNil(error)
-                    exp.fulfill() // 🔓
-                }
+            documentRef.updateData([
+                "done": true,
+                "priority": FieldValue.increment(Int64(1)),
+                "tags": FieldValue.arrayUnion(["work"]) // ➕ Union
+            ]) { error in
+                XCTAssertNil(error)
+                exp.fulfill() // 🔓
+            }
         }
         
+        wait { exp in
+            documentRef.updateData([
+                "tags": FieldValue.arrayRemove(["home"]) // ❌ Remove
+            ]) { error in
+                XCTAssertNil(error)
+                exp.fulfill() // 🔓
+            }
+        }
+
         // ✅ Assert
         wait { exp in
             Firestore.root
@@ -142,5 +176,6 @@ class UpdateTests: FirestoreTestCase {
     func assert(todo: TodoDocument?, file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(todo?.done, true, "done", file: file, line: line)
         XCTAssertEqual(todo?.priority, 2, "priority", file: file, line: line)
+        XCTAssertEqual(todo?.tags, ["hobby", "work"], file: file, line: line)
     }
 }
