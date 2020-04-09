@@ -13,6 +13,7 @@ open class DocumentRef<Document: FirestoreDocument>: Codable {
 
     public typealias VoidCompletion = ((Error?) -> Void)
     public typealias DocumentCompletion = (Result<Document?, Error>) -> Void
+    public typealias ListenerHandler = (Result<(document: Document?, metadata: SnapshotMetadata), Error>) -> Void
 
     public let ref: DocumentReference
 
@@ -126,7 +127,7 @@ extension DocumentRef {
     // MARK: - Listen
 
     @discardableResult
-    public func listen(includeMetadataChanges: Bool = false, completion: @escaping DocumentCompletion) -> ListenerRegistration {
+    public func listen(includeMetadataChanges: Bool = false, completion: @escaping ListenerHandler) -> ListenerRegistration {
         ref.addSnapshotListener(includeMetadataChanges: includeMetadataChanges) { snapshot, error in
             if let error = error {
                 completion(.failure(error))
@@ -135,7 +136,10 @@ extension DocumentRef {
                     do {
                         var document = try snapshot.data(as: Document.self)
                         document?.documentId = snapshot.documentID
-                        completion(.success(document))
+
+//                        let result = ListenerResult(document: document, metadata: snapshot.metadata)
+                        let result = (document, snapshot.metadata)
+                        completion(.success(result))
                     } catch {
                         completion(.failure(error))
                     }
