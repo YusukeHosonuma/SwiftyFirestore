@@ -43,7 +43,7 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
     - [x] `limit(toLast:)`
   - [Listen](https://firebase.google.com/docs/firestore/query-data/listen?hl=ja)
     - [x] `addSnapshotListener()`
-    - [ ] `addSnapshotListener(includeMetadataChanges:)`
+    - [x] `addSnapshotListener(includeMetadataChanges:)`
     - [ ] `metadata.hasPendingWrites`
     - [ ] `snapshot.documentChanges`
     - [x] `listener.remove()`
