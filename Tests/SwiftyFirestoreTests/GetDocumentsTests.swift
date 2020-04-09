@@ -1,0 +1,70 @@
+//
+//  GetDocumentsTests.swift
+//  SwiftyFirestoreTests
+//
+//  Created by Yusuke Hosonuma on 2020/04/09.
+//  Copyright © 2020 Yusuke Hosonuma. All rights reserved.
+//
+
+import XCTest
+@testable import SwiftyFirestore
+import FirebaseFirestore
+
+class GetDocumentsTests: FirestoreTestCase {
+
+    override func setUp() {
+        super.setUp()
+        
+        let account = AccountDocument(name: "Yusuke Hosonuma")
+        
+        Firestore.root
+            .account
+            .document("YusukeHosonuma")
+            .setData(account)
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+    }
+    
+    // MARK: 🐤
+    
+    func testSourceSwifty() throws {
+        wait { exp in
+            Firestore.root
+                .account
+                .getAll(source: .cache) { result in
+                    guard case .success(let documents) = result else { XCTFail(); return } // ↩️
+
+                    self.assert(documents: documents)
+                    exp.fulfill()
+                }
+        }
+    }
+
+    // MARK: 🔥
+    
+    func testSourceFirestoer() throws {
+        wait { exp in
+            Firestore.firestore()
+                .collection("account")
+                .getDocuments(source: .cache) { (snapshot, error) in
+                    guard let snapshot = snapshot else { XCTFail(); return } // ↩️
+                    
+                    let documents = snapshot.documents.compactMap {
+                        try? Firestore.Decoder().decode(AccountDocument.self, from: $0.data())
+                    }
+                    
+                    self.assert(documents: documents)
+                    exp.fulfill()
+                }
+        }
+    }
+    
+    // MARK: 🔧
+    
+    func assert(documents: [AccountDocument]) {
+        XCTAssertEqual(documents.count, 1)
+        XCTAssertEqual(documents.first?.name, "Yusuke Hosonuma")
+    }
+}
