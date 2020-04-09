@@ -17,6 +17,7 @@ struct TodoDocument: FirestoreDocument, Equatable {
     var done: Bool
     var priority: Int = 0
     var tags: [String] = []
+    var remarks: String?
 
     enum CodingKeys: String, CodingKey {
         case documentId
@@ -24,6 +25,7 @@ struct TodoDocument: FirestoreDocument, Equatable {
         case done
         case priority
         case tags
+        case remarks
     }
 }
 

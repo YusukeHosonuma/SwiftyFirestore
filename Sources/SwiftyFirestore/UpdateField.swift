@@ -13,6 +13,7 @@ public enum UpdateField<Document: FirestoreDocument> {
     case increment(Document.CodingKeys, Int)
     case arrayUnion(Document.CodingKeys, [Any])
     case arrayRemove(Document.CodingKeys, [Any])
+    case delete(Document.CodingKeys)
 
     func keyAndValue() -> (String, Any) {
         switch self {
@@ -27,6 +28,9 @@ public enum UpdateField<Document: FirestoreDocument> {
 
         case let .arrayRemove(key, value):
             return (key.stringValue, FieldValue.arrayRemove(value))
+
+        case let .delete(key):
+            return (key.stringValue, FieldValue.delete())
         }
     }
 }

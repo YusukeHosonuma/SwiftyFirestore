@@ -60,9 +60,9 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
     - T.B.D
   - Other
     - [ ] `exists`
-- Delete
+- [Delete](https://firebase.google.com/docs/firestore/manage-data/delete-data?hl=ja)
   - [x] `delete()`
-  - [ ] `FieldValue.delete`
+  - [x] `FieldValue.delete`
 - Transaction
   - [ ] `runTransaction()`
 - Batch
