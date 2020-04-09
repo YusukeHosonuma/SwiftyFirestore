@@ -1,6 +1,6 @@
 //
 //  Firestore+CollectionRef.swift
-//  Raito
+//  SwiftyFirestore
 //
 //  Created by Yusuke Hosonuma on 2020/02/09.
 //  Copyright © 2020 Kamui Project. All rights reserved.
