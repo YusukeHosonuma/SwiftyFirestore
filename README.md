@@ -17,9 +17,9 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
   - [x] `add()`
   - [x] `updateData()`
   - [ ] `updateData()` - nested object
-  - [ ] `FieldValue.arrayUnion()`
-  - [ ] `FieldValue.arrayRemove()`
-  - [ ] `FieldValue.increment()`
+  - [x] `FieldValue.arrayUnion()`
+  - [x] `FieldValue.arrayRemove()`
+  - [x] `FieldValue.increment()`
 - Reference
   - [Query Data](https://firebase.google.com/docs/firestore/query-data/get-data?hl=ja)
     - [x] `getDocument()`
