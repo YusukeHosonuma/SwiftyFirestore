@@ -23,8 +23,9 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
 - Reference
   - [Query Data](https://firebase.google.com/docs/firestore/query-data/get-data?hl=ja)
     - [x] `getDocument()`
-    - [ ] `getDocument(source:)`
+    - [x] `getDocument(source:)`
     - [x] `getDocuments()`
+    - [x] `getDocuments(source:)`
   - [Queries](https://firebase.google.com/docs/firestore/query-data/queries?hl=ja)
     - [x] `whereField()`
       - [x] `<`
