@@ -30,21 +30,7 @@ extension FirestoreQueryRef {
     // MARK: - Get
 
     public func getAll(completion: @escaping CollectionCompletion) {
-        queryRef.getDocuments { snapshot, error in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                if let snapshot = snapshot {
-                    do {
-                        completion(.success(try snapshot.documents.map(Document.init)))
-                    } catch {
-                        completion(.failure(error))
-                    }
-                } else {
-                    completion(.failure(FirestoreError.unknown))
-                }
-            }
-        }
+        getAll(source: .default, completion: completion)
     }
 
     public func getAll(source: FirestoreSource, completion: @escaping CollectionCompletion) {
