@@ -120,12 +120,12 @@ class ListenTests: FirestoreTestCase {
         }
 
         // ▶️ Update
-        wait { exp in
+        wait { done in
             Firestore.root
                 .account(id: "YusukeHosonuma")
                 .setData(AccountDocument(name: "Tobi")) { (error) in
                     XCTAssertNil(error)
-                    exp.fulfill()
+                    done() // 🔓
                 }
         }
     }
@@ -271,12 +271,12 @@ class ListenTests: FirestoreTestCase {
         }
 
         // ▶️ Update
-        wait { exp in
+        wait { done in
             Firestore.root
                 .account(id: "YusukeHosonuma")
                 .setData(AccountDocument(name: "Tobi")) { (error) in
                     XCTAssertNil(error)
-                    exp.fulfill()
+                    done() // 🔓
                 }
         }
     }

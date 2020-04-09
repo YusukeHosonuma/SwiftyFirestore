@@ -53,7 +53,7 @@ class UpdateTests: FirestoreTestCase {
         ])
 
         // ✅ Assert
-        wait { exp in
+        wait { done in
             Firestore.root
                 .todos
                 .document("hello")
@@ -61,7 +61,7 @@ class UpdateTests: FirestoreTestCase {
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
                     
                     self.assert(todo: document)
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 })
         }
     }
@@ -73,30 +73,30 @@ class UpdateTests: FirestoreTestCase {
             .document("hello")
         
         // ➕ Update / Add
-        wait { exp in
+        wait { done in
             documentRef.update([
                 .value(.done, true),
                 .increment(.priority, 1),
                 .arrayUnion(.tags, ["work"])
             ]) { error in
                 XCTAssertNil(error)
-                exp.fulfill() // 🔓
+                done() // 🔓
             }
         }
         
         // ❌ Remove
-        wait { exp in
+        wait { done in
             documentRef.update([
                 .delete(.remarks),
                 .arrayRemove(.tags, ["home"])
             ]) { error in
                 XCTAssertNil(error)
-                exp.fulfill() // 🔓
+                done() // 🔓
             }
         }
         
         // ✅ Assert
-        wait { exp in
+        wait { done in
             Firestore.root
                 .todos
                 .document("hello")
@@ -104,7 +104,7 @@ class UpdateTests: FirestoreTestCase {
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
                     
                     self.assert(todo: document)
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 })
         }
     }
@@ -131,7 +131,7 @@ class UpdateTests: FirestoreTestCase {
         ])
 
         // ✅ Assert
-        wait { exp in
+        wait { done in
             Firestore.root
                 .todos
                 .document("hello")
@@ -139,7 +139,7 @@ class UpdateTests: FirestoreTestCase {
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
                     
                     self.assert(todo: document)
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 })
         }
     }
@@ -151,30 +151,30 @@ class UpdateTests: FirestoreTestCase {
             .document("hello")
         
         // ➕ Update / Add
-        wait { exp in
+        wait { done in
             documentRef.updateData([
                 "done": true,
                 "priority": FieldValue.increment(Int64(1)),
                 "tags": FieldValue.arrayUnion(["work"])
             ]) { error in
                 XCTAssertNil(error)
-                exp.fulfill() // 🔓
+                done() // 🔓
             }
         }
         
         // ❌ Remove
-        wait { exp in
+        wait { done in
             documentRef.updateData([
                 "remarks": FieldValue.delete(),
                 "tags": FieldValue.arrayRemove(["home"])
             ]) { error in
                 XCTAssertNil(error)
-                exp.fulfill() // 🔓
+                done() // 🔓
             }
         }
 
         // ✅ Assert
-        wait { exp in
+        wait { done in
             Firestore.root
                 .todos
                 .document("hello")
@@ -182,7 +182,7 @@ class UpdateTests: FirestoreTestCase {
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
                     
                     self.assert(todo: document)
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 })
         }
     }

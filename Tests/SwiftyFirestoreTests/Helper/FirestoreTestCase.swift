@@ -21,22 +21,48 @@ class FirestoreTestCase: XCTestCase {
     }
     
     func wait(time: Double, file: StaticString = #file, line: UInt = #line) {
-        wait { exp in
+        wait { done in
             DispatchQueue.global().asyncAfter(deadline: .now() + time) {
-                exp.fulfill()
+                done() // 🔓
             }
         }
     }
 
-    func wait(file: StaticString = #file, line: UInt = #line, _ handler: (XCTestExpectation) -> Void) {
+    func wait(
+        timeout: Double = 10.0,
+        file: StaticString = #file,
+        line: UInt = #line, _
+        handler: (@escaping () -> Void) -> Void
+    ) {
         let exp = expectation(description: "\(file) #\(line)")
-        handler(exp)
-        wait(for: [exp], timeout: 10)
+        handler { exp.fulfill() }
+        
+        let result = XCTWaiter.wait(for: [exp], timeout: timeout) // 🔓
+        
+        switch result {
+        case .completed:
+            break
+            
+        case .timedOut:
+            XCTFail("Expectation is timeout \(timeout)s.", file: file, line: line)
+
+        case .incorrectOrder:
+            XCTFail("Expectation is incorrect order.", file: file, line: line)
+
+        case .invertedFulfillment:
+            XCTFail("Expectation is inverted fullfillment.", file: file, line: line)
+
+        case .interrupted:
+            XCTFail("Expectation is interupted.", file: file, line: line)
+
+        @unknown default:
+            XCTFail("Expectation is timeout.", file: file, line: line)
+        }
     }
     
     func addWait(file: StaticString = #file, line: UInt = #line, _ handler: (XCTestExpectation) -> Void) {
         let exp = expectation(description: "\(file) #\(line)")
-        expectations.append(exp)
+        expectations.append(exp) // 変数を引数で渡すようにしても良さそう
         handler(exp)
     }
 

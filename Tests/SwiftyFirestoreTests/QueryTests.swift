@@ -34,7 +34,7 @@ final class QueryTests: FirestoreTestCase {
     
     func testWhere() {
         // `==`
-        wait { exp in
+        wait { done in
             Firestore.root
                 .todos
                 .whereBy(.priority, isEqualTo: 2)
@@ -42,12 +42,12 @@ final class QueryTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
                     XCTAssertEqual(documents.map { $0.priority }, [2])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
         
         // `<`
-        wait { exp in
+        wait { done in
             Firestore.root
                 .todos
                 .whereBy(.priority, isLessThan: 2)
@@ -55,12 +55,12 @@ final class QueryTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
                     XCTAssertEqual(documents.map { $0.priority }, [1])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
         
         // `<=`
-        wait { exp in
+        wait { done in
             Firestore.root
                 .todos
                 .whereBy(.priority, isLessThanOrEqualTo: 2)
@@ -68,12 +68,12 @@ final class QueryTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
                     XCTAssertEqual(documents.map { $0.priority }, [1, 2])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
 
         // `>`
-        wait { exp in
+        wait { done in
             Firestore.root
                 .todos
                 .whereBy(.priority, isGreaterThan: 2)
@@ -81,12 +81,12 @@ final class QueryTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
                     XCTAssertEqual(documents.map { $0.priority }, [3])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
         
         // `>=`
-        wait { exp in
+        wait { done in
             Firestore.root
                 .todos
                 .whereBy(.priority, isGreaterThanOrEqualTo: 2)
@@ -94,7 +94,7 @@ final class QueryTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
                     XCTAssertEqual(documents.map { $0.priority }, [2, 3])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
     }
@@ -102,7 +102,7 @@ final class QueryTests: FirestoreTestCase {
     func testOperator() {
         
         // combination + operator
-        wait { exp in
+        wait { done in
             Firestore.root
                 .todos
                 .whereBy(.done, "==", true)
@@ -111,7 +111,7 @@ final class QueryTests: FirestoreTestCase {
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
                     XCTAssertEqual(documents.map { $0.priority }, [1])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
     }
@@ -121,7 +121,7 @@ final class QueryTests: FirestoreTestCase {
     func testArrayContainsSwifty() {
         
         // Method
-        wait { exp in
+        wait { done in
             Firestore.root
                 .todos
                 .whereBy(.tags, arrayContains: "work")
@@ -129,12 +129,12 @@ final class QueryTests: FirestoreTestCase {
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
                     
                     XCTAssertEqual(documents.map { $0.priority }.sorted(), [2, 3])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
         
         // Enum
-        wait { exp in
+        wait { done in
             Firestore.root
                 .todos
                 .whereBy(.tags, .arrayContains, "work")
@@ -142,12 +142,12 @@ final class QueryTests: FirestoreTestCase {
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
                     
                     XCTAssertEqual(documents.map { $0.priority }.sorted(), [2, 3])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
 
         // Operator
-        wait { exp in
+        wait { done in
             Firestore.root
                 .todos
                 .whereBy(.tags, "...", "work")
@@ -155,7 +155,7 @@ final class QueryTests: FirestoreTestCase {
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
                     
                     XCTAssertEqual(documents.map { $0.priority }.sorted(), [2, 3])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
     }
@@ -164,7 +164,7 @@ final class QueryTests: FirestoreTestCase {
     
     func testArrayContainsFirestore() {
         
-        wait { exp in
+        wait { done in
             Firestore.firestore()
                 .collection("todos")
                 .whereField("tags", arrayContains: "work")
@@ -176,7 +176,7 @@ final class QueryTests: FirestoreTestCase {
                     }
                     
                     XCTAssertEqual(documents.map { $0.priority }.sorted(), [2, 3])
-                    exp.fulfill() // 🔓
+                    done() // 🔓
                 }
         }
     }

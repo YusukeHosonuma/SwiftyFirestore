@@ -30,7 +30,7 @@ class GetDocumentTests: FirestoreTestCase {
     // MARK: 🐤
     
     func testSourceSwifty() throws {
-        wait { exp in
+        wait { done in
             Firestore.root
                 .account
                 .document("YusukeHosonuma")
@@ -38,7 +38,7 @@ class GetDocumentTests: FirestoreTestCase {
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
 
                     self.assert(document: document)
-                    exp.fulfill()
+                    done()
                 }
         }
     }
@@ -46,7 +46,7 @@ class GetDocumentTests: FirestoreTestCase {
     // MARK: 🔥
     
     func testSourceFirestoer() throws {
-        wait { exp in
+        wait { done in
             Firestore.firestore()
                 .collection("account")
                 .document("YusukeHosonuma")
@@ -57,7 +57,7 @@ class GetDocumentTests: FirestoreTestCase {
                         let document = try? Firestore.Decoder().decode(AccountDocument.self, from: data) else { XCTFail(); return } // ↩️
 
                     self.assert(document: document)
-                    exp.fulfill()
+                    done() // 🔓
                 }
         }
     }

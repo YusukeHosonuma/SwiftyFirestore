@@ -30,14 +30,14 @@ class GetDocumentsTests: FirestoreTestCase {
     // MARK: 🐤
     
     func testSourceSwifty() throws {
-        wait { exp in
+        wait { done in
             Firestore.root
                 .account
                 .getAll(source: .cache) { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
 
                     self.assert(documents: documents)
-                    exp.fulfill()
+                    done() // 🔓
                 }
         }
     }
@@ -45,7 +45,7 @@ class GetDocumentsTests: FirestoreTestCase {
     // MARK: 🔥
     
     func testSourceFirestoer() throws {
-        wait { exp in
+        wait { done in
             Firestore.firestore()
                 .collection("account")
                 .getDocuments(source: .cache) { (snapshot, error) in
@@ -56,7 +56,7 @@ class GetDocumentsTests: FirestoreTestCase {
                     }
                     
                     self.assert(documents: documents)
-                    exp.fulfill()
+                    done() // 🔓
                 }
         }
     }
