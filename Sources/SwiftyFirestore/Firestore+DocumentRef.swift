@@ -85,15 +85,15 @@ extension FirestoreDocumentRef {
 
     // MARK: Update
 
-    public func update(_ keysAndValues: [(Key, Any)]) {
-        let data = keysAndValues.map { ($0.stringValue, $1) }
+    public func update(_ fields: [UpdateField<Document>]) {
+        let data = fields.map { $0.keyAndValue() }
         let fields = [String: Any](data) { a, _ in a }
 
         ref.updateData(fields)
     }
 
-    public func update(_ keysAndValues: [(Key, Any)], completion: @escaping VoidCompletion) {
-        let data = keysAndValues.map { ($0.stringValue, $1) }
+    public func update(_ fields: [UpdateField<Document>], completion: @escaping VoidCompletion) {
+        let data = fields.map { $0.keyAndValue() }
         let fields = [String: Any](data) { a, _ in a }
 
         ref.updateData(fields, completion: completion)

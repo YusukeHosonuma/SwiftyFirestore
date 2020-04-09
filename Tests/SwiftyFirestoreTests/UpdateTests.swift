@@ -36,13 +36,13 @@ class UpdateTests: FirestoreTestCase {
             .document("hello")
         
         documentRef.update([
-            (.done, true),
-            (.priority, FieldValue.increment(Int64(1))),
-            (.tags, FieldValue.arrayUnion(["work"])) // ➕ Union
+            .value(.done, true),
+            .increment(.priority, 1),
+            .arrayUnion(.tags, ["work"]) // ➕ Union
         ])
         
         documentRef.update([
-            (.tags, FieldValue.arrayRemove(["home"])) // ❌ Remove
+            .arrayRemove(.tags, ["home"]) // ❌ Remove
         ])
 
         // ✅ Assert
@@ -67,9 +67,9 @@ class UpdateTests: FirestoreTestCase {
         
         wait { exp in
             documentRef.update([
-                (.done, true),
-                (.priority, FieldValue.increment(Int64(1))),
-                (.tags, FieldValue.arrayUnion(["work"])) // ➕ Union
+                .value(.done, true),
+                .increment(.priority, 1),
+                .arrayUnion(.tags, ["work"]) // ➕ Union
             ]) { error in
                 XCTAssertNil(error)
                 exp.fulfill() // 🔓
@@ -78,7 +78,7 @@ class UpdateTests: FirestoreTestCase {
         
         wait { exp in
             documentRef.update([
-                (.tags, FieldValue.arrayRemove(["home"])) // ❌ Remove
+                .arrayRemove(.tags, ["home"]) // ❌ Remove
             ]) { error in
                 XCTAssertNil(error)
                 exp.fulfill() // 🔓
