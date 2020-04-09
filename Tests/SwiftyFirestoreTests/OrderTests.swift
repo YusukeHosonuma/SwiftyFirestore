@@ -32,7 +32,7 @@ class OrderTests: FirestoreTestCase {
 
     func testOrder() {
         // 🔼 ascending
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .orderBy(.priority, sort: .ascending)
@@ -44,7 +44,7 @@ class OrderTests: FirestoreTestCase {
         }
 
         // 🔽 descending
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .orderBy(.priority, sort: .descending)
@@ -56,7 +56,7 @@ class OrderTests: FirestoreTestCase {
         }
 
         // ➕ combination
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .orderBy(.title, sort: .ascending)
@@ -71,7 +71,7 @@ class OrderTests: FirestoreTestCase {
     
     func testLimit() {
         // ⤴️ limit(to:)
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .orderBy(.priority, sort: .ascending)
@@ -84,7 +84,7 @@ class OrderTests: FirestoreTestCase {
         }
         
         // ⤴️ limit(toLast:)
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .orderBy(.priority, sort: .ascending)

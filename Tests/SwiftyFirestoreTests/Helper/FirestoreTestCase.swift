@@ -21,14 +21,14 @@ class FirestoreTestCase: XCTestCase {
     }
     
     func wait(time: Double, file: StaticString = #file, line: UInt = #line) {
-        wait { done in
+        waitUntil { done in
             DispatchQueue.global().asyncAfter(deadline: .now() + time) {
                 done() // 🔓
             }
         }
     }
 
-    func wait(
+    func waitUntil(
         timeout: Double = 10.0,
         file: StaticString = #file,
         line: UInt = #line, _
@@ -37,7 +37,7 @@ class FirestoreTestCase: XCTestCase {
         let exp = expectation(description: "\(file) #\(line)")
         handler { exp.fulfill() }
         
-        let result = XCTWaiter.wait(for: [exp], timeout: timeout) // 🔓
+        let result = XCTWaiter.wait(for: [exp], timeout: timeout) // ⏳
         
         switch result {
         case .completed:

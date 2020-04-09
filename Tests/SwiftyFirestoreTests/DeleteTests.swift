@@ -37,7 +37,7 @@ class DeleteTests: FirestoreTestCase {
             .delete()
 
         // ☑️
-        wait { done in
+        waitUntil { done in
             Firestore.firestore()
                 .collection("todos")
                 .document("hello")
@@ -52,7 +52,7 @@ class DeleteTests: FirestoreTestCase {
     
     func testSwiftyCompletion() {
         // ❌ Delete
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .document("hello")
@@ -63,7 +63,7 @@ class DeleteTests: FirestoreTestCase {
         }
 
         // ☑️
-        wait { done in
+        waitUntil { done in
             Firestore.firestore()
                 .collection("todos")
                 .document("hello")
@@ -86,7 +86,7 @@ class DeleteTests: FirestoreTestCase {
             .delete()
 
         // ☑️
-        wait { done in
+        waitUntil { done in
             Firestore.firestore()
                 .collection("todos")
                 .document("hello")
@@ -101,7 +101,7 @@ class DeleteTests: FirestoreTestCase {
     
     func testFirestoreCompletion() {
         // ❌ Delete
-        wait { done in
+        waitUntil { done in
             Firestore.firestore()
                 .collection("todos")
                 .document("hello")
@@ -112,7 +112,7 @@ class DeleteTests: FirestoreTestCase {
         }
 
         // ☑️
-        wait { done in
+        waitUntil { done in
             Firestore.firestore()
                 .collection("todos")
                 .document("hello")

@@ -50,7 +50,7 @@ class DocumentReferenceTests: FirestoreTestCase {
     // MARK: - Swifty 🐤
     
     func testSwifty() {
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .gist
                 .getAll { result in
@@ -69,7 +69,7 @@ class DocumentReferenceTests: FirestoreTestCase {
     // MARK: - Firestore 🔥
     
     func testFirestore() {
-        wait { done in
+        waitUntil { done in
             Firestore.firestore()
                 .collection("gist")
                 .getDocuments { (snapshot, error) in

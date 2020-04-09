@@ -34,7 +34,7 @@ final class QueryTests: FirestoreTestCase {
     
     func testWhere() {
         // `==`
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .whereBy(.priority, isEqualTo: 2)
@@ -47,7 +47,7 @@ final class QueryTests: FirestoreTestCase {
         }
         
         // `<`
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .whereBy(.priority, isLessThan: 2)
@@ -60,7 +60,7 @@ final class QueryTests: FirestoreTestCase {
         }
         
         // `<=`
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .whereBy(.priority, isLessThanOrEqualTo: 2)
@@ -73,7 +73,7 @@ final class QueryTests: FirestoreTestCase {
         }
 
         // `>`
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .whereBy(.priority, isGreaterThan: 2)
@@ -86,7 +86,7 @@ final class QueryTests: FirestoreTestCase {
         }
         
         // `>=`
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .whereBy(.priority, isGreaterThanOrEqualTo: 2)
@@ -102,7 +102,7 @@ final class QueryTests: FirestoreTestCase {
     func testOperator() {
         
         // combination + operator
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .whereBy(.done, "==", true)
@@ -121,7 +121,7 @@ final class QueryTests: FirestoreTestCase {
     func testArrayContainsSwifty() {
         
         // Method
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .whereBy(.tags, arrayContains: "work")
@@ -134,7 +134,7 @@ final class QueryTests: FirestoreTestCase {
         }
         
         // Enum
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .whereBy(.tags, .arrayContains, "work")
@@ -147,7 +147,7 @@ final class QueryTests: FirestoreTestCase {
         }
 
         // Operator
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .whereBy(.tags, "...", "work")
@@ -164,7 +164,7 @@ final class QueryTests: FirestoreTestCase {
     
     func testArrayContainsFirestore() {
         
-        wait { done in
+        waitUntil { done in
             Firestore.firestore()
                 .collection("todos")
                 .whereField("tags", arrayContains: "work")

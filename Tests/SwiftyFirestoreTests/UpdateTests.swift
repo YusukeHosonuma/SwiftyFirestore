@@ -53,7 +53,7 @@ class UpdateTests: FirestoreTestCase {
         ])
 
         // ✅ Assert
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .document("hello")
@@ -73,7 +73,7 @@ class UpdateTests: FirestoreTestCase {
             .document("hello")
         
         // ➕ Update / Add
-        wait { done in
+        waitUntil { done in
             documentRef.update([
                 .value(.done, true),
                 .increment(.priority, 1),
@@ -85,7 +85,7 @@ class UpdateTests: FirestoreTestCase {
         }
         
         // ❌ Remove
-        wait { done in
+        waitUntil { done in
             documentRef.update([
                 .delete(.remarks),
                 .arrayRemove(.tags, ["home"])
@@ -96,7 +96,7 @@ class UpdateTests: FirestoreTestCase {
         }
         
         // ✅ Assert
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .document("hello")
@@ -131,7 +131,7 @@ class UpdateTests: FirestoreTestCase {
         ])
 
         // ✅ Assert
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .document("hello")
@@ -151,7 +151,7 @@ class UpdateTests: FirestoreTestCase {
             .document("hello")
         
         // ➕ Update / Add
-        wait { done in
+        waitUntil { done in
             documentRef.updateData([
                 "done": true,
                 "priority": FieldValue.increment(Int64(1)),
@@ -163,7 +163,7 @@ class UpdateTests: FirestoreTestCase {
         }
         
         // ❌ Remove
-        wait { done in
+        waitUntil { done in
             documentRef.updateData([
                 "remarks": FieldValue.delete(),
                 "tags": FieldValue.arrayRemove(["home"])
@@ -174,7 +174,7 @@ class UpdateTests: FirestoreTestCase {
         }
 
         // ✅ Assert
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .todos
                 .document("hello")

@@ -66,7 +66,7 @@ class CollectionGroupTests: FirestoreTestCase {
     // MARK: - Swifty 🐤
     
     func testSwifty() throws {
-        wait { done in
+        waitUntil { done in
             Firestore
                 .collectionGroup
                 .repository
@@ -84,7 +84,7 @@ class CollectionGroupTests: FirestoreTestCase {
     // MARK: - Firestore 🔥
     
     func testFirestore() throws {
-        wait { done in
+        waitUntil { done in
             Firestore.firestore()
                 .collectionGroup("repository")
                 .whereField("language", isEqualTo: "swift")

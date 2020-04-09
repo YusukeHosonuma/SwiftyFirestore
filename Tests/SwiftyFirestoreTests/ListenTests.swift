@@ -120,7 +120,7 @@ class ListenTests: FirestoreTestCase {
         }
 
         // ▶️ Update
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .account(id: "YusukeHosonuma")
                 .setData(AccountDocument(name: "Tobi")) { (error) in
@@ -271,7 +271,7 @@ class ListenTests: FirestoreTestCase {
         }
 
         // ▶️ Update
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .account(id: "YusukeHosonuma")
                 .setData(AccountDocument(name: "Tobi")) { (error) in

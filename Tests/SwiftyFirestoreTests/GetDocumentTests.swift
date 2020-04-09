@@ -30,7 +30,7 @@ class GetDocumentTests: FirestoreTestCase {
     // MARK: 🐤
     
     func testSourceSwifty() throws {
-        wait { done in
+        waitUntil { done in
             Firestore.root
                 .account
                 .document("YusukeHosonuma")
@@ -46,7 +46,7 @@ class GetDocumentTests: FirestoreTestCase {
     // MARK: 🔥
     
     func testSourceFirestoer() throws {
-        wait { done in
+        waitUntil { done in
             Firestore.firestore()
                 .collection("account")
                 .document("YusukeHosonuma")
