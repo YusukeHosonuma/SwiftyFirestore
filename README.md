@@ -26,13 +26,13 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
     - [ ] `getDocument(source:)`
     - [x] `getDocuments()`
   - [Queries](https://firebase.google.com/docs/firestore/query-data/queries?hl=ja)
-    - [ ] `whereField()`
+    - [x] `whereField()`
       - [x] `<`
       - [x] `<=`
       - [x] `==`
       - [x] `>`
       - [x] `>=`
-      - [ ] `array-contains`
+      - [x] `array-contains`
     - [x] Combination Query
     - [x] Collection Group - `collectionGroup()`
   - [x] [Order and Limit](https://firebase.google.com/docs/firestore/query-data/order-limit-data?hl=ja)

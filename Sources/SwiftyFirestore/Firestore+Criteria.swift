@@ -18,6 +18,7 @@ public enum FirestoreOperator: String, ExpressibleByStringLiteral {
     case isLessThanOrEqualTo = "<="
     case isGreaterThan = ">"
     case isGreaterThanOrEqualTo = ">="
+    case arrayContains = "..."
 
     public init(stringLiteral value: String) {
         self = FirestoreOperator(rawValue: value)! // Logical error when given not supported operator
@@ -52,6 +53,8 @@ public class QueryWrapper<Document: FirestoreDocument>: FirestoreQueryRef {
             return QueryWrapper(queryRef.whereField(field, isGreaterThan: value))
         case .isGreaterThanOrEqualTo:
             return QueryWrapper(queryRef.whereField(field, isGreaterThanOrEqualTo: value))
+        case .arrayContains:
+            return QueryWrapper(queryRef.whereField(field, arrayContains: value))
         }
     }
 

@@ -51,8 +51,6 @@ extension FirestoreQueryRef {
         query.whereBy(FirestoreCriteria(key: key, value: value, op: op))
     }
 
-    // TODO: ↑ の API で十分な気はするので、以下は削除することも検討
-
     // `==`
     public func whereBy(_ key: Key, isEqualTo value: Any) -> QueryWrapper<Document> {
         whereBy(by: key, .isEqualTo, value)
@@ -78,12 +76,18 @@ extension FirestoreQueryRef {
         whereBy(by: key, .isGreaterThanOrEqualTo, value)
     }
 
+    // `...`
+    public func whereBy(_ key: Key, arrayContains value: Any) -> QueryWrapper<Document> {
+        whereBy(by: key, .arrayContains, value)
+    }
+
+    // MARK: Order
+
     public func orderBy(_ key: Key, sort: FirestoreSort = .ascending) -> QueryWrapper<Document> {
         query.orderBy(key.stringValue, sort: sort)
     }
 
-    // TODO: support `arrayContains`
-    // ref: https://firebase.google.com/docs/firestore/query-data/queries?hl=ja#array_membership
+    // MARK: Limit
 
     // TODO: should more swifty API or not...
 
