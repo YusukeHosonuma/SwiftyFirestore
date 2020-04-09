@@ -27,7 +27,7 @@ extension FirestoreQueryRef {
 //        FirestoreQueryRefRx<Document>(queryRef: queryRef)
 //    }
 
-    // MARK: - Operaator
+    // MARK: - Get
 
     public func getAll(completion: @escaping CollectionCompletion) {
         queryRef.getDocuments { snapshot, error in
@@ -46,6 +46,26 @@ extension FirestoreQueryRef {
             }
         }
     }
+
+    public func getAll(source: FirestoreSource, completion: @escaping CollectionCompletion) {
+        queryRef.getDocuments(source: source) { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                if let snapshot = snapshot {
+                    do {
+                        completion(.success(try snapshot.documents.map(Document.init)))
+                    } catch {
+                        completion(.failure(error))
+                    }
+                } else {
+                    completion(.failure(FirestoreError.unknown))
+                }
+            }
+        }
+    }
+
+    // MARK: - Where
 
     public func whereBy(_ key: Key, _ op: FirestoreOperator, _ value: Any) -> QueryWrapper<Document> {
         query.whereBy(FirestoreCriteria(key: key, value: value, op: op))

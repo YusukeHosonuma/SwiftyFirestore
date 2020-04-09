@@ -19,6 +19,8 @@
 		E5502C9C2435DBF0007EC1F1 /* FirestoreDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C9A2435DBC9007EC1F1 /* FirestoreDocuments.swift */; };
 		E5502CA12435DC88007EC1F1 /* FirestoreRelations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C9D2435DC16007EC1F1 /* FirestoreRelations.swift */; };
 		E5502CA42435E121007EC1F1 /* FirestoreTestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502CA32435E121007EC1F1 /* FirestoreTestHelper.swift */; };
+		E55C2416243F280D009B5566 /* GetDocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55C2415243F280D009B5566 /* GetDocumentTests.swift */; };
+		E55C2418243F2D9E009B5566 /* GetDocumentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55C2417243F2D9E009B5566 /* GetDocumentsTests.swift */; };
 		E57DE0062434A4E300308FC0 /* libSwiftyFirestore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5584A602434A3DD007035B6 /* libSwiftyFirestore.a */; };
 		E57DE0122434A54500308FC0 /* SwiftyFirestoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0102434A54500308FC0 /* SwiftyFirestoreTests.swift */; };
 		E57DE01C2434A6A000308FC0 /* Firestore+Criteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0162434A6A000308FC0 /* Firestore+Criteria.swift */; };
@@ -73,6 +75,8 @@
 		E5502C9D2435DC16007EC1F1 /* FirestoreRelations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRelations.swift; sourceTree = "<group>"; };
 		E5502CA32435E121007EC1F1 /* FirestoreTestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestHelper.swift; sourceTree = "<group>"; };
 		E5584A602434A3DD007035B6 /* libSwiftyFirestore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSwiftyFirestore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E55C2415243F280D009B5566 /* GetDocumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDocumentTests.swift; sourceTree = "<group>"; };
+		E55C2417243F2D9E009B5566 /* GetDocumentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDocumentsTests.swift; sourceTree = "<group>"; };
 		E57DE0012434A4E300308FC0 /* SwiftyFirestoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyFirestoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E57DE0102434A54500308FC0 /* SwiftyFirestoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyFirestoreTests.swift; sourceTree = "<group>"; };
 		E57DE0132434A59D00308FC0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 				E5502CA22435E108007EC1F1 /* Helper */,
 				E5502C962435DB32007EC1F1 /* Assets */,
 				E57DE0102434A54500308FC0 /* SwiftyFirestoreTests.swift */,
+				E55C2415243F280D009B5566 /* GetDocumentTests.swift */,
+				E55C2417243F2D9E009B5566 /* GetDocumentsTests.swift */,
 				E52D58EE243B41EA00FBFEBE /* QueryTests.swift */,
 				E505E6E8243DDD0700A3D25D /* OrderTests.swift */,
 				E505E6E4243DC41E00A3D25D /* UpdateTests.swift */,
@@ -392,10 +398,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E55C2416243F280D009B5566 /* GetDocumentTests.swift in Sources */,
 				E505E6E9243DDD0700A3D25D /* OrderTests.swift in Sources */,
 				E5811F6D243D8A6D00D58FE4 /* DocumentReferenceTests.swift in Sources */,
 				E505E6EB243DE09900A3D25D /* DeleteTests.swift in Sources */,
 				E5DC663D243CC54F005C82ED /* ListenTests.swift in Sources */,
+				E55C2418243F2D9E009B5566 /* GetDocumentsTests.swift in Sources */,
 				E5811F69243D61FA00D58FE4 /* CollectionGroupTests.swift in Sources */,
 				E52D58EF243B41EA00FBFEBE /* QueryTests.swift in Sources */,
 				E505E6E5243DC41E00A3D25D /* UpdateTests.swift in Sources */,
