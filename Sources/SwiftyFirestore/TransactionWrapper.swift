@@ -21,10 +21,11 @@ public class TransactionWrapper {
         return document
     }
 
-    public func update<Document: FirestoreDocument>(_ fields: [UpdateField<Document>], forDocument ref: DocumentRef<Document>) {
-        let data = fields.map { $0.keyAndValue() }
-        let fields = [String: Any](data) { a, _ in a }
-
+    public func update<Document: FirestoreDocument>(
+        _ fields: [UpdateField<Document>],
+        forDocument ref: DocumentRef<Document>
+    ) {
+        let fields = UpdateField.asDicrionary(fields)
         transaction.updateData(fields, forDocument: ref.ref)
     }
 }

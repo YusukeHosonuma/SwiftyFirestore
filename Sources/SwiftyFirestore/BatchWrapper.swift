@@ -26,10 +26,7 @@ public class BatchWrapper {
         ref: DocumentRef<Document>,
         _ fields: [UpdateField<Document>]
     ) {
-        // TODO: refactor
-        let data = fields.map { $0.keyAndValue() }
-        let fields = [String: Any](data) { a, _ in a }
-
+        let fields = UpdateField.asDicrionary(fields)
         batch.updateData(fields, forDocument: ref.ref)
     }
 
