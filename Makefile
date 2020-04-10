@@ -12,8 +12,8 @@ setup: ## Install requirement development tools to system and setup (not include
 	npx firebase setup:emulators:firestore
 
 .PHONY: open
-open: ## Open Xcode 11.3
-	open "/Applications/Xcode-11.3.app" SwiftyFirestore.xcworkspace
+open: ## Open Xcode 11.4
+	open "/Applications/Xcode-11.4.app" SwiftyFirestore.xcworkspace
 
 .PHONY: build
 build: ## Build
