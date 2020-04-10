@@ -21,8 +21,8 @@ class ListenCollectionTests: FirestoreTestCase {
     override func setUp() {
         super.setUp()
         
-        for document in documents {
-            Firestore.root.todos.add(document)
+        for (document, path) in zip(documents, ["one", "two", "three"]) {
+            Firestore.root.todos.document(path).setData(document)
         }
     }
 
@@ -150,5 +150,141 @@ class ListenCollectionTests: FirestoreTestCase {
         Firestore.root
             .todos
             .add(TodoDocument(title: "Grape", done: true, priority: 4))
+    }
+    
+    // MARK: - 🆙 Update
+    
+    // MARK: 🐤 Swifty
+    
+    func testUpdateSwifty() {
+        
+        var callCount = 0
+        var listener: ListenerRegistration!
+
+        func __removeListener() {
+            listener.remove() // 🧹 clean-up
+        }
+        
+        var exps: [XCTestExpectation] = []
+        defer {
+            wait(for: exps, timeout: 5)
+            wait(time: 0.5) // expect to not trigger listener again
+            __removeListener()
+        }
+        
+        // 📌 Listen
+        wait(queue: &exps) { exp in
+            listener = Firestore.root
+                .todos
+                .whereBy(.done, "==", false)
+                .listen { result in
+                    guard case .success(let (documents, snapshot)) = result else { XCTFail(); return } // ↩️
+
+                    callCount += 1
+
+                    switch callCount {
+                    case 1:
+                        XCTAssertEqual(snapshot.documentChanges.count, 2)
+                        XCTAssertTrue(snapshot.metadata.hasPendingWrites) // TODO: always `true` in first-time❓
+                        XCTAssertEqual(documents.count, 2)
+                        XCTAssertEqual(documents.map { $0.priority }.sorted(), [1, 2])
+                        
+                    case 2:
+                        XCTAssertEqual(snapshot.documentChanges.map { $0.type }, [.modified])
+                        XCTAssertEqual(snapshot.documentChanges.map { $0.document.title }, ["🍎"])
+                        XCTAssertEqual(documents.count, 2)
+                        XCTAssertEqual(documents.map { $0.priority }.sorted(), [1, 2])
+                        exp.fulfill()
+
+                    default:
+                        XCTFail("callCount = \(callCount)")
+                    }
+                }
+        }
+        
+        // 🆙 Update
+        Firestore.root
+            .todos
+            .document("one")
+            .update([
+                .value(.title, "🍎")
+            ])
+
+        // 🆙 Update (❗ but not triggered to listener because `done` is true)
+        Firestore.root
+            .todos
+            .document("three")
+            .update([
+                .value(.title, "🍎")
+            ])
+    }
+    
+    // MARK: 🔥 Firestore
+
+    func testUpdateFirestore() {
+        
+        var callCount = 0
+        var listener: ListenerRegistration!
+
+        func __removeListener() {
+            listener.remove() // 🧹 clean-up
+        }
+        
+        var exps: [XCTestExpectation] = []
+        defer {
+            wait(for: exps, timeout: 5)
+            wait(time: 0.5) // expect to not trigger listener again
+            __removeListener()
+        }
+        
+        // 📌 Listen
+        wait(queue: &exps) { exp in
+            listener = Firestore.firestore()
+                .collection("todos")
+                .whereField("done", isEqualTo: false)
+                .addSnapshotListener { (snapshot, error) in
+                    guard let snapshot = snapshot else { XCTFail(); return } // ↩️
+
+                    callCount += 1
+
+                    let documents = snapshot.documents.compactMap {
+                        try? Firestore.Decoder().decode(TodoDocument.self, from: $0.data())
+                    }
+                    
+                    switch callCount {
+                    case 1:
+                        XCTAssertEqual(snapshot.documentChanges.count, 2)
+                        XCTAssertTrue(snapshot.metadata.hasPendingWrites) // TODO: always `true` in first-time❓
+                        XCTAssertEqual(documents.count, 2)
+                        XCTAssertEqual(documents.map { $0.priority }.sorted(), [1, 2])
+                        
+                    case 2:
+                        XCTAssertEqual(snapshot.documentChanges.map { $0.type }, [.modified])
+                        XCTAssertEqual(snapshot.documentChanges.map { $0.document["title"] as? String }, ["🍎"])
+                        XCTAssertEqual(documents.count, 2)
+                        XCTAssertEqual(documents.map { $0.priority }.sorted(), [1, 2])
+                        exp.fulfill()
+
+                    default:
+                        XCTFail("callCount = \(callCount)")
+                    }
+                }
+        }
+        
+        // 🆙 Update
+        Firestore.root
+            .todos
+            .document("one")
+            .update([
+                .value(.title, "🍎")
+            ])
+
+        // 🆙 Update (❗ but not triggered to listener because `done` is true)
+        Firestore.root
+            .todos
+            .document("three")
+            .update([
+                .value(.title, "🍎")
+            ])
     }
 }

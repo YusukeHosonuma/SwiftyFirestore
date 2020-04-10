@@ -14,7 +14,7 @@ public protocol QueryRef {
 
     typealias VoidCompletion = ((Error?) -> Void)
     typealias CollectionCompletion = (Result<[Document], Error>) -> Void
-    typealias ListenerHandler = (Result<(documents: [Document], snapshot: QuerySnapshot), Error>) -> Void
+    typealias ListenerHandler = (Result<(documents: [Document], snapshot: QuerySnapshotWrapper<Document>), Error>) -> Void
 
     var queryRef: Query { get }
 }
@@ -127,7 +127,9 @@ extension QueryRef {
                             return document
                         }
 
-                        let result = (documents, snapshot)
+                        let snapshotWrapper = try QuerySnapshotWrapper<Document>(snapshot: snapshot)
+
+                        let result = (documents, snapshotWrapper)
                         completion(.success(result))
                     } catch {
                         completion(.failure(error))
