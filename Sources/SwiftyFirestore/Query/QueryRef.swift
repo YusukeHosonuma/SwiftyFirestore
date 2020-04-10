@@ -14,6 +14,7 @@ public protocol QueryRef {
 
     typealias VoidCompletion = ((Error?) -> Void)
     typealias CollectionCompletion = (Result<[Document], Error>) -> Void
+    typealias ListenerHandler = (Result<(documents: [Document], snapshot: QuerySnapshotWrapper<Document>), Error>) -> Void
 
     var queryRef: Query { get }
 }
@@ -108,6 +109,36 @@ extension QueryRef {
     // `{start} <= value && value <= {end}`
     public func between<T: Any>(_ key: Key, _ start: T, _ end: T) -> QueryWrapper<Document> {
         whereBy(key, isGreaterThanOrEqualTo: start).whereBy(key, isLessThanOrEqualTo: end)
+    }
+
+    // MARK: - Listen
+
+    @discardableResult
+    public func listen(includeMetadataChanges: Bool = false, completion: @escaping ListenerHandler) -> ListenerRegistration {
+        queryRef.addSnapshotListener(includeMetadataChanges: includeMetadataChanges) { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                if let snapshot = snapshot {
+                    do {
+                        let documents: [Document] = try snapshot.documents.map {
+                            var document = try Document($0)
+                            document.documentId = $0.documentID
+                            return document
+                        }
+
+                        let snapshotWrapper = try QuerySnapshotWrapper<Document>(snapshot: snapshot)
+
+                        let result = (documents, snapshotWrapper)
+                        completion(.success(result))
+                    } catch {
+                        completion(.failure(error))
+                    }
+                } else {
+                    completion(.failure(FirestoreError.unknown))
+                }
+            }
+        }
     }
 
     // MARK: - Private

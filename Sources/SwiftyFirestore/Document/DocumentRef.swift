@@ -13,6 +13,7 @@ open class DocumentRef<Document: FirestoreDocument>: Codable {
 
     public typealias VoidCompletion = ((Error?) -> Void)
     public typealias DocumentCompletion = (Result<Document?, Error>) -> Void
+    // TODO: change `metadata` to `snapshot`
     public typealias ListenerHandler = (Result<(document: Document?, metadata: SnapshotMetadata), Error>) -> Void
 
     public let ref: DocumentReference
@@ -137,7 +138,6 @@ extension DocumentRef {
                         var document = try snapshot.data(as: Document.self)
                         document?.documentId = snapshot.documentID
 
-//                        let result = ListenerResult(document: document, metadata: snapshot.metadata)
                         let result = (document, snapshot.metadata)
                         completion(.success(result))
                     } catch {

@@ -16,6 +16,9 @@
 		E5256288243BF56E009AE249 /* FirestoreTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5256287243BF56E009AE249 /* FirestoreTestCase.swift */; };
 		E52D58EF243B41EA00FBFEBE /* QueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52D58EE243B41EA00FBFEBE /* QueryTests.swift */; };
 		E53892A8243FE03500F72573 /* XCTestCase+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53892A6243FE01100F72573 /* XCTestCase+.swift */; };
+		E53892AA243FF75A00F72573 /* ListenCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53892A9243FF75A00F72573 /* ListenCollectionTests.swift */; };
+		E53892AC24400C5E00F72573 /* QuerySnapshotWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53892AB24400C5E00F72573 /* QuerySnapshotWrapper.swift */; };
+		E53892AE24400C8E00F72573 /* DocumentChangeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53892AD24400C8E00F72573 /* DocumentChangeWrapper.swift */; };
 		E5502C992435DB91007EC1F1 /* Firestore+RootRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C982435DB91007EC1F1 /* Firestore+RootRef.swift */; };
 		E5502C9C2435DBF0007EC1F1 /* FirestoreDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C9A2435DBC9007EC1F1 /* FirestoreDocuments.swift */; };
 		E5502CA12435DC88007EC1F1 /* FirestoreRelations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5502C9D2435DC16007EC1F1 /* FirestoreRelations.swift */; };
@@ -76,6 +79,9 @@
 		E5256287243BF56E009AE249 /* FirestoreTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestCase.swift; sourceTree = "<group>"; };
 		E52D58EE243B41EA00FBFEBE /* QueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTests.swift; sourceTree = "<group>"; };
 		E53892A6243FE01100F72573 /* XCTestCase+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+.swift"; sourceTree = "<group>"; };
+		E53892A9243FF75A00F72573 /* ListenCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenCollectionTests.swift; sourceTree = "<group>"; };
+		E53892AB24400C5E00F72573 /* QuerySnapshotWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuerySnapshotWrapper.swift; sourceTree = "<group>"; };
+		E53892AD24400C8E00F72573 /* DocumentChangeWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentChangeWrapper.swift; sourceTree = "<group>"; };
 		E5502C982435DB91007EC1F1 /* Firestore+RootRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firestore+RootRef.swift"; sourceTree = "<group>"; };
 		E5502C9A2435DBC9007EC1F1 /* FirestoreDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreDocuments.swift; sourceTree = "<group>"; };
 		E5502C9D2435DC16007EC1F1 /* FirestoreRelations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRelations.swift; sourceTree = "<group>"; };
@@ -203,6 +209,8 @@
 			children = (
 				E57DE0182434A6A000308FC0 /* QueryRef.swift */,
 				E57DE0162434A6A000308FC0 /* QueryWrapper.swift */,
+				E53892AB24400C5E00F72573 /* QuerySnapshotWrapper.swift */,
+				E53892AD24400C8E00F72573 /* DocumentChangeWrapper.swift */,
 				E55C241F243F4D3E009B5566 /* WhereOperator.swift */,
 				E55C2423243F4DEE009B5566 /* WhereCriteria.swift */,
 				E55C2421243F4DA0009B5566 /* Sort.swift */,
@@ -253,6 +261,7 @@
 				E505E6E4243DC41E00A3D25D /* UpdateTests.swift */,
 				E505E6EA243DE09900A3D25D /* DeleteTests.swift */,
 				E5DC663C243CC54F005C82ED /* ListenTests.swift */,
+				E53892A9243FF75A00F72573 /* ListenCollectionTests.swift */,
 				E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */,
 				E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */,
 				E57DE0132434A59D00308FC0 /* Info.plist */,
@@ -434,9 +443,11 @@
 				E5256286243BEF82009AE249 /* CollectionRefBase.swift in Sources */,
 				E57DE01F2434A6A000308FC0 /* CollectionRef.swift in Sources */,
 				E57DE01C2434A6A000308FC0 /* QueryWrapper.swift in Sources */,
+				E53892AE24400C8E00F72573 /* DocumentChangeWrapper.swift in Sources */,
 				E55C2422243F4DA0009B5566 /* Sort.swift in Sources */,
 				E55C2420243F4D3E009B5566 /* WhereOperator.swift in Sources */,
 				E57DE0202434A6A000308FC0 /* FirestoreError.swift in Sources */,
+				E53892AC24400C5E00F72573 /* QuerySnapshotWrapper.swift in Sources */,
 				E57DE0212434A6A000308FC0 /* FirestoreDocument.swift in Sources */,
 				E55C241A243F3B21009B5566 /* UpdateField.swift in Sources */,
 				E55C2424243F4DEE009B5566 /* WhereCriteria.swift in Sources */,
@@ -453,6 +464,7 @@
 				E55C2416243F280D009B5566 /* GetDocumentTests.swift in Sources */,
 				E505E6E9243DDD0700A3D25D /* OrderTests.swift in Sources */,
 				E5811F6D243D8A6D00D58FE4 /* DocumentReferenceTests.swift in Sources */,
+				E53892AA243FF75A00F72573 /* ListenCollectionTests.swift in Sources */,
 				E505E6EB243DE09900A3D25D /* DeleteTests.swift in Sources */,
 				E55C2418243F2D9E009B5566 /* GetDocumentsTests.swift in Sources */,
 				E5811F69243D61FA00D58FE4 /* CollectionGroupTests.swift in Sources */,
