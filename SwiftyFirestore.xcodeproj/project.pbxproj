@@ -29,7 +29,7 @@
 		E55C2420243F4D3E009B5566 /* WhereOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55C241F243F4D3E009B5566 /* WhereOperator.swift */; };
 		E55C2422243F4DA0009B5566 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55C2421243F4DA0009B5566 /* Sort.swift */; };
 		E55C2424243F4DEE009B5566 /* WhereCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55C2423243F4DEE009B5566 /* WhereCriteria.swift */; };
-		E55C2425243F4F95009B5566 /* ListenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DC663C243CC54F005C82ED /* ListenTests.swift */; };
+		E55C2425243F4F95009B5566 /* ListenDocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DC663C243CC54F005C82ED /* ListenDocumentTests.swift */; };
 		E57DE0062434A4E300308FC0 /* libSwiftyFirestore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5584A602434A3DD007035B6 /* libSwiftyFirestore.a */; };
 		E57DE0122434A54500308FC0 /* SwiftyFirestoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0102434A54500308FC0 /* SwiftyFirestoreTests.swift */; };
 		E57DE01C2434A6A000308FC0 /* QueryWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0162434A6A000308FC0 /* QueryWrapper.swift */; };
@@ -105,7 +105,7 @@
 		E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupTests.swift; sourceTree = "<group>"; };
 		E5811F6A243D812700D58FE4 /* CollectionGroupBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupBase.swift; sourceTree = "<group>"; };
 		E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReferenceTests.swift; sourceTree = "<group>"; };
-		E5DC663C243CC54F005C82ED /* ListenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenTests.swift; sourceTree = "<group>"; };
+		E5DC663C243CC54F005C82ED /* ListenDocumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenDocumentTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,7 +260,7 @@
 				E505E6E8243DDD0700A3D25D /* OrderTests.swift */,
 				E505E6E4243DC41E00A3D25D /* UpdateTests.swift */,
 				E505E6EA243DE09900A3D25D /* DeleteTests.swift */,
-				E5DC663C243CC54F005C82ED /* ListenTests.swift */,
+				E5DC663C243CC54F005C82ED /* ListenDocumentTests.swift */,
 				E53892A9243FF75A00F72573 /* ListenCollectionTests.swift */,
 				E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */,
 				E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */,
@@ -460,7 +460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E55C2425243F4F95009B5566 /* ListenTests.swift in Sources */,
+				E55C2425243F4F95009B5566 /* ListenDocumentTests.swift in Sources */,
 				E55C2416243F280D009B5566 /* GetDocumentTests.swift in Sources */,
 				E505E6E9243DDD0700A3D25D /* OrderTests.swift in Sources */,
 				E5811F6D243D8A6D00D58FE4 /* DocumentReferenceTests.swift in Sources */,
