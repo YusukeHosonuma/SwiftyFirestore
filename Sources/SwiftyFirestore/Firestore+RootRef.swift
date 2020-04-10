@@ -26,4 +26,24 @@ extension Firestore {
     public static var collectionGroup: CollectionGroupRef {
         CollectionGroupRef()
     }
+
+    public static func runTransaction<Return>(
+        _ updateBlock: @escaping (TransactionWrapper, NSErrorPointer) -> Return?,
+        completion: @escaping (Result<Return, Error>) -> Void
+    ) {
+        Firestore.firestore()
+            .runTransaction({ (transaction, errorPointer) -> Any? in
+                updateBlock(TransactionWrapper(transaction), errorPointer)
+            }, completion: { object, error in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    if let object = object as? Return {
+                        completion(.success(object))
+                    } else {
+                        preconditionFailure("unknown error")
+                    }
+                }
+            })
+    }
 }

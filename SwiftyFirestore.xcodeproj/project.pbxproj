@@ -41,6 +41,8 @@
 		E5811F69243D61FA00D58FE4 /* CollectionGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */; };
 		E5811F6B243D812700D58FE4 /* CollectionGroupBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F6A243D812700D58FE4 /* CollectionGroupBase.swift */; };
 		E5811F6D243D8A6D00D58FE4 /* DocumentReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */; };
+		E5A0E9E0244069AB00440B03 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0E9DF244069AB00440B03 /* TransactionTests.swift */; };
+		E5A0E9E224407C6600440B03 /* TransactionWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0E9E124407C6600440B03 /* TransactionWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupTests.swift; sourceTree = "<group>"; };
 		E5811F6A243D812700D58FE4 /* CollectionGroupBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupBase.swift; sourceTree = "<group>"; };
 		E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReferenceTests.swift; sourceTree = "<group>"; };
+		E5A0E9DF244069AB00440B03 /* TransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
+		E5A0E9E124407C6600440B03 /* TransactionWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionWrapper.swift; sourceTree = "<group>"; };
 		E5DC663C243CC54F005C82ED /* ListenDocumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenDocumentTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -234,6 +238,7 @@
 				E55C241B243F4C6D009B5566 /* Document */,
 				E55C241C243F4C76009B5566 /* Collection */,
 				E55C241D243F4C89009B5566 /* Error */,
+				E5A0E9E124407C6600440B03 /* TransactionWrapper.swift */,
 				E5502C982435DB91007EC1F1 /* Firestore+RootRef.swift */,
 			);
 			name = SwiftyFirestore;
@@ -264,6 +269,7 @@
 				E53892A9243FF75A00F72573 /* ListenCollectionTests.swift */,
 				E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */,
 				E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */,
+				E5A0E9DF244069AB00440B03 /* TransactionTests.swift */,
 				E57DE0132434A59D00308FC0 /* Info.plist */,
 			);
 			name = SwiftyFirestoreTests;
@@ -448,6 +454,7 @@
 				E55C2420243F4D3E009B5566 /* WhereOperator.swift in Sources */,
 				E57DE0202434A6A000308FC0 /* FirestoreError.swift in Sources */,
 				E53892AC24400C5E00F72573 /* QuerySnapshotWrapper.swift in Sources */,
+				E5A0E9E224407C6600440B03 /* TransactionWrapper.swift in Sources */,
 				E57DE0212434A6A000308FC0 /* FirestoreDocument.swift in Sources */,
 				E55C241A243F3B21009B5566 /* UpdateField.swift in Sources */,
 				E55C2424243F4DEE009B5566 /* WhereCriteria.swift in Sources */,
@@ -463,6 +470,7 @@
 				E55C2425243F4F95009B5566 /* ListenDocumentTests.swift in Sources */,
 				E55C2416243F280D009B5566 /* GetDocumentTests.swift in Sources */,
 				E505E6E9243DDD0700A3D25D /* OrderTests.swift in Sources */,
+				E5A0E9E0244069AB00440B03 /* TransactionTests.swift in Sources */,
 				E5811F6D243D8A6D00D58FE4 /* DocumentReferenceTests.swift in Sources */,
 				E53892AA243FF75A00F72573 /* ListenCollectionTests.swift in Sources */,
 				E505E6EB243DE09900A3D25D /* DeleteTests.swift in Sources */,
