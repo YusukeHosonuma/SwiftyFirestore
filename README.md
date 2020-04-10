@@ -71,11 +71,17 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
   - [x] `delete()`
   - [x] `FieldValue.delete`
 - [Transaction / Batch](https://cloud.google.com/firestore/docs/manage-data/transactions?hl=ja)
-  - [x] `runTransaction()`
-  - [x] `transaction.getDocument()`
-  - [x] `transaction.updateData()`
-  - [ ] `transaction.xxx()`
-  - [ ] `commit()`
+  - Transaction
+    - [x] `runTransaction()`
+    - [x] `transaction.getDocument()`
+    - [x] `transaction.updateData()`
+    - [ ] `transaction.xxx()`
+  - Batch
+    - [x] `batch.setData()`
+    - [x] `batch.updateData()`
+    - [x] `batch.deleteDocument()`
+    - [ ] `batch.xxx()`
+    - [x] `batch.commit()`
 - Other
   - [x] Document Reference Type
 

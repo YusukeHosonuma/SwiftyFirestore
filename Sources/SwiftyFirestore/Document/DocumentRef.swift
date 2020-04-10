@@ -88,16 +88,12 @@ extension DocumentRef {
     // MARK: Update
 
     public func update(_ fields: [UpdateField<Document>]) {
-        let data = fields.map { $0.keyAndValue() }
-        let fields = [String: Any](data) { a, _ in a }
-
+        let fields = UpdateField.asDicrionary(fields)
         ref.updateData(fields)
     }
 
     public func update(_ fields: [UpdateField<Document>], completion: @escaping VoidCompletion) {
-        let data = fields.map { $0.keyAndValue() }
-        let fields = [String: Any](data) { a, _ in a }
-
+        let fields = UpdateField.asDicrionary(fields)
         ref.updateData(fields, completion: completion)
     }
 

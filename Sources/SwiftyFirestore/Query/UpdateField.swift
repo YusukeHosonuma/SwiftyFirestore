@@ -40,4 +40,9 @@ public enum UpdateField<Document: FirestoreDocument> {
             return (key.stringValue, FieldValue.serverTimestamp())
         }
     }
+
+    static func asDicrionary(_ fields: [UpdateField]) -> [String: Any] {
+        let data = fields.map { $0.keyAndValue() }
+        return [String: Any](data) { a, _ in a }
+    }
 }
