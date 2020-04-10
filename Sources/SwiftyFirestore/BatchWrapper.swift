@@ -14,8 +14,8 @@ public class BatchWrapper {
     // MARK: Add
 
     public func setData<Document: FirestoreDocument>(
-        _ document: Document,
-        forDocument ref: DocumentRef<Document>
+        ref: DocumentRef<Document>,
+        _ document: Document
     ) throws {
         batch.setData(try document.asData(), forDocument: ref.ref)
     }
@@ -23,8 +23,8 @@ public class BatchWrapper {
     // MARK: Update
 
     public func update<Document: FirestoreDocument>(
-        _ fields: [UpdateField<Document>],
-        forDocument ref: DocumentRef<Document>
+        ref: DocumentRef<Document>,
+        _ fields: [UpdateField<Document>]
     ) {
         // TODO: refactor
         let data = fields.map { $0.keyAndValue() }
@@ -35,7 +35,7 @@ public class BatchWrapper {
 
     // MARK: Delete
 
-    public func delete<Document: FirestoreDocument>(forDocument ref: DocumentRef<Document>) {
+    public func delete<Document: FirestoreDocument>(ref: DocumentRef<Document>) {
         batch.deleteDocument(ref.ref)
     }
 

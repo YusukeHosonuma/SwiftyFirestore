@@ -38,19 +38,19 @@ class BatchTests: FirestoreTestCase {
         do {
             let ref = Firestore.root.todos.document("banana")
             let document = TodoDocument(title: "🍌", done: false)
-            try batch.setData(document, forDocument: ref)
+            try batch.setData(ref: ref, document)
         }
         
         // 🆙 Update - `apple`
         do {
             let ref = Firestore.root.todos.document("apple")
-            batch.update([.value(.done, true)], forDocument: ref)
+            batch.update(ref: ref, [.value(.done, true)])
         }
         
         // ❌ Delete - `orange`
         do {
             let ref = Firestore.root.todos.document("orange")
-            batch.delete(forDocument: ref)
+            batch.delete(ref: ref)
         }
 
         // ✏️ Commit
