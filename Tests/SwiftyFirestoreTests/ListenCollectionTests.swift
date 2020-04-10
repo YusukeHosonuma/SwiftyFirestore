@@ -52,7 +52,7 @@ class ListenCollectionTests: FirestoreTestCase {
         defer { cleanUp() } // 🧹
         
         // 📌 Listen
-        wait(queue: &exps) { exp in
+        wait(queue: &exps) { done in
             listener = Firestore.root
                 .todos
                 .whereBy(.done, "==", false)
@@ -72,7 +72,7 @@ class ListenCollectionTests: FirestoreTestCase {
                         XCTAssertEqual(snapshot.documentChanges.map { $0.type }, [.added])
                         XCTAssertEqual(documents.count, 3)
                         XCTAssertEqual(documents.map { $0.priority }.sorted(), [1, 2, 4])
-                        exp.fulfill() // 🔓
+                        done() // 🔓
 
                     default:
                         XCTFail("callCount = \(self.callCount)") // 🚫
@@ -97,7 +97,7 @@ class ListenCollectionTests: FirestoreTestCase {
         defer { cleanUp() } // 🧹
         
         // 📌 Listen
-        wait(queue: &exps) { exp in
+        wait(queue: &exps) { done in
             listener = Firestore.firestore()
                 .collection("todos")
                 .whereField("done", isEqualTo: false)
@@ -121,7 +121,7 @@ class ListenCollectionTests: FirestoreTestCase {
                         XCTAssertEqual(snapshot.documentChanges.map { $0.type }, [.added])
                         XCTAssertEqual(documents.count, 3)
                         XCTAssertEqual(documents.map { $0.priority }.sorted(), [1, 2, 4])
-                        exp.fulfill() // 🔓
+                        done() // 🔓
 
                     default:
                         XCTFail("callCount = \(self.callCount)") // 🚫
@@ -148,7 +148,7 @@ class ListenCollectionTests: FirestoreTestCase {
         defer { cleanUp() } // 🧹
         
         // 📌 Listen
-        wait(queue: &exps) { exp in
+        wait(queue: &exps) { done in
             listener = Firestore.root
                 .todos
                 .whereBy(.done, "==", false)
@@ -169,7 +169,7 @@ class ListenCollectionTests: FirestoreTestCase {
                         XCTAssertEqual(snapshot.documentChanges.map { $0.document.title }, ["🍎"])
                         XCTAssertEqual(documents.count, 2)
                         XCTAssertEqual(documents.map { $0.priority }.sorted(), [1, 2])
-                        exp.fulfill() // 🔓
+                        done() // 🔓
 
                     default:
                         XCTFail("callCount = \(self.callCount)") // 🚫
@@ -200,7 +200,7 @@ class ListenCollectionTests: FirestoreTestCase {
         defer { cleanUp() } // 🧹
         
         // 📌 Listen
-        wait(queue: &exps) { exp in
+        wait(queue: &exps) { done in
             listener = Firestore.firestore()
                 .collection("todos")
                 .whereField("done", isEqualTo: false)
@@ -225,7 +225,7 @@ class ListenCollectionTests: FirestoreTestCase {
                         XCTAssertEqual(snapshot.documentChanges.map { $0.document["title"] as? String }, ["🍎"])
                         XCTAssertEqual(documents.count, 2)
                         XCTAssertEqual(documents.map { $0.priority }.sorted(), [1, 2])
-                        exp.fulfill() // 🔓
+                        done() // 🔓
 
                     default:
                         XCTFail("callCount = \(self.callCount)") // 🚫
@@ -258,7 +258,7 @@ class ListenCollectionTests: FirestoreTestCase {
         defer { cleanUp() } // 🧹
         
         // 📌 Listen
-        wait(queue: &exps) { exp in
+        wait(queue: &exps) { done in
             listener = Firestore.root
                 .todos
                 .whereBy(.done, "==", false)
@@ -278,7 +278,7 @@ class ListenCollectionTests: FirestoreTestCase {
                         XCTAssertEqual(snapshot.documentChanges.map { $0.type }, [.removed])
                         XCTAssertEqual(documents.count, 1)
                         XCTAssertEqual(documents.map { $0.priority }.sorted(), [2])
-                        exp.fulfill() // 🔓
+                        done() // 🔓
 
                     default:
                         XCTFail("callCount = \(self.callCount)") // 🚫
@@ -305,7 +305,7 @@ class ListenCollectionTests: FirestoreTestCase {
         defer { cleanUp() } // 🧹
         
         // 📌 Listen
-        wait(queue: &exps) { exp in
+        wait(queue: &exps) { done in
             listener = Firestore.firestore()
                 .collection("todos")
                 .whereField("done", isEqualTo: false)
@@ -329,7 +329,7 @@ class ListenCollectionTests: FirestoreTestCase {
                         XCTAssertEqual(snapshot.documentChanges.map { $0.type }, [.removed])
                         XCTAssertEqual(documents.count, 1)
                         XCTAssertEqual(documents.map { $0.priority }.sorted(), [2])
-                        exp.fulfill() // 🔓
+                        done() // 🔓
 
                     default:
                         XCTFail("callCount = \(self.callCount)") // 🚫

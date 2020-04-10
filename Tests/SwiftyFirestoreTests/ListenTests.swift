@@ -20,6 +20,8 @@ class ListenTests: FirestoreTestCase {
         super.tearDown()
     }
 
+    // TODO: 🗳 refactor `cleanup`
+    
     // MARK: - 🐤 Test to SwiftyFirestore
     
     func testListenSwifty() {
@@ -45,7 +47,7 @@ class ListenTests: FirestoreTestCase {
         defer { wait(for: exps, timeout: 10) }
         
         // 📌 Listen
-        wait(queue: &exps) { exp in
+        wait(queue: &exps) { done in
             listener = Firestore.root
                 .account(id: "YusukeHosonuma")
                 .listen { result in
@@ -60,7 +62,7 @@ class ListenTests: FirestoreTestCase {
                     case 2:
                         XCTAssertEqual(document?.name, "Tobi")
                         __removeListener()
-                        exp.fulfill() // 🔓
+                        done() // 🔓
 
                     default:
                         XCTFail()
@@ -98,7 +100,7 @@ class ListenTests: FirestoreTestCase {
         defer { wait(for: exps, timeout: 10) }
         
         // 📌 Listen
-        wait(queue: &exps) { exp in
+        wait(queue: &exps) { done in
             listener = Firestore.root
                 .account(id: "YusukeHosonuma")
                 .listen(includeMetadataChanges: true) { result in
@@ -116,7 +118,7 @@ class ListenTests: FirestoreTestCase {
                     case 3: // data or metadata is update
                         XCTAssertEqual(document?.name, "Tobi")
                         __removeListener()
-                        exp.fulfill()
+                        done()
 
                     default:
                         XCTFail()
@@ -198,7 +200,7 @@ class ListenTests: FirestoreTestCase {
         defer { wait(for: exps, timeout: 10) }
         
         // 📌 Listen
-        wait(queue: &exps) { exp in
+        wait(queue: &exps) { done in
             listener = Firestore.firestore()
                 .collection("account")
                 .document("YusukeHosonuma")
@@ -215,7 +217,7 @@ class ListenTests: FirestoreTestCase {
                     case 2:
                         XCTAssertEqual(snapshot.data()?["name"] as? String, "Tobi")
                         __removeListener()
-                        exp.fulfill()
+                        done()
 
                     default:
                         XCTFail()
@@ -253,7 +255,7 @@ class ListenTests: FirestoreTestCase {
         defer { wait(for: exps, timeout: 10) }
         
         // 📌 Listen
-        wait(queue: &exps) { exp in
+        wait(queue: &exps) { done in
             listener = Firestore.firestore()
                 .collection("account")
                 .document("YusukeHosonuma")
@@ -272,7 +274,7 @@ class ListenTests: FirestoreTestCase {
                     case 3: // data or metadata is update
                         XCTAssertEqual(snapshot.data()?["name"] as? String, "Tobi")
                         __removeListener()
-                        exp.fulfill()
+                        done()
 
                     default:
                         XCTFail()

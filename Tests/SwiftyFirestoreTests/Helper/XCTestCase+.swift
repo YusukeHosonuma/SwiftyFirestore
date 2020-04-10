@@ -54,10 +54,10 @@ extension XCTestCase {
         queue: inout [XCTestExpectation],
         file: StaticString = #file,
         line: UInt = #line,
-        _ handler: (XCTestExpectation) -> Void
+        handler: (@escaping () -> Void) -> Void
     ) {
         let exp = expectation(description: "\(file) #\(line)")
         queue.append(exp)
-        handler(exp)
+        handler { exp.fulfill() }
     }
 }
