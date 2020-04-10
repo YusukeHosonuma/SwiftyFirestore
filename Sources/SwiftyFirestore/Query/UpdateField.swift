@@ -8,6 +8,7 @@
 
 import FirebaseFirestore
 
+// TODO: tests
 public enum UpdateField<Document: FirestoreDocument> {
     public typealias Key = Document.CodingKeys
 
@@ -16,6 +17,7 @@ public enum UpdateField<Document: FirestoreDocument> {
     case arrayUnion(Key, [Any])
     case arrayRemove(Key, [Any])
     case delete(Key)
+    case serverTimestamp(Key)
 
     func keyAndValue() -> (String, Any) {
         switch self {
@@ -33,6 +35,9 @@ public enum UpdateField<Document: FirestoreDocument> {
 
         case let .delete(key):
             return (key.stringValue, FieldValue.delete())
+
+        case let .serverTimestamp(key):
+            return (key.stringValue, FieldValue.serverTimestamp())
         }
     }
 }
