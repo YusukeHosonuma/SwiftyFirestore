@@ -10,7 +10,7 @@ import XCTest
 @testable import SwiftyFirestore
 import FirebaseFirestore
 
-class ListenTests: FirestoreTestCase {
+class ListenDocumentTests: FirestoreTestCase {
 
     override func setUp() {
         super.setUp()
@@ -20,9 +20,25 @@ class ListenTests: FirestoreTestCase {
         super.tearDown()
     }
 
+    // MARK: 📋
+    
+    var callCount = 0
+    var listener: ListenerRegistration!
+    
+    var exps: [XCTestExpectation] = []
+
+    // MARK: - 🔧 Test Helper
+    
+    private func cleanUp() {
+        wait(for: exps, timeout: 5)
+        wait(time: 0.5) // expect to not trigger listener again
+        listener.remove()
+    }
+    
     // MARK: - 🐤 Test to SwiftyFirestore
     
     func testListenSwifty() {
+        defer { cleanUp() } // 🧹
 
         let before = AccountDocument(name: "Yusuke Hosonuma")
         let after  = AccountDocument(name: "Tobi")
@@ -33,37 +49,26 @@ class ListenTests: FirestoreTestCase {
             .setData(before) { error in
                 XCTAssertNil(error)
             }
-
-        var callCount = 0
-        var listener: ListenerRegistration!
-        
-        func __removeListener() {
-            listener.remove() // 🧹 clean-up
-        }
-        
-        var exps: [XCTestExpectation] = []
-        defer { wait(for: exps, timeout: 10) }
         
         // 📌 Listen
-        wait(queue: &exps) { exp in
+        wait(queue: &exps) { done in
             listener = Firestore.root
                 .account(id: "YusukeHosonuma")
                 .listen { result in
                     guard case .success(let (document, metadata)) = result else { XCTFail(); return } // ✅
-                    callCount += 1
+                    self.callCount += 1
 
-                    switch callCount {
+                    switch self.callCount {
                     case 1:
                         XCTAssertTrue(metadata.hasPendingWrites) // TODO: always `true` in first-time❓
                         XCTAssertEqual(document?.name, "Yusuke Hosonuma")
                         
                     case 2:
                         XCTAssertEqual(document?.name, "Tobi")
-                        __removeListener()
-                        exp.fulfill() // 🔓
+                        done() // 🔓
 
                     default:
-                        XCTFail()
+                        XCTFail("callCount = \(self.callCount)") // 🚫
                     }
                 }
         }
@@ -77,6 +82,7 @@ class ListenTests: FirestoreTestCase {
     }
     
     func testAddIncludeMetadataChangesSwifty() {
+        defer { cleanUp() } // 🧹
 
         let account = AccountDocument(name: "Yusuke Hosonuma")
         
@@ -86,40 +92,29 @@ class ListenTests: FirestoreTestCase {
             .setData(account) { (error) in
                 XCTAssertNil(error)
             }
-
-        var callCount = 0
-        var listener: ListenerRegistration!
-        
-        func __removeListener() {
-            listener.remove() // 🧹 clean-up
-        }
-        
-        var exps: [XCTestExpectation] = []
-        defer { wait(for: exps, timeout: 10) }
         
         // 📌 Listen
-        wait(queue: &exps) { exp in
+        wait(queue: &exps) { done in
             listener = Firestore.root
                 .account(id: "YusukeHosonuma")
                 .listen(includeMetadataChanges: true) { result in
                     guard case .success(let (document, _)) = result else { XCTFail(); return } // ↩️
                     
-                    callCount += 1
+                    self.callCount += 1
 
-                    switch callCount {
+                    switch self.callCount {
                     case 1: // initial call
                         XCTAssertEqual(document?.name, "Yusuke Hosonuma")
 
-                    case 2: // data or metadata is update
+                    case 2, 3: // data or metadata is update
                         break
                         
-                    case 3: // data or metadata is update
+                    case 4: // data or metadata is update
                         XCTAssertEqual(document?.name, "Tobi")
-                        __removeListener()
-                        exp.fulfill()
+                        done()
 
                     default:
-                        XCTFail()
+                        XCTFail("callCount = \(self.callCount)") // 🚫
                     }
                 }
         }
@@ -145,17 +140,15 @@ class ListenTests: FirestoreTestCase {
             .setData(before) { error in
                 XCTAssertNil(error)
             }
-
-        var callCount = 0
         
         // 📌 Listen
         let listener = Firestore.root
             .account(id: "YusukeHosonuma")
             .listen { result in
                 guard case .success(_) = result else { XCTFail(); return } // ✅
-                callCount += 1
+                self.callCount += 1
                 
-                if callCount >= 2 {
+                if self.callCount >= 2 {
                     XCTFail("`listener` is not removed.")
                 }
             }
@@ -177,6 +170,7 @@ class ListenTests: FirestoreTestCase {
     // MARK: - 🔥 Test to Firestore API
 
     func testAddFirestore() {
+        defer { cleanUp() } // 🧹
 
         let account = AccountDocument(name: "Yusuke Hosonuma")
         
@@ -186,39 +180,28 @@ class ListenTests: FirestoreTestCase {
             .setData(account) { (error) in
                 XCTAssertNil(error)
             }
-
-        var callCount = 0
-        var listener: ListenerRegistration!
-
-        func __removeListener() {
-            listener.remove() // 🧹 clean-up
-        }
-
-        var exps: [XCTestExpectation] = []
-        defer { wait(for: exps, timeout: 10) }
         
         // 📌 Listen
-        wait(queue: &exps) { exp in
+        wait(queue: &exps) { done in
             listener = Firestore.firestore()
                 .collection("account")
                 .document("YusukeHosonuma")
                 .addSnapshotListener { (snapshot, error) in
                     guard let snapshot = snapshot else { XCTFail(); return }
                     
-                    callCount += 1
+                    self.callCount += 1
 
-                    switch callCount {
+                    switch self.callCount {
                     case 1:
                         XCTAssertTrue(snapshot.metadata.hasPendingWrites) // TODO: always `true` in first-time❓
                         XCTAssertEqual(snapshot.data()?["name"] as? String, "Yusuke Hosonuma")
                         
                     case 2:
                         XCTAssertEqual(snapshot.data()?["name"] as? String, "Tobi")
-                        __removeListener()
-                        exp.fulfill()
+                        done()
 
                     default:
-                        XCTFail()
+                        XCTFail("callCount = \(self.callCount)") // 🚫
                     }
                 }
         }
@@ -232,6 +215,7 @@ class ListenTests: FirestoreTestCase {
     }
 
     func testAddIncludeMetadataChangesFirestore() {
+        defer { cleanUp() } // 🧹
 
         let account = AccountDocument(name: "Yusuke Hosonuma")
         
@@ -241,41 +225,30 @@ class ListenTests: FirestoreTestCase {
             .setData(account) { (error) in
                 XCTAssertNil(error)
             }
-
-        var callCount = 0
-        var listener: ListenerRegistration!
-        
-        func __removeListener() {
-            listener.remove() // 🧹 clean-up
-        }
-        
-        var exps: [XCTestExpectation] = []
-        defer { wait(for: exps, timeout: 10) }
         
         // 📌 Listen
-        wait(queue: &exps) { exp in
+        wait(queue: &exps) { done in
             listener = Firestore.firestore()
                 .collection("account")
                 .document("YusukeHosonuma")
                 .addSnapshotListener(includeMetadataChanges: true) { (snapshot, error) in
                     guard let snapshot = snapshot else { XCTFail(); return }
                     
-                    callCount += 1
+                    self.callCount += 1
 
-                    switch callCount {
+                    switch self.callCount {
                     case 1: // initial call
                         XCTAssertEqual(snapshot.data()?["name"] as? String, "Yusuke Hosonuma")
 
-                    case 2: // data or metadata is update
+                    case 2, 3: // data or metadata is update
                         break
                         
-                    case 3: // data or metadata is update
+                    case 4: // data or metadata is update
                         XCTAssertEqual(snapshot.data()?["name"] as? String, "Tobi")
-                        __removeListener()
-                        exp.fulfill()
+                        done()
 
                     default:
-                        XCTFail()
+                        XCTFail("callCount = \(self.callCount)") // 🚫
                     }
                 }
         }
@@ -300,8 +273,6 @@ class ListenTests: FirestoreTestCase {
             .setData(account) { (error) in
                 XCTAssertNil(error)
             }
-
-        var callCount = 0
         
         // 📌 Listen
         let listener = Firestore.firestore()
@@ -310,9 +281,9 @@ class ListenTests: FirestoreTestCase {
             .addSnapshotListener { (snapshot, error) in
                 guard let _ = snapshot else { XCTFail(); return }
                 
-                callCount += 1
+                self.callCount += 1
                 
-                if callCount >= 2 {
+                if self.callCount >= 2 {
                     XCTFail("`listener` is not removed.")
                 }
             }
