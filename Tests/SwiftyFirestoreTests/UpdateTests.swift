@@ -43,7 +43,8 @@ class UpdateTests: FirestoreTestCase {
         documentRef.update([
             .value(.done, true),
             .increment(.priority, 1),
-            .arrayUnion(.tags, ["work"])
+            .arrayUnion(.tags, ["work"]),
+            .serverTimestamp(.lastUpdated)
         ])
         
          // ❌ Remove
@@ -121,7 +122,8 @@ class UpdateTests: FirestoreTestCase {
         documentRef.updateData([
             "done": true,
             "priority": FieldValue.increment(Int64(1)),
-            "tags": FieldValue.arrayUnion(["work"])
+            "tags": FieldValue.arrayUnion(["work"]),
+            "lastUpdated": FieldValue.serverTimestamp() // TODO: can't assert currently
         ])
 
         // ❌ Remove

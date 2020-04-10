@@ -20,6 +20,7 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
   - [x] `FieldValue.arrayUnion()`
   - [x] `FieldValue.arrayRemove()`
   - [x] `FieldValue.increment()`
+  - [x] `FieldValue.serverTimestamp()`
 - Reference
   - [Query Data](https://firebase.google.com/docs/firestore/query-data/get-data?hl=ja)
     - [x] `getDocument()`
@@ -74,7 +75,6 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
   - [ ] `commit()`
 - Other
   - [x] Document Reference Type
-  - [ ] `FieldValue.serverTimestamp()`
 
 ## API Difference (WIP)
 
