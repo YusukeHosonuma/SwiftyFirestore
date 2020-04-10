@@ -46,4 +46,8 @@ extension Firestore {
                 }
             })
     }
+
+    public static func batch() -> BatchWrapper {
+        BatchWrapper()
+    }
 }
