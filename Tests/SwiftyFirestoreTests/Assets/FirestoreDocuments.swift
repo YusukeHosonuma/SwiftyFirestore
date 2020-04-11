@@ -19,6 +19,7 @@ struct TodoDocument: FirestoreDocument, Equatable {
     var tags: [String] = []
     var remarks: String?
     var lastUpdated: Timestamp?
+    var info: [String: String]? // TODO: can use struct?
 
     enum CodingKeys: String, CodingKey {
         case documentId
@@ -28,6 +29,7 @@ struct TodoDocument: FirestoreDocument, Equatable {
         case tags
         case remarks
         case lastUpdated
+        case info
     }
 }
 

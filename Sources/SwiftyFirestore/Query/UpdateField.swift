@@ -18,6 +18,7 @@ public enum UpdateField<Document: FirestoreDocument> {
     case arrayRemove(Key, [Any])
     case delete(Key)
     case serverTimestamp(Key)
+    case nestedValue(Key, path: String, Any)
 
     func keyAndValue() -> (String, Any) {
         switch self {
@@ -38,6 +39,9 @@ public enum UpdateField<Document: FirestoreDocument> {
 
         case let .serverTimestamp(key):
             return (key.stringValue, FieldValue.serverTimestamp())
+
+        case let .nestedValue(key, path: path, value):
+            return (key.stringValue + "." + path, value)
         }
     }
 

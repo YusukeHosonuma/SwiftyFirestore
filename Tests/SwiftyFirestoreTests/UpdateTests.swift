@@ -15,11 +15,17 @@ class UpdateTests: FirestoreTestCase {
     override func setUp() {
         super.setUp()
         
-        let document = TodoDocument(title: "Buy",
-                                    done: false,
-                                    priority: 1,
-                                    tags: ["home", "hobby"],
-                                    remarks: "Note")
+        let document = TodoDocument(
+            title: "Buy",
+            done: false,
+            priority: 1,
+            tags: ["home", "hobby"],
+            remarks: "Note",
+            info: [
+                "color": "red",
+                "size": "14px",
+            ]
+        )
         
         Firestore.firestore()
             .collection("todos")
@@ -44,7 +50,8 @@ class UpdateTests: FirestoreTestCase {
             .value(.done, true),
             .increment(.priority, 1),
             .arrayUnion(.tags, ["work"]),
-            .serverTimestamp(.lastUpdated)
+            .serverTimestamp(.lastUpdated),
+            .nestedValue(.info, path: "color", "blue")
         ])
         
          // ❌ Remove
@@ -78,7 +85,8 @@ class UpdateTests: FirestoreTestCase {
             documentRef.update([
                 .value(.done, true),
                 .increment(.priority, 1),
-                .arrayUnion(.tags, ["work"])
+                .arrayUnion(.tags, ["work"]),
+                .nestedValue(.info, path: "color", "blue")
             ]) { error in
                 XCTAssertNil(error)
                 done() // 🔓
@@ -123,7 +131,8 @@ class UpdateTests: FirestoreTestCase {
             "done": true,
             "priority": FieldValue.increment(Int64(1)),
             "tags": FieldValue.arrayUnion(["work"]),
-            "lastUpdated": FieldValue.serverTimestamp() // TODO: can't assert currently
+            "lastUpdated": FieldValue.serverTimestamp(), // TODO: can't assert currently
+            "info.color": "blue"
         ])
 
         // ❌ Remove
@@ -157,7 +166,9 @@ class UpdateTests: FirestoreTestCase {
             documentRef.updateData([
                 "done": true,
                 "priority": FieldValue.increment(Int64(1)),
-                "tags": FieldValue.arrayUnion(["work"])
+                "tags": FieldValue.arrayUnion(["work"]),
+                "lastUpdated": FieldValue.serverTimestamp(), // TODO: can't assert currently
+                "info.color": "blue"
             ]) { error in
                 XCTAssertNil(error)
                 done() // 🔓
@@ -196,5 +207,6 @@ class UpdateTests: FirestoreTestCase {
         XCTAssertEqual(todo?.priority, 2, "priority", file: file, line: line)
         XCTAssertEqual(todo?.tags, ["hobby", "work"], file: file, line: line)
         XCTAssertNil(todo?.remarks, file: file, line: line)
+        XCTAssertEqual(todo?.info, ["color": "blue", "size": "14px"], file: file, line: line)
     }
 }
