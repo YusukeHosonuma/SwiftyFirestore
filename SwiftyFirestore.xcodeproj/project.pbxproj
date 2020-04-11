@@ -43,6 +43,7 @@
 		E5811F69243D61FA00D58FE4 /* CollectionGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */; };
 		E5811F6B243D812700D58FE4 /* CollectionGroupBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F6A243D812700D58FE4 /* CollectionGroupBase.swift */; };
 		E5811F6D243D8A6D00D58FE4 /* DocumentReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */; };
+		E5A09753244170FF009C3F41 /* DocumentRef+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09752244170FF009C3F41 /* DocumentRef+.swift */; };
 		E5A0E9E0244069AB00440B03 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0E9DF244069AB00440B03 /* TransactionTests.swift */; };
 		E5A0E9E224407C6600440B03 /* TransactionWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0E9E124407C6600440B03 /* TransactionWrapper.swift */; };
 		E5A0E9E424408DBB00440B03 /* BatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0E9E324408DBB00440B03 /* BatchTests.swift */; };
@@ -113,6 +114,7 @@
 		E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupTests.swift; sourceTree = "<group>"; };
 		E5811F6A243D812700D58FE4 /* CollectionGroupBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupBase.swift; sourceTree = "<group>"; };
 		E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReferenceTests.swift; sourceTree = "<group>"; };
+		E5A09752244170FF009C3F41 /* DocumentRef+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentRef+.swift"; sourceTree = "<group>"; };
 		E5A0E9DF244069AB00440B03 /* TransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
 		E5A0E9E124407C6600440B03 /* TransactionWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionWrapper.swift; sourceTree = "<group>"; };
 		E5A0E9E324408DBB00440B03 /* BatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchTests.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			children = (
 				E57DE01B2434A6A000308FC0 /* FirestoreDocument.swift */,
 				E57DE0172434A6A000308FC0 /* DocumentRef.swift */,
+				E5A09752244170FF009C3F41 /* DocumentRef+.swift */,
 			);
 			path = Document;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				E57DE0212434A6A000308FC0 /* FirestoreDocument.swift in Sources */,
 				E55C241A243F3B21009B5566 /* UpdateField.swift in Sources */,
 				E55C2424243F4DEE009B5566 /* WhereCriteria.swift in Sources */,
+				E5A09753244170FF009C3F41 /* DocumentRef+.swift in Sources */,
 				E57DE01D2434A6A000308FC0 /* DocumentRef.swift in Sources */,
 				E56EA5D32440A4A4008E13C0 /* Alias.swift in Sources */,
 				E5811F6B243D812700D58FE4 /* CollectionGroupBase.swift in Sources */,
