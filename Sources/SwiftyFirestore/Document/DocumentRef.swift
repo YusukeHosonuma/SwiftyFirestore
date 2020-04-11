@@ -59,7 +59,7 @@ extension DocumentRef {
                         completion(.failure(error))
                     }
                 } else {
-                    completion(.failure(FirestoreError.unknown))
+                    preconditionFailure("Expect to not reachable.")
                 }
             }
         }

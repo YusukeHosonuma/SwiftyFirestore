@@ -27,7 +27,78 @@ class GetDocumentTests: FirestoreTestCase {
         super.tearDown()
     }
     
-    // MARK: 🐤
+    // MARK: - Exists
+    
+    func testExsitsSwifty() throws {
+        // ✅ Exists - Traditional
+        waitUntil { done in
+            Firestore.root
+                .account
+                .document("YusukeHosonuma")
+                .get { result in
+                    guard case .success(let document) = result else { XCTFail(); return } // ↩️
+
+                    XCTAssertNotNil(document)
+                    done()
+                }
+        }
+
+        // ✅ Exists - Extended (more expressive)
+        waitUntil { done in
+            Firestore.root
+                .account
+                .document("YusukeHosonuma")
+                .exists { result in
+                    guard case .success(let exists) = result else { XCTFail(); return } // ↩️
+
+                    XCTAssertTrue(exists)
+                    done()
+                }
+        }
+        
+        // ☑️ Not Exists
+        waitUntil { done in
+            Firestore.root
+                .account
+                .document("NoName")
+                .get { result in
+                    guard case .success(let document) = result else { XCTFail(); return } // ↩️
+
+                    XCTAssertNil(document)
+                    done()
+                }
+        }
+    }
+    
+    // MARK: 🔥 Firestore
+    
+    func testExistsFirestore() throws {
+        // ✅ Exists
+        waitUntil { done in
+            Firestore.firestore()
+                .collection("account")
+                .document("YusukeHosonuma")
+                .getDocument { (snapshot, error) in
+                    XCTAssertEqual(snapshot?.exists, true)
+                    done()
+                }
+        }
+
+        // ☑️ Not Exists
+        waitUntil { done in
+            Firestore.firestore()
+                .collection("account")
+                .document("NoName")
+                .getDocument { (snapshot, error) in
+                    XCTAssertEqual(snapshot?.exists, false)
+                    done()
+                }
+        }
+    }
+    
+    // MARK: - Source
+    
+    // MARK: 🐤 Swifty
     
     func testSourceSwifty() throws {
         waitUntil { done in
@@ -43,7 +114,7 @@ class GetDocumentTests: FirestoreTestCase {
         }
     }
 
-    // MARK: 🔥
+    // MARK: 🔥 Firestore
     
     func testSourceFirestoer() throws {
         waitUntil { done in
