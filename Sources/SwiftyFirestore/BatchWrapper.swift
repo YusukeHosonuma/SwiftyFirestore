@@ -38,6 +38,10 @@ public class BatchWrapper {
 
     // MARK: Commit
 
+    public func commit() {
+        batch.commit()
+    }
+
     public func commit(completion: @escaping (Error?) -> Void) {
         batch.commit(completion: completion)
     }
