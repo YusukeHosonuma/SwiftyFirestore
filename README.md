@@ -13,10 +13,10 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
 
 - [Create / Update](https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ja)
   - [x] `setData()`
-  - [ ] `setData(merge:)`
+  - [-] `setData(merge:)` - **Not support because not type-safe**
   - [x] `add()`
   - [x] `updateData()`
-  - [ ] `updateData()` - nested object
+  - [x] `updateData()` - nested object
   - [x] `FieldValue.arrayUnion()`
   - [x] `FieldValue.arrayRemove()`
   - [x] `FieldValue.increment()`
