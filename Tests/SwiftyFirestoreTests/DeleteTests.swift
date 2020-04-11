@@ -41,7 +41,7 @@ class DeleteTests: FirestoreTestCase {
             Firestore.firestore()
                 .collection("todos")
                 .document("hello")
-                .getDocument { (snapshot, error) in // TODO: test `isExists`
+                .getDocument { (snapshot, error) in
                     guard let snapshot = snapshot else { XCTFail(); return } // ↩️
                     
                     XCTAssertFalse(snapshot.exists)
@@ -67,7 +67,7 @@ class DeleteTests: FirestoreTestCase {
             Firestore.firestore()
                 .collection("todos")
                 .document("hello")
-                .getDocument { (snapshot, error) in // TODO: test `isExists`
+                .getDocument { (snapshot, error) in
                     guard let snapshot = snapshot else { XCTFail(); return } // ↩️
                     
                     XCTAssertFalse(snapshot.exists)
@@ -90,7 +90,7 @@ class DeleteTests: FirestoreTestCase {
             Firestore.firestore()
                 .collection("todos")
                 .document("hello")
-                .getDocument { (snapshot, error) in // TODO: test `isExists`
+                .getDocument { (snapshot, error) in
                     guard let snapshot = snapshot else { XCTFail(); return } // ↩️
                     
                     XCTAssertFalse(snapshot.exists)
@@ -116,7 +116,7 @@ class DeleteTests: FirestoreTestCase {
             Firestore.firestore()
                 .collection("todos")
                 .document("hello")
-                .getDocument { (snapshot, error) in // TODO: test `isExists`
+                .getDocument { (snapshot, error) in
                     guard let snapshot = snapshot else { XCTFail(); return } // ↩️
                     
                     XCTAssertFalse(snapshot.exists)
