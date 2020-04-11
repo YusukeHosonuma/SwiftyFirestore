@@ -64,7 +64,7 @@ struct GistDocument: FirestoreDocument {
 
     var documentId: String!
     var url: String
-    var account: AccountDocumentRef
+    var account: DocumentRef<AccountDocument>
     
     enum CodingKeys: String, CodingKey {
         case documentId

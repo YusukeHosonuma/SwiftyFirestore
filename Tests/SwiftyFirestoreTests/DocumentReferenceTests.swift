@@ -31,12 +31,13 @@ class DocumentReferenceTests: FirestoreTestCase {
         //
         
         Firestore.root
-            .account(id: "YusukeHosonuma")
+            .account
+            .document("YusukeHosonuma")
             .setData(AccountDocument(name: "Yusuke Hosonuma")) { error in
                 XCTAssertNil(error)
             }
         
-        let accountRef = AccountDocumentRef(ref: Firestore.root.account(id: "YusukeHosonuma").ref)
+        let accountRef = DocumentRef<AccountDocument>(ref: Firestore.root.account.document("YusukeHosonuma").ref)
         
         Firestore.root
             .gist
