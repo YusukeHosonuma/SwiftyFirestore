@@ -8,7 +8,7 @@
 
 import FirebaseFirestore
 
-open class DocumentRef<Document: FirestoreDocument>: Codable {
+public class DocumentRef<Document: FirestoreDocument>: Codable {
     public typealias Key = Document.CodingKeys
 
     public typealias VoidCompletion = ((Error?) -> Void)

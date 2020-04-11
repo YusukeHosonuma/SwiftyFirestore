@@ -43,7 +43,8 @@ class CollectionGroupTests: FirestoreTestCase {
         
         // 🔧 Setup
         Firestore.root
-            .account(id: "YusukeHosonuma")
+            .account
+            .document("YusukeHosonuma")
             .repository
             .add(RepositoryDocument(name: "SwiftyFirestore", language: "swift"))
 
@@ -53,7 +54,8 @@ class CollectionGroupTests: FirestoreTestCase {
         ]
         .forEach {
             Firestore.root
-                .account(id: "penginmura")
+                .account
+                .document("penginmura")
                 .repository
                 .add($0)
         }

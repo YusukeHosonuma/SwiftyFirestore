@@ -63,7 +63,8 @@ final class SwiftyFirestoreTests: XCTestCase {
                     // 🐤 Swifty
                     //
                     Firestore.root
-                        .account(id: accountID)
+                        .account
+                        .document(accountID)
                         .get { result in
                             guard case .success(let document) = result else { XCTFail(); return }
                             
@@ -167,7 +168,8 @@ final class SwiftyFirestoreTests: XCTestCase {
                 // Swifty 🐤
                 //
                 Firestore.root
-                    .account(id: "YusukeHosonuma")
+                    .account
+                    .document("YusukeHosonuma")
                     .repository
                     .getAll { result in
                         guard case .success(let documents) = result else { XCTFail(); return }

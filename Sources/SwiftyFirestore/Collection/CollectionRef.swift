@@ -40,9 +40,4 @@ extension CollectionRef {
             completion?(error)
         }
     }
-
-    // TODO: delete?
-    public func getBy(id: String) -> DocumentReference {
-        ref.document(id)
-    }
 }
