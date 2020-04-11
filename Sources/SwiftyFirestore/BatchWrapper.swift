@@ -8,7 +8,7 @@
 
 import FirebaseFirestore
 
-public class BatchWrapper {
+public final class BatchWrapper {
     private let batch = Firestore.firestore().batch()
 
     // MARK: Add
