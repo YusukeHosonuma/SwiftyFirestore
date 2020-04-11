@@ -13,7 +13,6 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
 
 - [Create / Update](https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ja)
   - [x] `setData()`
-  - [-] `setData(merge:)` - **Not support because not type-safe**
   - [x] `add()`
   - [x] `updateData()`
   - [x] `updateData()` - nested object
@@ -21,6 +20,7 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
   - [x] `FieldValue.arrayRemove()`
   - [x] `FieldValue.increment()`
   - [x] `FieldValue.serverTimestamp()`
+  - `setData(merge:)` - **Not supported because not type-safe**
 - Reference
   - [Query Data](https://firebase.google.com/docs/firestore/query-data/get-data?hl=ja)
     - [x] `getDocument()`
@@ -65,8 +65,6 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
     - [ ] multi-cursor
   - [Enable offline](https://firebase.google.com/docs/firestore/manage-data/enable-offline?hl=ja)
     - T.B.D
-  - Other
-    - [ ] `exists`
 - [Delete](https://firebase.google.com/docs/firestore/manage-data/delete-data?hl=ja)
   - [x] `delete()`
   - [x] `FieldValue.delete`
@@ -80,8 +78,9 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
     - [x] `batch.setData()`
     - [x] `batch.updateData()`
     - [x] `batch.deleteDocument()`
-    - [ ] `batch.xxx()`
     - [x] `batch.commit()`
+- Original
+  - [x] `exists`
 - Other
   - [x] Document Reference Type
 
