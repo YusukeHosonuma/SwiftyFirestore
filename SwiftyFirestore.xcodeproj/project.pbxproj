@@ -37,7 +37,6 @@
 		E57DE01C2434A6A000308FC0 /* QueryWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0162434A6A000308FC0 /* QueryWrapper.swift */; };
 		E57DE01D2434A6A000308FC0 /* DocumentRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0172434A6A000308FC0 /* DocumentRef.swift */; };
 		E57DE01E2434A6A000308FC0 /* QueryRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0182434A6A000308FC0 /* QueryRef.swift */; };
-		E57DE01F2434A6A000308FC0 /* CollectionRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0192434A6A000308FC0 /* CollectionRef.swift */; };
 		E57DE0202434A6A000308FC0 /* FirestoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE01A2434A6A000308FC0 /* FirestoreError.swift */; };
 		E57DE0212434A6A000308FC0 /* FirestoreDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE01B2434A6A000308FC0 /* FirestoreDocument.swift */; };
 		E5811F69243D61FA00D58FE4 /* CollectionGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */; };
@@ -108,7 +107,6 @@
 		E57DE0162434A6A000308FC0 /* QueryWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryWrapper.swift; sourceTree = "<group>"; };
 		E57DE0172434A6A000308FC0 /* DocumentRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentRef.swift; sourceTree = "<group>"; };
 		E57DE0182434A6A000308FC0 /* QueryRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryRef.swift; sourceTree = "<group>"; };
-		E57DE0192434A6A000308FC0 /* CollectionRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionRef.swift; sourceTree = "<group>"; };
 		E57DE01A2434A6A000308FC0 /* FirestoreError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirestoreError.swift; sourceTree = "<group>"; };
 		E57DE01B2434A6A000308FC0 /* FirestoreDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirestoreDocument.swift; sourceTree = "<group>"; };
 		E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupTests.swift; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 		E55C241C243F4C76009B5566 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
-				E57DE0192434A6A000308FC0 /* CollectionRef.swift */,
 				E5256285243BEF82009AE249 /* CollectionRefBase.swift */,
 				E5811F6A243D812700D58FE4 /* CollectionGroupBase.swift */,
 			);
@@ -462,7 +459,6 @@
 				E5502C992435DB91007EC1F1 /* Firestore+RootRef.swift in Sources */,
 				E57DE01E2434A6A000308FC0 /* QueryRef.swift in Sources */,
 				E5256286243BEF82009AE249 /* CollectionRefBase.swift in Sources */,
-				E57DE01F2434A6A000308FC0 /* CollectionRef.swift in Sources */,
 				E57DE01C2434A6A000308FC0 /* QueryWrapper.swift in Sources */,
 				E53892AE24400C8E00F72573 /* DocumentChangeWrapper.swift in Sources */,
 				E55C2422243F4DA0009B5566 /* Sort.swift in Sources */,
