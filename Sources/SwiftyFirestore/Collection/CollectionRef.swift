@@ -8,21 +8,19 @@
 
 import FirebaseFirestore
 
-open class CollectionRef<T: FirestoreDocument>: QueryRef {
+public class CollectionRef<Document: FirestoreDocument>: QueryRef {
     public var ref: CollectionReference
-
-    public typealias Document = T
 
     public var queryRef: Query {
         ref as Query
     }
 
     public init(_ ref: Firestore) {
-        self.ref = ref.collection(T.collectionId)
+        self.ref = ref.collection(Document.collectionId)
     }
 
     public init(_ ref: DocumentReference) {
-        self.ref = ref.collection(T.collectionId)
+        self.ref = ref.collection(Document.collectionId)
     }
 }
 
