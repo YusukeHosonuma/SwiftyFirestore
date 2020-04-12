@@ -22,18 +22,22 @@ import SwiftyFirestore
 // }
 //
 
+// MARK: Root
+
 extension RootRef {
     var todos:   CollectionRef<TodoDocument>    { CollectionRef(ref) }
     var gist:    CollectionRef<GistDocument>    { CollectionRef(ref) }
     var account: CollectionRef<AccountDocument> { CollectionRef(ref) }
 }
 
+// MARK: Account
+
 extension DocumentRef where Document == AccountDocument {
     var repository: CollectionRef<RepositoryDocument> { CollectionRef(ref) }
 }
 
-extension CollectionGroupRef {
-    var repository: CollectionGroupBase<RepositoryDocument> {
-        CollectionGroupBase()
-    }
+// MARK: CollectionGroups
+
+extension CollectionGroups {
+    var repository: CollectionGroupRef<RepositoryDocument> { CollectionGroupRef() }
 }
