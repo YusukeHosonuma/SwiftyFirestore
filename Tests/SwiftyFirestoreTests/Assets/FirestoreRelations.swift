@@ -23,13 +23,13 @@ import SwiftyFirestore
 //
 
 extension RootRef {
-    var todos:   CollectionRefBase<TodoDocument>    { CollectionRefBase(ref) }
-    var gist:    CollectionRefBase<GistDocument>    { CollectionRefBase(ref) }
-    var account: CollectionRefBase<AccountDocument> { CollectionRefBase(ref) }
+    var todos:   CollectionRef<TodoDocument>    { CollectionRef(ref) }
+    var gist:    CollectionRef<GistDocument>    { CollectionRef(ref) }
+    var account: CollectionRef<AccountDocument> { CollectionRef(ref) }
 }
 
 extension DocumentRef where Document == AccountDocument {
-    var repository: CollectionRefBase<RepositoryDocument> { CollectionRefBase(ref) }
+    var repository: CollectionRef<RepositoryDocument> { CollectionRef(ref) }
 }
 
 extension CollectionGroupRef {

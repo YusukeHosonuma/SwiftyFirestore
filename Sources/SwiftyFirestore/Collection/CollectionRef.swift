@@ -8,7 +8,7 @@
 
 import FirebaseFirestore
 
-open class CollectionRefBase<T: FirestoreDocument>: QueryRef {
+open class CollectionRef<T: FirestoreDocument>: QueryRef {
     public var ref: CollectionReference
 
     public typealias Document = T
@@ -26,7 +26,7 @@ open class CollectionRefBase<T: FirestoreDocument>: QueryRef {
     }
 }
 
-extension CollectionRefBase {
+extension CollectionRef {
     // MARK: 📄 Document
 
     public func document(_ path: String) -> DocumentRef<Document> {

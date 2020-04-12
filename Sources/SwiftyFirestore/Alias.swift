@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension CollectionRefBase {
+extension CollectionRef {
     public func callAsFunction(path: String) -> DocumentRef<Document> {
         document(path)
     }
