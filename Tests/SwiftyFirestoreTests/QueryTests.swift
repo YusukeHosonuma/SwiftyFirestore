@@ -22,7 +22,7 @@ final class QueryTests: FirestoreTestCase {
         super.setUp()
         
         for document in documents {
-            Firestore.root.todos.add(document)
+            try! Firestore.root.todos.add(document)
         }
     }
     

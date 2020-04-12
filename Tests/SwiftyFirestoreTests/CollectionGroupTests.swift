@@ -42,7 +42,7 @@ class CollectionGroupTests: FirestoreTestCase {
         //
         
         // 🔧 Setup
-        Firestore.root
+        try! Firestore.root
             .account
             .document("YusukeHosonuma")
             .repository
@@ -53,7 +53,7 @@ class CollectionGroupTests: FirestoreTestCase {
             RepositoryDocument(name: "iosdc18-cfp-search-ios", language: "swift"),
         ]
         .forEach {
-            Firestore.root
+            try! Firestore.root
                 .account
                 .document("penginmura")
                 .repository

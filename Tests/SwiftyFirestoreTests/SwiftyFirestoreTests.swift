@@ -19,7 +19,7 @@ final class SwiftyFirestoreTests: XCTestCase {
                 //
                 // Swifty
                 //
-                Firestore.root.todos.add(document)
+                try! Firestore.root.todos.add(document)
             },
             original: {
                 //

@@ -33,11 +33,9 @@ extension CollectionRef {
 
     // MARK: ➕ Add
 
-    public func add(_ document: Document, completion: VoidCompletion? = nil) {
-        do {
-            ref.addDocument(data: try document.asData(), completion: completion)
-        } catch {
-            completion?(error)
-        }
+    @discardableResult
+    public func add(_ document: Document, completion: VoidCompletion? = nil) throws -> DocumentRef<Document> {
+        let documentRef = ref.addDocument(data: try document.asData(), completion: completion)
+        return DocumentRef(ref: documentRef)
     }
 }

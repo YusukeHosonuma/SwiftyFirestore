@@ -48,7 +48,7 @@ class ListenCollectionTests: FirestoreTestCase {
 
     // MARK: 🐤 Swifty
 
-    func testAddSwifty() {
+    func testAddSwifty() throws {
         defer { cleanUp() } // 🧹
         
         // 📌 Listen
@@ -81,19 +81,19 @@ class ListenCollectionTests: FirestoreTestCase {
         }
         
         // ➕ Add
-        Firestore.root
+        try Firestore.root
             .todos
             .add(TodoDocument(title: "Banana", done: false, priority: 4))
 
         // ➕ Add (❗ but not triggered to listener because `done` is true)
-        Firestore.root
+        try Firestore.root
             .todos
             .add(TodoDocument(title: "Grape", done: true, priority: 4))
     }
     
     // MARK: 🔥 Firestore
 
-    func testAddFirestore() {
+    func testAddFirestore() throws {
         defer { cleanUp() } // 🧹
         
         // 📌 Listen
@@ -130,12 +130,12 @@ class ListenCollectionTests: FirestoreTestCase {
         }
         
         // ➕ Add
-        Firestore.root
+        try Firestore.root
             .todos
             .add(TodoDocument(title: "Banana", done: false, priority: 4))
 
         // ➕ Add (❗ but not triggered to listener because `done` is true)
-        Firestore.root
+        try Firestore.root
             .todos
             .add(TodoDocument(title: "Grape", done: true, priority: 4))
     }
