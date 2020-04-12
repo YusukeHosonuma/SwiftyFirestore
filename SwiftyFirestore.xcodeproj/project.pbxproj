@@ -12,7 +12,7 @@
 		E505E6E5243DC41E00A3D25D /* UpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E505E6E4243DC41E00A3D25D /* UpdateTests.swift */; };
 		E505E6E9243DDD0700A3D25D /* OrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E505E6E8243DDD0700A3D25D /* OrderTests.swift */; };
 		E505E6EB243DE09900A3D25D /* DeleteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E505E6EA243DE09900A3D25D /* DeleteTests.swift */; };
-		E5256286243BEF82009AE249 /* CollectionRefBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5256285243BEF82009AE249 /* CollectionRefBase.swift */; };
+		E5256286243BEF82009AE249 /* CollectionRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5256285243BEF82009AE249 /* CollectionRef.swift */; };
 		E5256288243BF56E009AE249 /* FirestoreTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5256287243BF56E009AE249 /* FirestoreTestCase.swift */; };
 		E52D58EF243B41EA00FBFEBE /* QueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52D58EE243B41EA00FBFEBE /* QueryTests.swift */; };
 		E53892A8243FE03500F72573 /* XCTestCase+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53892A6243FE01100F72573 /* XCTestCase+.swift */; };
@@ -37,11 +37,10 @@
 		E57DE01C2434A6A000308FC0 /* QueryWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0162434A6A000308FC0 /* QueryWrapper.swift */; };
 		E57DE01D2434A6A000308FC0 /* DocumentRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0172434A6A000308FC0 /* DocumentRef.swift */; };
 		E57DE01E2434A6A000308FC0 /* QueryRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0182434A6A000308FC0 /* QueryRef.swift */; };
-		E57DE01F2434A6A000308FC0 /* CollectionRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0192434A6A000308FC0 /* CollectionRef.swift */; };
 		E57DE0202434A6A000308FC0 /* FirestoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE01A2434A6A000308FC0 /* FirestoreError.swift */; };
 		E57DE0212434A6A000308FC0 /* FirestoreDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE01B2434A6A000308FC0 /* FirestoreDocument.swift */; };
 		E5811F69243D61FA00D58FE4 /* CollectionGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */; };
-		E5811F6B243D812700D58FE4 /* CollectionGroupBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F6A243D812700D58FE4 /* CollectionGroupBase.swift */; };
+		E5811F6B243D812700D58FE4 /* CollectionGroupRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F6A243D812700D58FE4 /* CollectionGroupRef.swift */; };
 		E5811F6D243D8A6D00D58FE4 /* DocumentReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */; };
 		E5A09753244170FF009C3F41 /* DocumentRef+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09752244170FF009C3F41 /* DocumentRef+.swift */; };
 		E5A0E9E0244069AB00440B03 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0E9DF244069AB00440B03 /* TransactionTests.swift */; };
@@ -82,7 +81,7 @@
 		E505E6E4243DC41E00A3D25D /* UpdateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTests.swift; sourceTree = "<group>"; };
 		E505E6E8243DDD0700A3D25D /* OrderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTests.swift; sourceTree = "<group>"; };
 		E505E6EA243DE09900A3D25D /* DeleteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTests.swift; sourceTree = "<group>"; };
-		E5256285243BEF82009AE249 /* CollectionRefBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRefBase.swift; sourceTree = "<group>"; };
+		E5256285243BEF82009AE249 /* CollectionRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRef.swift; sourceTree = "<group>"; };
 		E5256287243BF56E009AE249 /* FirestoreTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreTestCase.swift; sourceTree = "<group>"; };
 		E52D58EE243B41EA00FBFEBE /* QueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTests.swift; sourceTree = "<group>"; };
 		E53892A6243FE01100F72573 /* XCTestCase+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+.swift"; sourceTree = "<group>"; };
@@ -108,11 +107,10 @@
 		E57DE0162434A6A000308FC0 /* QueryWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryWrapper.swift; sourceTree = "<group>"; };
 		E57DE0172434A6A000308FC0 /* DocumentRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentRef.swift; sourceTree = "<group>"; };
 		E57DE0182434A6A000308FC0 /* QueryRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryRef.swift; sourceTree = "<group>"; };
-		E57DE0192434A6A000308FC0 /* CollectionRef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionRef.swift; sourceTree = "<group>"; };
 		E57DE01A2434A6A000308FC0 /* FirestoreError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirestoreError.swift; sourceTree = "<group>"; };
 		E57DE01B2434A6A000308FC0 /* FirestoreDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirestoreDocument.swift; sourceTree = "<group>"; };
 		E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupTests.swift; sourceTree = "<group>"; };
-		E5811F6A243D812700D58FE4 /* CollectionGroupBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupBase.swift; sourceTree = "<group>"; };
+		E5811F6A243D812700D58FE4 /* CollectionGroupRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupRef.swift; sourceTree = "<group>"; };
 		E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReferenceTests.swift; sourceTree = "<group>"; };
 		E5A09752244170FF009C3F41 /* DocumentRef+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentRef+.swift"; sourceTree = "<group>"; };
 		E5A0E9DF244069AB00440B03 /* TransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
@@ -204,9 +202,8 @@
 		E55C241C243F4C76009B5566 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
-				E57DE0192434A6A000308FC0 /* CollectionRef.swift */,
-				E5256285243BEF82009AE249 /* CollectionRefBase.swift */,
-				E5811F6A243D812700D58FE4 /* CollectionGroupBase.swift */,
+				E5256285243BEF82009AE249 /* CollectionRef.swift */,
+				E5811F6A243D812700D58FE4 /* CollectionGroupRef.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -461,8 +458,7 @@
 			files = (
 				E5502C992435DB91007EC1F1 /* Firestore+RootRef.swift in Sources */,
 				E57DE01E2434A6A000308FC0 /* QueryRef.swift in Sources */,
-				E5256286243BEF82009AE249 /* CollectionRefBase.swift in Sources */,
-				E57DE01F2434A6A000308FC0 /* CollectionRef.swift in Sources */,
+				E5256286243BEF82009AE249 /* CollectionRef.swift in Sources */,
 				E57DE01C2434A6A000308FC0 /* QueryWrapper.swift in Sources */,
 				E53892AE24400C8E00F72573 /* DocumentChangeWrapper.swift in Sources */,
 				E55C2422243F4DA0009B5566 /* Sort.swift in Sources */,
@@ -477,7 +473,7 @@
 				E5A09753244170FF009C3F41 /* DocumentRef+.swift in Sources */,
 				E57DE01D2434A6A000308FC0 /* DocumentRef.swift in Sources */,
 				E56EA5D32440A4A4008E13C0 /* Alias.swift in Sources */,
-				E5811F6B243D812700D58FE4 /* CollectionGroupBase.swift in Sources */,
+				E5811F6B243D812700D58FE4 /* CollectionGroupRef.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

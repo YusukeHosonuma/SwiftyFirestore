@@ -16,15 +16,15 @@ public class RootRef {
     }
 }
 
-public class CollectionGroupRef {}
+public class CollectionGroups {}
 
 extension Firestore {
     public static var root: RootRef {
         RootRef(Firestore.firestore())
     }
 
-    public static var collectionGroup: CollectionGroupRef {
-        CollectionGroupRef()
+    public static var collectionGroup: CollectionGroups {
+        CollectionGroups()
     }
 
     public static func runTransaction<Return>(

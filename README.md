@@ -92,7 +92,25 @@ a.k.a *Firestore on the S(wift) strings - S線上のFirestore*
 | `DocumentReference.setData()` | `FirestoreDocumentRef.setData()` |
 | `DocumentReference.getDocuments()` | `FirestoreDocumentRef.getAll()` |
 
-## Preparation
+## Getting started
+
+If you need following data-structure in Firestore...
+
+```text
+{
+    "account": [AccountDocument] = [
+        <id>: {
+            "name": String,
+            "repository": [RepositoryDocument] = [
+                <id>: {
+                    "language": String,
+                    "star": Int,
+                }
+            ]
+        }
+    ]
+}
+```
 
 ### Step.1 - Define Document Structure
 
@@ -133,37 +151,24 @@ struct RepositoryDocument: FirestoreDocument {
 Please define document tree structure.
 
 ```swift
-// Tree structure:
-//
-// "account": [
-//   "{id}": AccountDocument {
-//     "reposiotry": [
-//       "{id}": RepositoryDocument
-//     ]
-//   }
-// ]
-
+// Root has `account` collection.
 extension RootRef {
-    var account: AccountCollectionRef { AccountCollectionRef(ref) }
-    func account(id: String) -> AccountDocumentRef { AccountDocumentRef(ref, id: id) }
+    var account: CollectionRef<AccountDocument> { CollectionRef(ref) }
 }
 
-class AccountCollectionRef: FirestoreCollectionRefBase<AccountDocument> {}
-
-class AccountDocumentRef: FirestoreDocumentRef<AccountDocument> {
-    var repository: RepositoryCollectionRef { RepositoryCollectionRef(ref) }
+// Account document has `repository` collection.
+extension DocumentRef where Document == AccountDocument {
+    var repository: CollectionRef<RepositoryDocument> { CollectionRef(ref) }
 }
-
-class RepositoryCollectionRef: FirestoreCollectionRefBase<RepositoryDocument> {}
 ```
 
-## Let's enjoy SwiftyFirestore
+### Step.3 - Let's enjoy SwiftyFirestore
 
 All codes are typesafe.
 
 ```swift
 Firestore.root
-    .account(id: "YusukeHosonuma")
+    .account(path: "YusukeHosonuma")
     .repository
     .whereBy(.language, "==", "Swift")
     .whereBy(.star, ">", "10")
@@ -174,3 +179,15 @@ Firestore.root
         print(documents) // [RepositoryDocument]
     }
 ```
+
+## API
+
+T.B.D
+
+## Development
+
+- Xcode 11.4
+
+## Author
+
+- [Yusuke Hosonuma](https://github.com/YusukeHosonuma)

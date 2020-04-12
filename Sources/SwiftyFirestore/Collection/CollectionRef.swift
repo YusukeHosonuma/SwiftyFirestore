@@ -1,37 +1,37 @@
 //
-//  Firestore+CollectionRef.swift
+//  Firestore+CollectionRefBase.swift
 //  SwiftyFirestore
 //
-//  Created by Yusuke Hosonuma on 2020/02/09.
-//  Copyright © 2020 Kamui Project. All rights reserved.
+//  Created by Yusuke Hosonuma on 2020/04/07.
+//  Copyright © 2020 Yusuke Hosonuma. All rights reserved.
 //
 
 import FirebaseFirestore
 
-public protocol CollectionRef: QueryRef {
-    associatedtype Key = Document.CodingKeys
+public class CollectionRef<Document: FirestoreDocument>: QueryRef {
+    public var ref: CollectionReference
 
-    var ref: CollectionReference { get }
+    public var queryRef: Query {
+        ref as Query
+    }
+
+    public init(_ ref: Firestore) {
+        self.ref = ref.collection(Document.collectionId)
+    }
+
+    public init(_ ref: DocumentReference) {
+        self.ref = ref.collection(Document.collectionId)
+    }
 }
 
-// extension FirestoreCollectionRef {
-//    public var queryRef: Query { ref as Query }
-// }
-
 extension CollectionRef {
-    // MARK: - Rx
-
-//    func asObservable() -> FirestoreCollectionRefRx<Document> {
-//        FirestoreCollectionRefRx(ref)
-//    }
-
-    // MARK: - Reference
+    // MARK: 📄 Document
 
     public func document(_ path: String) -> DocumentRef<Document> {
         DocumentRef(ref: ref.document(path))
     }
 
-    // MARK: - Operator
+    // MARK: ➕ Add
 
     public func add(_ document: Document, completion: VoidCompletion? = nil) {
         do {
