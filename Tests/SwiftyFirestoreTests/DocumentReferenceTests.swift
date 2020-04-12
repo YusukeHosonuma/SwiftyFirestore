@@ -39,7 +39,7 @@ class DocumentReferenceTests: FirestoreTestCase {
         
         let accountRef = DocumentRef<AccountDocument>(ref: Firestore.root.account.document("YusukeHosonuma").ref)
         
-        Firestore.root
+        try! Firestore.root
             .gist
             .add(GistDocument(url: "https://gist.github.com/YusukeHosonuma/1", account: accountRef))
     }

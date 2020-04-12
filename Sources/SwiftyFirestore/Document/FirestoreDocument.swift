@@ -12,9 +12,9 @@ import FirebaseFirestoreSwift
 public protocol FirestoreDocument: Codable {
     associatedtype CodingKeys: CodingKey
 
-    static var collectionId: String { get }
+    static var collectionID: String { get }
 
-    var documentId: String! { get set }
+    var documentID: String! { get set }
 
     init(_ snapshot: QueryDocumentSnapshot) throws
 
@@ -25,7 +25,7 @@ extension FirestoreDocument {
     public init(_ snapshot: QueryDocumentSnapshot) throws {
         do {
             var document = try Firestore.Decoder().decode(Self.self, from: snapshot.data())
-            document.documentId = snapshot.documentID
+            document.documentID = snapshot.documentID
             self = document
         } catch {
             throw FirestoreError.decodeFailed(error)

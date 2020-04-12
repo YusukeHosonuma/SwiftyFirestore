@@ -10,9 +10,9 @@ import SwiftyFirestore
 import FirebaseFirestore
 
 struct TodoDocument: FirestoreDocument, Equatable {
-    static let collectionId: String = "todos"
+    static let collectionID: String = "todos"
     
-    var documentId: String!
+    var documentID: String!
     var title: String
     var done: Bool
     var priority: Int = 0
@@ -22,7 +22,7 @@ struct TodoDocument: FirestoreDocument, Equatable {
     var info: [String: String]? // TODO: can use struct?
 
     enum CodingKeys: String, CodingKey {
-        case documentId
+        case documentID
         case title
         case done
         case priority
@@ -34,40 +34,40 @@ struct TodoDocument: FirestoreDocument, Equatable {
 }
 
 struct AccountDocument: FirestoreDocument, Equatable {
-    static let collectionId: String = "account"
+    static let collectionID: String = "account"
 
-    var documentId: String!
+    var documentID: String!
     var name: String
     
     enum CodingKeys: String, CodingKey {
-        case documentId
+        case documentID
         case name
     }
 }
 
 struct RepositoryDocument: FirestoreDocument, Equatable {
-    static let collectionId: String = "repository"
+    static let collectionID: String = "repository"
 
-    var documentId: String!
+    var documentID: String!
     var name: String
     var language: String // TODO: enum
     
     enum CodingKeys: String, CodingKey {
-        case documentId
+        case documentID
         case name
         case language
     }
 }
 
 struct GistDocument: FirestoreDocument {
-    static let collectionId: String = "gist"
+    static let collectionID: String = "gist"
 
-    var documentId: String!
+    var documentID: String!
     var url: String
     var account: DocumentRef<AccountDocument>
     
     enum CodingKeys: String, CodingKey {
-        case documentId
+        case documentID
         case url
         case account
     }

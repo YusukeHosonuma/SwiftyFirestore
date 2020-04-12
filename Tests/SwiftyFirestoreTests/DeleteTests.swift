@@ -15,7 +15,7 @@ class DeleteTests: FirestoreTestCase {
     override func setUp() {
         super.setUp()
         
-        let document = TodoDocument(documentId: "hello", title: "Buy", done: false, priority: 1)
+        let document = TodoDocument(documentID: "hello", title: "Buy", done: false, priority: 1)
         
         Firestore.root
             .todos

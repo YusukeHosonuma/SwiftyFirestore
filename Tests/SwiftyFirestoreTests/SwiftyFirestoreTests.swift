@@ -12,14 +12,14 @@ final class SwiftyFirestoreTests: XCTestCase {
 
     func testAdd() throws {
         
-        let document = TodoDocument(documentId: nil, title: "Hello", done: false)
+        let document = TodoDocument(documentID: nil, title: "Hello", done: false)
 
         try assertSameBehavior(
             swifty: {
                 //
                 // Swifty
                 //
-                Firestore.root.todos.add(document)
+                try! Firestore.root.todos.add(document)
             },
             original: {
                 //
@@ -81,7 +81,7 @@ final class SwiftyFirestoreTests: XCTestCase {
                         .getDocument { (snapshot, error) in
                             guard let snapshot = snapshot else { XCTFail(); return }
                             var document = try? snapshot.data(as: AccountDocument.self)
-                            document?.documentId = snapshot.documentID
+                            document?.documentID = snapshot.documentID
                             
                             completion(document)
                         }
@@ -98,8 +98,8 @@ final class SwiftyFirestoreTests: XCTestCase {
         FirestoreTestHelper.setupFirebaseApp()
         
         let datas = [
-            TodoDocument(documentId: nil, title: "Hello", done: false),
-            TodoDocument(documentId: nil, title: "World", done: true),
+            TodoDocument(documentID: nil, title: "Hello", done: false),
+            TodoDocument(documentID: nil, title: "World", done: true),
         ].map { try! Firestore.Encoder().encode($0) }
 
         for data in datas {
@@ -125,7 +125,7 @@ final class SwiftyFirestoreTests: XCTestCase {
                     guard let snapshot = snapshot else { XCTFail(); return }
                     let documents: [TodoDocument] = snapshot.documents.compactMap {
                         var document = try? Firestore.Decoder().decode(TodoDocument.self, from: $0.data())
-                        document?.documentId = $0.documentID
+                        document?.documentID = $0.documentID
                         return document
                     }
                     completion(documents)
@@ -188,7 +188,7 @@ final class SwiftyFirestoreTests: XCTestCase {
                         guard let snapshot = snapshot else { XCTFail(); return }
                         let documents: [RepositoryDocument] = snapshot.documents.compactMap {
                             var document = try? Firestore.Decoder().decode(RepositoryDocument.self, from: $0.data())
-                            document?.documentId = $0.documentID
+                            document?.documentID = $0.documentID
                             return document
                         }
                         completion(documents)
