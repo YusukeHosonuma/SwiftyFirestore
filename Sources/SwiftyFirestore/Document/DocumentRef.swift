@@ -23,7 +23,7 @@ public class DocumentRef<Document: FirestoreDocument>: Codable {
 //    }
 
     public init(_ ref: Firestore, id: String) {
-        self.ref = ref.collection(Document.collectionId).document(id)
+        self.ref = ref.collection(Document.collectionID).document(id)
     }
 
     public init(ref: DocumentReference) {
@@ -53,7 +53,7 @@ extension DocumentRef {
                 if let snapshot = snapshot {
                     do {
                         var document = try snapshot.data(as: Document.self)
-                        document?.documentId = snapshot.documentID
+                        document?.documentID = snapshot.documentID
                         completion(.success(document))
                     } catch {
                         completion(.failure(error))
@@ -73,7 +73,7 @@ extension DocumentRef {
                 if let snapshot = snapshot {
                     do {
                         var document = try snapshot.data(as: Document.self)
-                        document?.documentId = snapshot.documentID
+                        document?.documentID = snapshot.documentID
                         completion(.success(document))
                     } catch {
                         completion(.failure(error))
@@ -132,7 +132,7 @@ extension DocumentRef {
                 if let snapshot = snapshot {
                     do {
                         var document = try snapshot.data(as: Document.self)
-                        document?.documentId = snapshot.documentID
+                        document?.documentID = snapshot.documentID
 
                         let result = (document, snapshot.metadata)
                         completion(.success(result))

@@ -12,6 +12,6 @@ public final class CollectionGroupRef<Document: FirestoreDocument>: QueryRef {
     public let queryRef: Query
 
     public init() {
-        queryRef = Firestore.firestore().collectionGroup(Document.collectionId)
+        queryRef = Firestore.firestore().collectionGroup(Document.collectionID)
     }
 }

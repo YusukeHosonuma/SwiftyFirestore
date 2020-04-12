@@ -16,11 +16,11 @@ public class CollectionRef<Document: FirestoreDocument>: QueryRef {
     }
 
     public init(_ ref: Firestore) {
-        self.ref = ref.collection(Document.collectionId)
+        self.ref = ref.collection(Document.collectionID)
     }
 
     public init(_ ref: DocumentReference) {
-        self.ref = ref.collection(Document.collectionId)
+        self.ref = ref.collection(Document.collectionID)
     }
 }
 

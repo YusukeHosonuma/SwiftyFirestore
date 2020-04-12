@@ -123,7 +123,7 @@ extension QueryRef {
                     do {
                         let documents: [Document] = try snapshot.documents.map {
                             var document = try Document($0)
-                            document.documentId = $0.documentID
+                            document.documentID = $0.documentID
                             return document
                         }
 
