@@ -3,7 +3,7 @@
 //  SwiftyFirestore
 //
 //  Created by Yusuke Hosonuma on 2020/02/05.
-//  Copyright © 2020 Kamui Project. All rights reserved.
+//  Copyright © 2020 Yusuke Hosonuma. All rights reserved.
 //
 
 import FirebaseFirestore
