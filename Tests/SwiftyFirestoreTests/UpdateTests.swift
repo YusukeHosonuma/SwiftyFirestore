@@ -21,10 +21,10 @@ class UpdateTests: FirestoreTestCase {
             priority: 1,
             tags: ["home", "hobby"],
             remarks: "Note",
-            info: [
-                "color": "red",
-                "size": "14px",
-            ]
+            info: TodoDocument.Info(
+                color: "red",
+                size: 14
+            )
         )
         
         Firestore.firestore()
@@ -207,6 +207,6 @@ class UpdateTests: FirestoreTestCase {
         XCTAssertEqual(todo?.priority, 2, "priority", file: file, line: line)
         XCTAssertEqual(todo?.tags, ["hobby", "work"], file: file, line: line)
         XCTAssertNil(todo?.remarks, file: file, line: line)
-        XCTAssertEqual(todo?.info, ["color": "blue", "size": "14px"], file: file, line: line)
+        XCTAssertEqual(todo?.info, TodoDocument.Info(color: "blue", size: 14), file: file, line: line)
     }
 }
