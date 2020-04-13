@@ -21,10 +21,10 @@ class UpdateTests: FirestoreTestCase {
             priority: 1,
             tags: ["home", "hobby"],
             remarks: "Note",
-            info: [
-                "color": "red",
-                "size": "14px",
-            ]
+            info: TodoDocument.Info(
+                color: "red",
+                size: 14
+            )
         )
         
         Firestore.firestore()
@@ -40,41 +40,6 @@ class UpdateTests: FirestoreTestCase {
     // MARK: - Swifty 🐤
     
     func testSwifty() {
-        // ▶️ Update
-        let documentRef = Firestore.root
-            .todos
-            .document("hello")
-        
-        // ➕ Update / Add
-        documentRef.update([
-            .value(.done, true),
-            .increment(.priority, 1),
-            .arrayUnion(.tags, ["work"]),
-            .serverTimestamp(.lastUpdated),
-            .nestedValue(.info, path: "color", "blue")
-        ])
-        
-         // ❌ Remove
-        documentRef.update([
-            .delete(.remarks),
-            .arrayRemove(.tags, ["home"])
-        ])
-
-        // ✅ Assert
-        waitUntil { done in
-            Firestore.root
-                .todos
-                .document("hello")
-                .get(completion: { result in
-                    guard case .success(let document) = result else { XCTFail(); return } // ↩️
-                    
-                    self.assert(todo: document)
-                    done() // 🔓
-                })
-        }
-    }
-    
-    func testSwiftyCompletion() {
         // ▶️ Update
         let documentRef = Firestore.root
             .todos
@@ -119,43 +84,8 @@ class UpdateTests: FirestoreTestCase {
     }
     
     // MARK: - Firestore 🔥
-    
+
     func testFirestore() {
-        // ▶️ Update
-        let documentRef = Firestore.firestore()
-            .collection("todos")
-            .document("hello")
-
-        // ➕ Update / Add
-        documentRef.updateData([
-            "done": true,
-            "priority": FieldValue.increment(Int64(1)),
-            "tags": FieldValue.arrayUnion(["work"]),
-            "lastUpdated": FieldValue.serverTimestamp(), // TODO: can't assert currently
-            "info.color": "blue"
-        ])
-
-        // ❌ Remove
-        documentRef.updateData([
-            "remarks": FieldValue.delete(),
-            "tags": FieldValue.arrayRemove(["home"])
-        ])
-
-        // ✅ Assert
-        waitUntil { done in
-            Firestore.root
-                .todos
-                .document("hello")
-                .get(completion: { result in
-                    guard case .success(let document) = result else { XCTFail(); return } // ↩️
-                    
-                    self.assert(todo: document)
-                    done() // 🔓
-                })
-        }
-    }
-    
-    func testFirestoreCompletion() {
         // ▶️ Update
         let documentRef = Firestore.firestore()
             .collection("todos")
@@ -207,6 +137,6 @@ class UpdateTests: FirestoreTestCase {
         XCTAssertEqual(todo?.priority, 2, "priority", file: file, line: line)
         XCTAssertEqual(todo?.tags, ["hobby", "work"], file: file, line: line)
         XCTAssertNil(todo?.remarks, file: file, line: line)
-        XCTAssertEqual(todo?.info, ["color": "blue", "size": "14px"], file: file, line: line)
+        XCTAssertEqual(todo?.info, TodoDocument.Info(color: "blue", size: 14), file: file, line: line)
     }
 }

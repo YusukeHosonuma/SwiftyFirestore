@@ -11,6 +11,11 @@ import FirebaseFirestore
 
 struct TodoDocument: FirestoreDocument, Equatable {
     static let collectionID: String = "todos"
+
+    struct Info: Codable, Equatable {
+        var color: String
+        var size: Int
+    }
     
     var documentID: String!
     var title: String
@@ -19,7 +24,7 @@ struct TodoDocument: FirestoreDocument, Equatable {
     var tags: [String] = []
     var remarks: String?
     var lastUpdated: Timestamp?
-    var info: [String: String]? // TODO: can use struct?
+    var info: Info?
 
     enum CodingKeys: String, CodingKey {
         case documentID

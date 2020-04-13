@@ -43,6 +43,7 @@
 		E5811F69243D61FA00D58FE4 /* CollectionGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */; };
 		E5811F6B243D812700D58FE4 /* CollectionGroupRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F6A243D812700D58FE4 /* CollectionGroupRef.swift */; };
 		E5811F6D243D8A6D00D58FE4 /* DocumentReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */; };
+		E593063F2443F4B4005C1401 /* UpdateFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E593063E2443F4B4005C1401 /* UpdateFieldTests.swift */; };
 		E5A09753244170FF009C3F41 /* DocumentRef+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09752244170FF009C3F41 /* DocumentRef+.swift */; };
 		E5A0E9E0244069AB00440B03 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0E9DF244069AB00440B03 /* TransactionTests.swift */; };
 		E5A0E9E224407C6600440B03 /* TransactionWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0E9E124407C6600440B03 /* TransactionWrapper.swift */; };
@@ -114,6 +115,7 @@
 		E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupTests.swift; sourceTree = "<group>"; };
 		E5811F6A243D812700D58FE4 /* CollectionGroupRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupRef.swift; sourceTree = "<group>"; };
 		E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReferenceTests.swift; sourceTree = "<group>"; };
+		E593063E2443F4B4005C1401 /* UpdateFieldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFieldTests.swift; sourceTree = "<group>"; };
 		E5A09752244170FF009C3F41 /* DocumentRef+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentRef+.swift"; sourceTree = "<group>"; };
 		E5A0E9DF244069AB00440B03 /* TransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
 		E5A0E9E124407C6600440B03 /* TransactionWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionWrapper.swift; sourceTree = "<group>"; };
@@ -270,12 +272,11 @@
 			children = (
 				E5502CA22435E108007EC1F1 /* Helper */,
 				E5502C962435DB32007EC1F1 /* Assets */,
+				E593063D2443F479005C1401 /* Query */,
 				E57DE0102434A54500308FC0 /* SwiftyFirestoreTests.swift */,
 				E51609332442B9FA005A7B87 /* AddDocumentTests.swift */,
 				E55C2415243F280D009B5566 /* GetDocumentTests.swift */,
 				E55C2417243F2D9E009B5566 /* GetDocumentsTests.swift */,
-				E52D58EE243B41EA00FBFEBE /* QueryTests.swift */,
-				E505E6E8243DDD0700A3D25D /* OrderTests.swift */,
 				E505E6E4243DC41E00A3D25D /* UpdateTests.swift */,
 				E505E6EA243DE09900A3D25D /* DeleteTests.swift */,
 				E5DC663C243CC54F005C82ED /* ListenDocumentTests.swift */,
@@ -289,6 +290,16 @@
 			);
 			name = SwiftyFirestoreTests;
 			path = Tests/SwiftyFirestoreTests;
+			sourceTree = "<group>";
+		};
+		E593063D2443F479005C1401 /* Query */ = {
+			isa = PBXGroup;
+			children = (
+				E52D58EE243B41EA00FBFEBE /* QueryTests.swift */,
+				E505E6E8243DDD0700A3D25D /* OrderTests.swift */,
+				E593063E2443F4B4005C1401 /* UpdateFieldTests.swift */,
+			);
+			path = Query;
 			sourceTree = "<group>";
 		};
 		FFE1EE720A7BEA1F53CA3651 /* Pods */ = {
@@ -495,6 +506,7 @@
 				E56EA5D52440A665008E13C0 /* AliasTests.swift in Sources */,
 				E55C2418243F2D9E009B5566 /* GetDocumentsTests.swift in Sources */,
 				E5811F69243D61FA00D58FE4 /* CollectionGroupTests.swift in Sources */,
+				E593063F2443F4B4005C1401 /* UpdateFieldTests.swift in Sources */,
 				E52D58EF243B41EA00FBFEBE /* QueryTests.swift in Sources */,
 				E505E6E5243DC41E00A3D25D /* UpdateTests.swift in Sources */,
 				E5256288243BF56E009AE249 /* FirestoreTestCase.swift in Sources */,
