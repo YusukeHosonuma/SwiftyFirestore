@@ -8,7 +8,6 @@
 
 import FirebaseFirestore
 
-// TODO: tests
 public enum UpdateField<Document: FirestoreDocument> {
     public typealias Key = Document.CodingKeys
 
