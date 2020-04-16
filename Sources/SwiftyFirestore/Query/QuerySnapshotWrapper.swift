@@ -9,8 +9,8 @@
 import FirebaseFirestore
 
 public struct QuerySnapshotWrapper<Document: FirestoreDocument> {
-    var metadata: SnapshotMetadata
-    var documentChanges: [DocumentChangeWrapper<Document>]
+    public var metadata: SnapshotMetadata
+    public var documentChanges: [DocumentChangeWrapper<Document>]
 
     init(snapshot: QuerySnapshot) throws {
         metadata = snapshot.metadata
