@@ -121,12 +121,7 @@ extension QueryRef {
             } else {
                 if let snapshot = snapshot {
                     do {
-                        let documents: [Document] = try snapshot.documents.map {
-                            var document = try Document($0)
-                            document.documentID = $0.documentID
-                            return document
-                        }
-
+                        let documents: [Document] = try snapshot.documents.compactMap { try Document($0) }
                         let snapshotWrapper = try QuerySnapshotWrapper<Document>(snapshot: snapshot)
 
                         let result = (documents, snapshotWrapper)

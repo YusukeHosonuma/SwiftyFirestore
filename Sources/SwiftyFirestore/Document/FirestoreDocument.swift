@@ -15,8 +15,10 @@ public protocol FirestoreDocument: Codable {
     static var collectionID: String { get }
 
     var documentID: String! { get set }
+    var documentReference: DocumentRef<Self>! { get set }
 
     init(_ snapshot: QueryDocumentSnapshot) throws
+    init?(_ snapshot: DocumentSnapshot) throws
 
     func asData() throws -> [String: Any]
 }
@@ -26,10 +28,25 @@ extension FirestoreDocument {
         Self.collectionID
     }
 
+    // TODO: tests
+
     public init(_ snapshot: QueryDocumentSnapshot) throws {
         do {
             var document = try Firestore.Decoder().decode(Self.self, from: snapshot.data())
             document.documentID = snapshot.documentID
+            document.documentReference = DocumentRef(ref: snapshot.reference)
+            self = document
+        } catch {
+            throw FirestoreError.decodeFailed(error)
+        }
+    }
+
+    public init?(_ snapshot: DocumentSnapshot) throws {
+        guard let data = snapshot.data() else { return nil }
+        do {
+            var document = try Firestore.Decoder().decode(Self.self, from: data)
+            document.documentID = snapshot.documentID
+            document.documentReference = DocumentRef(ref: snapshot.reference)
             self = document
         } catch {
             throw FirestoreError.decodeFailed(error)

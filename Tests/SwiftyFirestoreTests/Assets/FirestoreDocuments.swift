@@ -52,6 +52,8 @@ struct TodoDocument: FirestoreDocument, Equatable {
     }
     
     var documentID: String!
+    var documentReference: DocumentRef<TodoDocument>!
+    
     var title: String
     var done: Bool
     var priority: Int = 0
@@ -76,6 +78,8 @@ struct AccountDocument: FirestoreDocument, Equatable {
     static let collectionID: String = "account"
 
     var documentID: String!
+    var documentReference: DocumentRef<AccountDocument>!
+    
     var name: String
     
     enum CodingKeys: String, CodingKey {
@@ -88,6 +92,8 @@ struct RepositoryDocument: FirestoreDocument, Equatable {
     static let collectionID: String = "repository"
 
     var documentID: String!
+    var documentReference: DocumentRef<RepositoryDocument>!
+    
     var name: String
     var language: String // TODO: enum
     
@@ -102,6 +108,8 @@ struct GistDocument: FirestoreDocument {
     static let collectionID: String = "gist"
 
     var documentID: String!
+    var documentReference: DocumentRef<GistDocument>!
+    
     var url: String
     var account: DocumentRef<AccountDocument>
     
