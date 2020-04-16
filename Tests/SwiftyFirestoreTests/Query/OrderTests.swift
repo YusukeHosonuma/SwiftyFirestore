@@ -22,7 +22,7 @@ class OrderTests: FirestoreTestCase {
         super.setUp()
         
         for document in documents {
-            try! Firestore.root.todos.add(document)
+            try! FirestoreDB.collection(\.todos).add(document)
         }
     }
     
@@ -33,8 +33,8 @@ class OrderTests: FirestoreTestCase {
     func testOrder() {
         // 🔼 ascending
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .orderBy(.priority, sort: .ascending)
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
@@ -45,8 +45,8 @@ class OrderTests: FirestoreTestCase {
 
         // 🔽 descending
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .orderBy(.priority, sort: .descending)
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
@@ -57,8 +57,8 @@ class OrderTests: FirestoreTestCase {
 
         // ➕ combination
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .orderBy(.title, sort: .ascending)
                 .orderBy(.priority, sort: .ascending)
                 .getAll { result in
@@ -72,8 +72,8 @@ class OrderTests: FirestoreTestCase {
     func testLimit() {
         // ⤴️ limit(to:)
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .orderBy(.priority, sort: .ascending)
                 .limitTo(2)
                 .getAll { result in
@@ -85,8 +85,8 @@ class OrderTests: FirestoreTestCase {
         
         // ⤴️ limit(toLast:)
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .orderBy(.priority, sort: .ascending)
                 .limitToLast(2)
                 .getAll { result in

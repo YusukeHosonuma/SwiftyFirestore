@@ -41,8 +41,8 @@ class UpdateTests: FirestoreTestCase {
     
     func testSwifty() {
         // ▶️ Update
-        let documentRef = Firestore.root
-            .todos
+        let documentRef = FirestoreDB
+            .collection(\.todos)
             .document("hello")
         
         // ➕ Update / Add
@@ -71,8 +71,8 @@ class UpdateTests: FirestoreTestCase {
         
         // ✅ Assert
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .document("hello")
                 .get(completion: { result in
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
@@ -118,8 +118,8 @@ class UpdateTests: FirestoreTestCase {
 
         // ✅ Assert
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .document("hello")
                 .get(completion: { result in
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️

@@ -17,8 +17,8 @@ class DeleteTests: FirestoreTestCase {
         
         let document = TodoDocument(documentID: "hello", title: "Buy", done: false, priority: 1)
         
-        Firestore.root
-            .todos
+        FirestoreDB
+            .collection(\.todos)
             .document("hello")
             .setData(document)
     }
@@ -31,8 +31,8 @@ class DeleteTests: FirestoreTestCase {
     
     func testSwifty() {
         // ❌ Delete
-        Firestore.root
-            .todos
+        FirestoreDB
+            .collection(\.todos)
             .document("hello")
             .delete()
 
@@ -53,8 +53,8 @@ class DeleteTests: FirestoreTestCase {
     func testSwiftyCompletion() {
         // ❌ Delete
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .document("hello")
                 .delete { error in
                     XCTAssertNil(error)

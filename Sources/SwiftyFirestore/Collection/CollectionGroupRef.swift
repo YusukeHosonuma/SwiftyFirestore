@@ -11,7 +11,7 @@ import FirebaseFirestore
 public final class CollectionGroupRef<Document: FirestoreDocument>: QueryRef {
     public let queryRef: Query
 
-    public init() {
+    public init(_: Firestore) {
         queryRef = Firestore.firestore().collectionGroup(Document.collectionID)
     }
 }

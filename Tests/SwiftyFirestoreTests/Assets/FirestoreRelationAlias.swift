@@ -12,16 +12,17 @@ import SwiftyFirestore
 // 📄 Data structure
 //
 // {
-//   "todos": <TodoDocument> [],
-//   "gist": <GistDocument> []
-//   "account": <AccountDocument> [
-//     <id>: {
-//       "repository: <RepositoryDocument> []
-//     }
-//   ]
+//     todos: <TodoDocument> [],
+//     gist: <GistDocument> [],
+//     account: <AccountDocument> [
+//         <id>: {
+//             repository: <RepositoryDocument> []
+//         }
+//     ]
 // }
 //
 
+/*
 // MARK: Root
 
 extension RootRef {
@@ -41,3 +42,4 @@ extension DocumentRef where Document == AccountDocument {
 extension CollectionGroups {
     var repository: CollectionGroupRef<RepositoryDocument> { CollectionGroupRef() }
 }
+*/

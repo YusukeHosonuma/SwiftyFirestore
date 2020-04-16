@@ -17,8 +17,8 @@ class GetDocumentTests: FirestoreTestCase {
         
         let account = AccountDocument(name: "Yusuke Hosonuma")
         
-        Firestore.root
-            .account
+        FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
             .setData(account)
     }
@@ -32,8 +32,8 @@ class GetDocumentTests: FirestoreTestCase {
     func testExsitsSwifty() throws {
         // ✅ Exists - Traditional
         waitUntil { done in
-            Firestore.root
-                .account
+            FirestoreDB
+                .collection(\.account)
                 .document("YusukeHosonuma")
                 .get { result in
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
@@ -45,8 +45,8 @@ class GetDocumentTests: FirestoreTestCase {
 
         // ✅ Exists - Extended (more expressive)
         waitUntil { done in
-            Firestore.root
-                .account
+            FirestoreDB
+                .collection(\.account)
                 .document("YusukeHosonuma")
                 .exists { result in
                     guard case .success(let exists) = result else { XCTFail(); return } // ↩️
@@ -58,8 +58,8 @@ class GetDocumentTests: FirestoreTestCase {
         
         // ☑️ Not Exists
         waitUntil { done in
-            Firestore.root
-                .account
+            FirestoreDB
+                .collection(\.account)
                 .document("NoName")
                 .get { result in
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
@@ -102,8 +102,8 @@ class GetDocumentTests: FirestoreTestCase {
     
     func testSourceSwifty() throws {
         waitUntil { done in
-            Firestore.root
-                .account
+            FirestoreDB
+                .collection(\.account)
                 .document("YusukeHosonuma")
                 .get(source: .cache) { result in
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️

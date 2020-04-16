@@ -27,8 +27,8 @@ class AddDocumentTests: FirestoreTestCase {
     // MARK: 🐤 Swifty
 
     func testAddSwifty() throws {
-        let ref = try Firestore.root
-            .todos
+        let ref = try FirestoreDB
+            .collection(\.todos)
             .add(document) { _ in }
         
         waitUntil { done in

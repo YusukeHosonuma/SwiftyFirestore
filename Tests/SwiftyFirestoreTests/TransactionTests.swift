@@ -32,11 +32,11 @@ class TransactionTests: FirestoreTestCase {
     // MARK: 🐤 Swifty
     
     func testSwifty() {
-        let todoReference = Firestore.root.todos.document("hello")
+        let todoReference = FirestoreDB.collection(\.todos).document("hello")
         
         // 🔏 Transaction
         waitUntil { done in
-            Firestore.runTransaction({ (transaction, errorPointer) -> Int? in
+            FirestoreDB.runTransaction({ (transaction, errorPointer) -> Int? in
                 let maybeDocument: TodoDocument?
                 do {
                     maybeDocument = try transaction.get(todoReference)

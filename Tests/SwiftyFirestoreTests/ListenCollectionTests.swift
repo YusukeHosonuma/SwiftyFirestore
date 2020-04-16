@@ -21,7 +21,7 @@ class ListenCollectionTests: FirestoreTestCase {
         ]
         
         for (document, path) in zip(documents, ["one", "two", "three"]) {
-            Firestore.root.todos.document(path).setData(document)
+            FirestoreDB.collection(\.todos).document(path).setData(document)
         }
     }
 
@@ -53,8 +53,8 @@ class ListenCollectionTests: FirestoreTestCase {
         
         // 📌 Listen
         wait(queue: &exps) { done in
-            listener = Firestore.root
-                .todos
+            listener = FirestoreDB
+                .collection(\.todos)
                 .whereBy(.done, "==", false)
                 .listen { result in
                     guard case .success(let (documents, snapshot)) = result else { XCTFail(); return } // ↩️
@@ -81,13 +81,13 @@ class ListenCollectionTests: FirestoreTestCase {
         }
         
         // ➕ Add
-        try Firestore.root
-            .todos
+        try FirestoreDB
+            .collection(\.todos)
             .add(TodoDocument(title: "Banana", done: false, priority: 4))
 
         // ➕ Add (❗ but not triggered to listener because `done` is true)
-        try Firestore.root
-            .todos
+        try FirestoreDB
+            .collection(\.todos)
             .add(TodoDocument(title: "Grape", done: true, priority: 4))
     }
     
@@ -130,13 +130,13 @@ class ListenCollectionTests: FirestoreTestCase {
         }
         
         // ➕ Add
-        try Firestore.root
-            .todos
+        try FirestoreDB
+            .collection(\.todos)
             .add(TodoDocument(title: "Banana", done: false, priority: 4))
 
         // ➕ Add (❗ but not triggered to listener because `done` is true)
-        try Firestore.root
-            .todos
+        try FirestoreDB
+            .collection(\.todos)
             .add(TodoDocument(title: "Grape", done: true, priority: 4))
     }
     
@@ -149,8 +149,8 @@ class ListenCollectionTests: FirestoreTestCase {
         
         // 📌 Listen
         wait(queue: &exps) { done in
-            listener = Firestore.root
-                .todos
+            listener = FirestoreDB
+                .collection(\.todos)
                 .whereBy(.done, "==", false)
                 .listen { result in
                     guard case .success(let (documents, snapshot)) = result else { XCTFail(); return } // ↩️
@@ -178,16 +178,16 @@ class ListenCollectionTests: FirestoreTestCase {
         }
         
         // 🆙 Update
-        Firestore.root
-            .todos
+        FirestoreDB
+            .collection(\.todos)
             .document("one")
             .update([
                 .value(.title, "🍎")
             ])
 
         // 🆙 Update (❗ but not triggered to listener because `done` is true)
-        Firestore.root
-            .todos
+        FirestoreDB
+            .collection(\.todos)
             .document("three")
             .update([
                 .value(.title, "🍎")
@@ -234,16 +234,16 @@ class ListenCollectionTests: FirestoreTestCase {
         }
         
         // 🆙 Update
-        Firestore.root
-            .todos
+        FirestoreDB
+            .collection(\.todos)
             .document("one")
             .update([
                 .value(.title, "🍎")
             ])
 
         // 🆙 Update (❗ but not triggered to listener because `done` is true)
-        Firestore.root
-            .todos
+        FirestoreDB
+            .collection(\.todos)
             .document("three")
             .update([
                 .value(.title, "🍎")
@@ -259,8 +259,8 @@ class ListenCollectionTests: FirestoreTestCase {
         
         // 📌 Listen
         wait(queue: &exps) { done in
-            listener = Firestore.root
-                .todos
+            listener = FirestoreDB
+                .collection(\.todos)
                 .whereBy(.done, "==", false)
                 .listen { (result) in
                     guard case .success(let (documents, snapshot)) = result else { XCTFail(); return } // ↩️
@@ -287,14 +287,14 @@ class ListenCollectionTests: FirestoreTestCase {
         }
         
         // ❌ Remove
-        Firestore.root
-            .todos
+        FirestoreDB
+            .collection(\.todos)
             .document("one")
             .delete()
 
         // ❌ Remove (❗ but not triggered to listener because `done` is true)
-        Firestore.root
-            .todos
+        FirestoreDB
+            .collection(\.todos)
             .document("three")
             .delete()
     }
@@ -338,14 +338,14 @@ class ListenCollectionTests: FirestoreTestCase {
         }
         
         // ❌ Remove
-        Firestore.root
-            .todos
+        FirestoreDB
+            .collection(\.todos)
             .document("one")
             .delete()
 
         // ❌ Remove (❗ but not triggered to listener because `done` is true)
-        Firestore.root
-            .todos
+        FirestoreDB
+            .collection(\.todos)
             .document("three")
             .delete()
     }

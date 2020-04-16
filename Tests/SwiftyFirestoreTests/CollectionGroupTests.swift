@@ -42,10 +42,10 @@ class CollectionGroupTests: FirestoreTestCase {
         //
         
         // 🔧 Setup
-        try! Firestore.root
-            .account
+        try! FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
-            .repository
+            .collection(\.repository)
             .add(RepositoryDocument(name: "SwiftyFirestore", language: "swift"))
 
         [
@@ -53,10 +53,10 @@ class CollectionGroupTests: FirestoreTestCase {
             RepositoryDocument(name: "iosdc18-cfp-search-ios", language: "swift"),
         ]
         .forEach {
-            try! Firestore.root
-                .account
+            try! FirestoreDB
+                .collection(\.account)
                 .document("penginmura")
-                .repository
+                .collection(\.repository)
                 .add($0)
         }
     }
@@ -69,9 +69,8 @@ class CollectionGroupTests: FirestoreTestCase {
     
     func testSwifty() throws {
         waitUntil { done in
-            Firestore
-                .collectionGroup
-                .repository
+            FirestoreDB
+                .collectionGroup(\.repository)
                 .whereBy(.language, "==", "swift")
                 .orderBy(.name)
                 .getAll { result in

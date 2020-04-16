@@ -22,7 +22,7 @@ final class QueryTests: FirestoreTestCase {
         super.setUp()
         
         for document in documents {
-            try! Firestore.root.todos.add(document)
+            try! FirestoreDB.collection(\.todos).add(document)
         }
     }
     
@@ -35,8 +35,8 @@ final class QueryTests: FirestoreTestCase {
     func testWhere() {
         // `==`
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .whereBy(.priority, isEqualTo: 2)
                 .orderBy(.priority)
                 .getAll { result in
@@ -48,8 +48,8 @@ final class QueryTests: FirestoreTestCase {
         
         // `<`
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .whereBy(.priority, isLessThan: 2)
                 .orderBy(.priority)
                 .getAll { result in
@@ -61,8 +61,8 @@ final class QueryTests: FirestoreTestCase {
         
         // `<=`
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .whereBy(.priority, isLessThanOrEqualTo: 2)
                 .orderBy(.priority)
                 .getAll { result in
@@ -74,8 +74,8 @@ final class QueryTests: FirestoreTestCase {
 
         // `>`
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .whereBy(.priority, isGreaterThan: 2)
                 .orderBy(.priority)
                 .getAll { result in
@@ -87,8 +87,8 @@ final class QueryTests: FirestoreTestCase {
         
         // `>=`
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .whereBy(.priority, isGreaterThanOrEqualTo: 2)
                 .orderBy(.priority)
                 .getAll { result in
@@ -103,8 +103,8 @@ final class QueryTests: FirestoreTestCase {
         
         // combination + operator
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .whereBy(.done, "==", true)
                 .whereBy(.priority, "<=", 2)
                 .orderBy(.priority)
@@ -122,8 +122,8 @@ final class QueryTests: FirestoreTestCase {
         
         // Method
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .whereBy(.tags, arrayContains: "work")
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
@@ -135,8 +135,8 @@ final class QueryTests: FirestoreTestCase {
         
         // Enum
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .whereBy(.tags, .arrayContains, "work")
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
@@ -148,8 +148,8 @@ final class QueryTests: FirestoreTestCase {
 
         // Operator
         waitUntil { done in
-            Firestore.root
-                .todos
+            FirestoreDB
+                .collection(\.todos)
                 .whereBy(.tags, "...", "work")
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️

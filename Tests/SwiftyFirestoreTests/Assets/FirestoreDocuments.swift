@@ -9,6 +9,40 @@
 import SwiftyFirestore
 import FirebaseFirestore
 
+//
+// 📄 Data structure
+//
+// {
+//     todos: <TodoDocument> [],
+//     gist: <GistDocument> [],
+//     account: <AccountDocument> [
+//         <id>: {
+//             repository: <RepositoryDocument> []
+//         }
+//     ]
+// }
+//
+
+// MARK: - Relations
+
+extension Root {
+    var todos: TodoDocument.Type { TodoDocument.self }
+    var account: AccountDocument.Type { AccountDocument.self }
+    var gist: GistDocument.Type { GistDocument.self }
+}
+
+extension AccountDocument {
+    var repository: RepositoryDocument.Type { RepositoryDocument.self }
+}
+
+// MARK: CollectionGroups
+
+extension CollectionGroups {
+    var repository: RepositoryDocument.Type { RepositoryDocument.self }
+}
+
+// MARK: - Documents
+
 struct TodoDocument: FirestoreDocument, Equatable {
     static let collectionID: String = "todos"
 

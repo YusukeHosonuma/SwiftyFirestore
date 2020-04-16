@@ -30,17 +30,17 @@ class DocumentReferenceTests: FirestoreTestCase {
         // }
         //
         
-        Firestore.root
-            .account
+        FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
             .setData(AccountDocument(name: "Yusuke Hosonuma")) { error in
                 XCTAssertNil(error)
             }
         
-        let accountRef = DocumentRef<AccountDocument>(ref: Firestore.root.account.document("YusukeHosonuma").ref)
+        let accountRef = DocumentRef<AccountDocument>(ref: FirestoreDB.collection(\.account).document("YusukeHosonuma").ref)
         
-        try! Firestore.root
-            .gist
+        try! FirestoreDB
+            .collection(\.gist)
             .add(GistDocument(url: "https://gist.github.com/YusukeHosonuma/1", account: accountRef))
     }
 
@@ -52,8 +52,8 @@ class DocumentReferenceTests: FirestoreTestCase {
     
     func testSwifty() {
         waitUntil { done in
-            Firestore.root
-                .gist
+            FirestoreDB
+                .collection(\.gist)
                 .getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ✅
                     
