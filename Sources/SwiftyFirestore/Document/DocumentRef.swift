@@ -36,6 +36,12 @@ public class DocumentRef<Document: FirestoreDocument>: Codable {
     }
 }
 
+extension DocumentRef: Equatable {
+    public static func == (lhs: DocumentRef<Document>, rhs: DocumentRef<Document>) -> Bool {
+        lhs.ref == rhs.ref
+    }
+}
+
 extension DocumentRef {
     // MARK: - Rx
 
@@ -58,9 +64,7 @@ extension DocumentRef {
             } else {
                 if let snapshot = snapshot {
                     do {
-                        var document = try snapshot.data(as: Document.self)
-                        document?.documentID = snapshot.documentID
-                        completion(.success(document))
+                        completion(.success(try Document(snapshot)))
                     } catch {
                         completion(.failure(error))
                     }
@@ -78,9 +82,7 @@ extension DocumentRef {
             } else {
                 if let snapshot = snapshot {
                     do {
-                        var document = try snapshot.data(as: Document.self)
-                        document?.documentID = snapshot.documentID
-                        completion(.success(document))
+                        completion(.success(try Document(snapshot)))
                     } catch {
                         completion(.failure(error))
                     }
@@ -137,10 +139,7 @@ extension DocumentRef {
             } else {
                 if let snapshot = snapshot {
                     do {
-                        var document = try snapshot.data(as: Document.self)
-                        document?.documentID = snapshot.documentID
-
-                        let result = (document, snapshot.metadata)
+                        let result = (try Document(snapshot), snapshot.metadata)
                         completion(.success(result))
                     } catch {
                         completion(.failure(error))
