@@ -185,6 +185,12 @@ FirestoreDB
 
 T.B.D
 
+## Requirement
+
+- Swift: 5.1+ (Not confirmed 5.0 or under)
+- Firestore: 6.16.0+
+- FirestoreSwift: 0.2+
+
 ## Development
 
 - Xcode 11.4
