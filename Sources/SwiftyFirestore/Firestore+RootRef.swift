@@ -8,25 +8,22 @@
 
 import FirebaseFirestore
 
-public class RootRef {
-    public let ref: Firestore
+public class Root {}
+public class CollectionGroups {}
 
-    public init(_ firestore: Firestore) {
-        ref = firestore
+public class FirestoreDB {
+    private init() {}
+
+    public static func collection<To: FirestoreDocument>(_: KeyPath<Root, To.Type>) -> CollectionRef<To> {
+        CollectionRef(Firestore.firestore())
+    }
+
+    public static func collectionGroup<To: FirestoreDocument>(_: KeyPath<CollectionGroups, To.Type>) -> CollectionGroupRef<To> {
+        CollectionGroupRef<To>(Firestore.firestore())
     }
 }
 
-public class CollectionGroups {}
-
-extension Firestore {
-    public static var root: RootRef {
-        RootRef(Firestore.firestore())
-    }
-
-    public static var collectionGroup: CollectionGroups {
-        CollectionGroups()
-    }
-
+extension FirestoreDB {
     public static func runTransaction<Return>(
         _ updateBlock: @escaping (TransactionWrapper, NSErrorPointer) -> Return?,
         completion: @escaping (Result<Return, Error>) -> Void

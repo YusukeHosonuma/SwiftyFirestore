@@ -16,9 +16,9 @@ class GetDocumentsTests: FirestoreTestCase {
         super.setUp()
         
         let account = AccountDocument(name: "Yusuke Hosonuma")
-        
-        Firestore.root
-            .account
+                    
+        FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
             .setData(account)
     }
@@ -31,8 +31,8 @@ class GetDocumentsTests: FirestoreTestCase {
     
     func testSourceSwifty() throws {
         waitUntil { done in
-            Firestore.root
-                .account
+            FirestoreDB
+                .collection(\.account)
                 .getAll(source: .cache) { result in
                     guard case .success(let documents) = result else { XCTFail(); return } // ↩️
 

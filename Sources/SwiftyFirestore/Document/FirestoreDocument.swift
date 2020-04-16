@@ -22,6 +22,10 @@ public protocol FirestoreDocument: Codable {
 }
 
 extension FirestoreDocument {
+    var collectionID: String {
+        Self.collectionID
+    }
+
     public init(_ snapshot: QueryDocumentSnapshot) throws {
         do {
             var document = try Firestore.Decoder().decode(Self.self, from: snapshot.data())

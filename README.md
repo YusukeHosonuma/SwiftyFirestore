@@ -98,10 +98,10 @@ If you need following data-structure in Firestore...
 
 ```text
 {
-    "account": [AccountDocument] = [
+    "accounts": [AccountDocument] = [
         <id>: {
             "name": String,
-            "repository": [RepositoryDocument] = [
+            "repositories": [RepositoryDocument] = [
                 <id>: {
                     "language": String,
                     "star": Int,
@@ -120,26 +120,26 @@ Please define each document structure that adopt to `FirestoreDocument` protocol
 
 ```swift
 struct AccountDocument: FirestoreDocument {
-    static let collectionId: String = "account" // enclosing collection name
+    static let collectionID: String = "accounts" // Enclosing collection name.
 
-    var documentId: String!
+    var documentID: String! // This property is required.
     var name: String
 
-    enum CodingKeys: String, CodingKey {
-        case documentId
+    enum CodingKeys: String, CodingKey { // `CodingKeys` is required.
+        case documentID
         case name
     }
 }
 
 struct RepositoryDocument: FirestoreDocument {
-    static let collectionId: String = "repository" // enclosing collection name
+    static let collectionID: String = "repositories"
 
-    var documentId: String!
+    var documentID: String!
     var language: String
     var star: Int
 
     enum CodingKeys: String, CodingKey {
-        case documentId
+        case documentID
         case language
         case star
     }
@@ -151,14 +151,14 @@ struct RepositoryDocument: FirestoreDocument {
 Please define document tree structure.
 
 ```swift
-// Root has `account` collection.
-extension RootRef {
-    var account: CollectionRef<AccountDocument> { CollectionRef(ref) }
+// Root has `accounts` collection.
+extension Root {
+    var accounts: AccountDocument.Type { AccountDocument.self }
 }
 
 // Account document has `repository` collection.
-extension DocumentRef where Document == AccountDocument {
-    var repository: CollectionRef<RepositoryDocument> { CollectionRef(ref) }
+extension AccountDocument {
+    var repositories: RepositoryDocument.Type { RepositoryDocument.self }
 }
 ```
 
@@ -167,16 +167,17 @@ extension DocumentRef where Document == AccountDocument {
 All codes are typesafe.
 
 ```swift
-Firestore.root
-    .account(path: "YusukeHosonuma")
-    .repository
+FirestoreDB
+    .collection(\.accounts)
+    .document("YusukeHosonuma")
+    .collection(\.repositories)
     .whereBy(.language, "==", "Swift")
     .whereBy(.star, ">", "10")
     .orderBy(.star, sort: .descending)
     .limitTo(3)
     .getAll { result in
-        guard case .success(let documents) = result else { return }
-        print(documents) // [RepositoryDocument]
+        guard case .success(let repositories) = result else { return }
+        print(repositories) // [RepositoryDocument]
     }
 ```
 

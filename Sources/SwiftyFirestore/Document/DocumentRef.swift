@@ -43,7 +43,13 @@ extension DocumentRef {
 //        FirestoreDocumentRefRx<Document>(ref)
 //    }
 
-    // MARK: - Get
+    // MARK: Reference
+
+    public func collection<To: FirestoreDocument>(_: KeyPath<Document, To.Type>) -> CollectionRef<To> {
+        CollectionRef(ref)
+    }
+
+    // MARK: Get
 
     public func get(completion: @escaping DocumentCompletion) {
         ref.getDocument { snapshot, error in

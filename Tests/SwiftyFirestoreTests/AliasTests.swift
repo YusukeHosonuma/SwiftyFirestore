@@ -25,14 +25,14 @@ class AliasTests: FirestoreTestCase {
         let document = TodoDocument(title: "🍎", done: false, priority: 1)
 
         // ➕ Add
-        Firestore.root
-            .todos(path: "apple") // 🐤 callAsFunction
+        FirestoreDB
+            .collection(\.todos)(path: "apple") // 🐤 callAsFunction
             .setData(document)
         
         // ✅ Assert
         waitUntil { done in
-            Firestore.root
-                .todos(path: "apple")
+            FirestoreDB
+                .collection(\.todos)(path: "apple")
                 .get { result in
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
                     XCTAssertEqual(document?.title, "🍎")

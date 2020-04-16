@@ -19,7 +19,7 @@ final class SwiftyFirestoreTests: XCTestCase {
                 //
                 // Swifty
                 //
-                try! Firestore.root.todos.add(document)
+                try! FirestoreDB.collection(\.todos).add(document)
             },
             original: {
                 //
@@ -62,8 +62,8 @@ final class SwiftyFirestoreTests: XCTestCase {
                     //
                     // 🐤 Swifty
                     //
-                    Firestore.root
-                        .account
+                    FirestoreDB
+                        .collection(\.account)
                         .document(accountID)
                         .get { result in
                             guard case .success(let document) = result else { XCTFail(); return }
@@ -112,7 +112,7 @@ final class SwiftyFirestoreTests: XCTestCase {
                 //
                 // Swifty
                 //
-                Firestore.root.todos.getAll { result in
+                FirestoreDB.collection(\.todos).getAll { result in
                     guard case .success(let documents) = result else { XCTFail(); return }
                     completion(documents)
                 }
@@ -167,10 +167,10 @@ final class SwiftyFirestoreTests: XCTestCase {
                 //
                 // Swifty 🐤
                 //
-                Firestore.root
-                    .account
+                FirestoreDB
+                    .collection(\.account)
                     .document("YusukeHosonuma")
-                    .repository
+                    .collection(\.repository)
                     .getAll { result in
                         guard case .success(let documents) = result else { XCTFail(); return }
                         completion(documents)

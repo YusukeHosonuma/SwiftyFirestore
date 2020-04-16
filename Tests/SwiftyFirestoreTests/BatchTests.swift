@@ -32,24 +32,24 @@ class BatchTests: FirestoreTestCase {
 
     func testSwifty() throws {
         
-        let batch = Firestore.batch()
+        let batch = FirestoreDB.batch()
         
         // ➕ Add - `banana`
         do {
-            let ref = Firestore.root.todos.document("banana")
+            let ref = FirestoreDB.collection(\.todos).document("banana")
             let document = TodoDocument(title: "🍌", done: false)
             try batch.setData(ref: ref, document)
         }
         
         // 🆙 Update - `apple`
         do {
-            let ref = Firestore.root.todos.document("apple")
+            let ref = FirestoreDB.collection(\.todos).document("apple")
             batch.update(ref: ref, [.value(.done, true)])
         }
         
         // ❌ Delete - `orange`
         do {
-            let ref = Firestore.root.todos.document("orange")
+            let ref = FirestoreDB.collection(\.todos).document("orange")
             batch.delete(ref: ref)
         }
 
@@ -65,7 +65,7 @@ class BatchTests: FirestoreTestCase {
         do {
             // ➕ Added
             waitUntil { done in
-                Firestore.root.todos.document("banana").get { result in
+                FirestoreDB.collection(\.todos).document("banana").get { result in
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
 
                     XCTAssertEqual(document?.title, "🍌")
@@ -75,7 +75,7 @@ class BatchTests: FirestoreTestCase {
             
             // 🆙 Updated
             waitUntil { done in
-                Firestore.root.todos.document("apple").get { result in
+                FirestoreDB.collection(\.todos).document("apple").get { result in
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
 
                     XCTAssertEqual(document?.done, true)
@@ -86,7 +86,7 @@ class BatchTests: FirestoreTestCase {
             
             // ❌ Deleted
             waitUntil { done in
-                Firestore.root.todos.document("orange").get { result in
+                FirestoreDB.collection(\.todos).document("orange").get { result in
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
 
                     XCTAssertNil(document)
@@ -133,7 +133,7 @@ class BatchTests: FirestoreTestCase {
         do {
             // ➕ Added
             waitUntil { done in
-                Firestore.root.todos.document("banana").get { result in
+                FirestoreDB.collection(\.todos).document("banana").get { result in
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
 
                     XCTAssertEqual(document?.title, "🍌")
@@ -143,7 +143,7 @@ class BatchTests: FirestoreTestCase {
             
             // 🆙 Updated
             waitUntil { done in
-                Firestore.root.todos.document("apple").get { result in
+                FirestoreDB.collection(\.todos).document("apple").get { result in
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
 
                     XCTAssertEqual(document?.done, true)
@@ -154,7 +154,7 @@ class BatchTests: FirestoreTestCase {
             
             // ❌ Deleted
             waitUntil { done in
-                Firestore.root.todos.document("orange").get { result in
+                FirestoreDB.collection(\.todos).document("orange").get { result in
                     guard case .success(let document) = result else { XCTFail(); return } // ↩️
 
                     XCTAssertNil(document)

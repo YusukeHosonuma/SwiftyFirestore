@@ -44,8 +44,8 @@ class ListenDocumentTests: FirestoreTestCase {
         let after  = AccountDocument(name: "Tobi")
         
         // ➕ Add
-        Firestore.root
-            .account
+        FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
             .setData(before) { error in
                 XCTAssertNil(error)
@@ -53,8 +53,8 @@ class ListenDocumentTests: FirestoreTestCase {
         
         // 📌 Listen
         wait(queue: &exps) { done in
-            listener = Firestore.root
-                .account
+            listener = FirestoreDB
+                .collection(\.account)
                 .document("YusukeHosonuma")
                 .listen { result in
                     guard case .success(let (document, metadata)) = result else { XCTFail(); return } // ✅
@@ -76,8 +76,8 @@ class ListenDocumentTests: FirestoreTestCase {
         }
         
         // ▶️ Update
-        Firestore.root
-            .account
+        FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
             .setData(after) { error in
                 XCTAssertNil(error)
@@ -90,8 +90,8 @@ class ListenDocumentTests: FirestoreTestCase {
         let account = AccountDocument(name: "Yusuke Hosonuma")
         
         // ➕ Add
-        Firestore.root
-            .account
+        FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
             .setData(account) { (error) in
                 XCTAssertNil(error)
@@ -99,8 +99,8 @@ class ListenDocumentTests: FirestoreTestCase {
         
         // 📌 Listen
         wait(queue: &exps) { done in
-            listener = Firestore.root
-                .account
+            listener = FirestoreDB
+                .collection(\.account)
                 .document("YusukeHosonuma")
                 .listen(includeMetadataChanges: true) { result in
                     guard case .success(let (document, _)) = result else { XCTFail(); return } // ↩️
@@ -126,8 +126,8 @@ class ListenDocumentTests: FirestoreTestCase {
 
         // ▶️ Update
         waitUntil { done in
-            Firestore.root
-                .account
+            FirestoreDB
+                .collection(\.account)
                 .document("YusukeHosonuma")
                 .setData(AccountDocument(name: "Tobi")) { (error) in
                     XCTAssertNil(error)
@@ -141,16 +141,16 @@ class ListenDocumentTests: FirestoreTestCase {
         let after  = AccountDocument(name: "Tobi")
         
         // ➕ Add
-        Firestore.root
-            .account
+        FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
             .setData(before) { error in
                 XCTAssertNil(error)
             }
         
         // 📌 Listen
-        let listener = Firestore.root
-            .account
+        let listener = FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
             .listen { result in
                 guard case .success(_) = result else { XCTFail(); return } // ✅
@@ -165,8 +165,8 @@ class ListenDocumentTests: FirestoreTestCase {
         listener.remove()
 
         // ▶️ Update
-        Firestore.root
-            .account
+        FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
             .setData(after) { error in
                 XCTAssertNil(error)
@@ -184,8 +184,8 @@ class ListenDocumentTests: FirestoreTestCase {
         let account = AccountDocument(name: "Yusuke Hosonuma")
         
         // ➕ Add
-        Firestore.root
-            .account
+        FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
             .setData(account) { (error) in
                 XCTAssertNil(error)
@@ -217,8 +217,8 @@ class ListenDocumentTests: FirestoreTestCase {
         }
 
         // ▶️ Update
-        Firestore.root
-            .account
+        FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
             .setData(AccountDocument(name: "Tobi")) { (error) in
                 XCTAssertNil(error)
@@ -231,8 +231,8 @@ class ListenDocumentTests: FirestoreTestCase {
         let account = AccountDocument(name: "Yusuke Hosonuma")
         
         // ➕ Add
-        Firestore.root
-            .account
+        FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
             .setData(account) { (error) in
                 XCTAssertNil(error)
@@ -267,8 +267,8 @@ class ListenDocumentTests: FirestoreTestCase {
 
         // ▶️ Update
         waitUntil { done in
-            Firestore.root
-                .account
+            FirestoreDB
+                .collection(\.account)
                 .document("YusukeHosonuma")
                 .setData(AccountDocument(name: "Tobi")) { (error) in
                     XCTAssertNil(error)
@@ -281,8 +281,8 @@ class ListenDocumentTests: FirestoreTestCase {
         let account = AccountDocument(name: "Yusuke Hosonuma")
         
         // ➕ Add
-        Firestore.root
-            .account
+        FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
             .setData(account) { (error) in
                 XCTAssertNil(error)
@@ -306,8 +306,8 @@ class ListenDocumentTests: FirestoreTestCase {
         listener.remove()
 
         // ▶️ Update
-        Firestore.root
-            .account
+        FirestoreDB
+            .collection(\.account)
             .document("YusukeHosonuma")
             .setData(AccountDocument(name: "Tobi")) { (error) in
                 XCTAssertNil(error)
