@@ -12,7 +12,9 @@ Pod::Spec.new do |spec|
     spec.authors          = { "Yusuke Hosonuma" => "tobi462@gmail.com" }
     spec.social_media_url = "https://twitter.com/tobi462"
 
-    spec.ios.deployment_target = "8.0"
+    spec.ios.deployment_target = '8.0'
+    spec.osx.deployment_target = '10.11'
+    spec.tvos.deployment_target = '10.0'
 
     spec.cocoapods_version  = '>= 1.4.0'
     spec.static_framework   = true
@@ -22,5 +24,6 @@ Pod::Spec.new do |spec|
     spec.source_files  = "Sources/SwiftyFirestore/**/*.{swift}"
     spec.swift_version = "5.1"
 
+    spec.dependency 'Firebase/Firestore', '>= 6.16.0'
     spec.dependency 'FirebaseFirestoreSwift', '>= 0.2'
   end
