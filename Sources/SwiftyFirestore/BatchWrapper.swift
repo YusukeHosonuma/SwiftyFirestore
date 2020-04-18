@@ -23,11 +23,14 @@ public final class BatchWrapper {
     // MARK: Update
 
     public func update<Document: FirestoreDocument>(
-        ref: DocumentRef<Document>,
-        _ fields: [UpdateField<Document>]
-    ) {
-        let fields = UpdateField.asDicrionary(fields)
-        batch.updateData(fields, forDocument: ref.ref)
+        for ref: DocumentRef<Document>,
+        fields: (UpdateFieldBuilder<Document>) -> Void
+    ) throws {
+        let builder = UpdateFieldBuilder<Document>()
+        fields(builder)
+
+        let data = try builder.build()
+        batch.updateData(data, forDocument: ref.ref)
     }
 
     // MARK: Delete

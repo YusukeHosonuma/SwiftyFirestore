@@ -144,7 +144,7 @@ class ListenCollectionTests: FirestoreTestCase {
     
     // MARK: 🐤 Swifty
     
-    func testUpdateSwifty() {
+    func testUpdateSwifty() throws {
         defer { cleanUp() } // 🧹
         
         // 📌 Listen
@@ -178,25 +178,25 @@ class ListenCollectionTests: FirestoreTestCase {
         }
         
         // 🆙 Update
-        FirestoreDB
+        try FirestoreDB
             .collection(\.todos)
             .document("one")
-            .update([
-                .value(.title, "🍎")
-            ])
+            .update {
+                $0.update(.title, path: \.title, "🍎")
+            }
 
         // 🆙 Update (❗ but not triggered to listener because `done` is true)
-        FirestoreDB
+        try FirestoreDB
             .collection(\.todos)
             .document("three")
-            .update([
-                .value(.title, "🍎")
-            ])
+            .update {
+                $0.update(.title, path: \.title, "🍎")
+            }
     }
     
     // MARK: 🔥 Firestore
 
-    func testUpdateFirestore() {
+    func testUpdateFirestore() throws {
         defer { cleanUp() } // 🧹
         
         // 📌 Listen
@@ -234,20 +234,20 @@ class ListenCollectionTests: FirestoreTestCase {
         }
         
         // 🆙 Update
-        FirestoreDB
+        try FirestoreDB
             .collection(\.todos)
             .document("one")
-            .update([
-                .value(.title, "🍎")
-            ])
+            .update {
+                $0.update(.title, path: \.title, "🍎")
+            }
 
         // 🆙 Update (❗ but not triggered to listener because `done` is true)
-        FirestoreDB
+        try FirestoreDB
             .collection(\.todos)
             .document("three")
-            .update([
-                .value(.title, "🍎")
-            ])
+            .update {
+                $0.update(.title, path: \.title, "🍎")
+            }
     }
     
     // MARK: - ❌ Remove

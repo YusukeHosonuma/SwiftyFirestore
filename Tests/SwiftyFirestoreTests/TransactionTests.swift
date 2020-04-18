@@ -58,7 +58,15 @@ class TransactionTests: FirestoreTestCase {
                 }
                 
                 let newPriority = document.priority + 1
-                transaction.update([.value(.priority, newPriority)], forDocument: todoReference)
+                do {
+                    try transaction.update(for: todoReference) {
+                        $0.update(.priority, path: \.priority, newPriority)
+                    }
+                } catch let error as NSError {
+                    errorPointer?.pointee = error
+                    return nil
+                }
+                
                 return newPriority
             }) { result in
                 guard case .success(let newPriority) = result else { XCTFail(); return } // ↩️
