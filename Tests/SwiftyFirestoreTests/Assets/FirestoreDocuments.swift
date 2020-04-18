@@ -46,9 +46,14 @@ extension CollectionGroups {
 struct TodoDocument: FirestoreDocument, Equatable {
     static let collectionID: String = "todos"
 
-    struct Info: Codable, Equatable {
+    struct Info: FirestoreData, Equatable {
         var color: String
         var size: Int
+    }
+    
+    enum Color: String, FirestoreEnum {
+        case red
+        case blue
     }
     
     var documentID: String!
@@ -61,9 +66,11 @@ struct TodoDocument: FirestoreDocument, Equatable {
     var remarks: String?
     var lastUpdated: Timestamp?
     var info: Info?
+    var color: Color = .red
 
+    typealias Keys = CodingKeys
+    
     enum CodingKeys: String, CodingKey {
-        case documentID
         case title
         case done
         case priority
@@ -71,6 +78,8 @@ struct TodoDocument: FirestoreDocument, Equatable {
         case remarks
         case lastUpdated
         case info
+        case color
+        var title: CodingKeys { .title }
     }
 }
 

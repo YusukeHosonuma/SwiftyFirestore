@@ -95,14 +95,17 @@ extension DocumentRef {
 
     // MARK: Update
 
-    public func update(_ fields: [UpdateField<Document>]) {
-        let fields = UpdateField.asDicrionary(fields)
-        ref.updateData(fields)
+    public func update(fields: (UpdateFieldBuilder<Document>) -> Void) throws {
+        try update(fields: fields) { _ in }
     }
 
-    public func update(_ fields: [UpdateField<Document>], completion: @escaping VoidCompletion) {
-        let fields = UpdateField.asDicrionary(fields)
-        ref.updateData(fields, completion: completion)
+    public func update(fields: (UpdateFieldBuilder<Document>) -> Void, completion: @escaping VoidCompletion) throws {
+        let builder = UpdateFieldBuilder<Document>()
+        fields(builder)
+
+        let fields = try builder.build()
+        let data = [String: Any](fields) { a, _ in a }
+        ref.updateData(data, completion: completion)
     }
 
     // MARK: Delete
