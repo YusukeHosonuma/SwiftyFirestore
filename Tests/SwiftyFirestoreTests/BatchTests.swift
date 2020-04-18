@@ -44,7 +44,9 @@ class BatchTests: FirestoreTestCase {
         // 🆙 Update - `apple`
         do {
             let ref = FirestoreDB.collection(\.todos).document("apple")
-            batch.update(ref: ref, [.value(.done, true)])
+            try batch.update(for: ref) {
+                $0.update(.done, path: \.done, true)
+            }
         }
         
         // ❌ Delete - `orange`
