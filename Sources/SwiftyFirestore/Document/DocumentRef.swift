@@ -103,8 +103,7 @@ extension DocumentRef {
         let builder = UpdateFieldBuilder<Document>()
         fields(builder)
 
-        let fields = try builder.build()
-        let data = [String: Any](fields) { a, _ in a }
+        let data = try builder.build()
         ref.updateData(data, completion: completion)
     }
 

@@ -71,8 +71,9 @@ public final class UpdateFieldBuilder<Document: FirestoreDocument> {
 
     // MARK: Internal
 
-    func build() throws -> [(String, Any)] {
-        try fields.map { try $0.keyAndValue() }
+    func build() throws -> [String: Any] {
+        let array = try fields.map { try $0.keyAndValue() }
+        return [String: Any](array) { a, _ in a }
     }
 }
 

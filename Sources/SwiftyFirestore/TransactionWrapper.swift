@@ -28,8 +28,7 @@ public class TransactionWrapper {
         let builder = UpdateFieldBuilder<Document>()
         fields(builder)
 
-        let fields = try builder.build()
-        let data = [String: Any](fields) { a, _ in a }
+        let data = try builder.build()
         transaction.updateData(data, forDocument: ref.ref)
     }
 }
