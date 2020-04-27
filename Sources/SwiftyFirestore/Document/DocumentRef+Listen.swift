@@ -8,8 +8,7 @@
 
 import FirebaseFirestore
 
-extension DocumentRef {
-    @discardableResult
+extension DocumentRefProtocol {
     public func listen(includeMetadataChanges: Bool = false, completion: @escaping ListenerHandler) -> ListenerRegistration {
         ref.addSnapshotListener(includeMetadataChanges: includeMetadataChanges) { snapshot, error in
             if let error = error {

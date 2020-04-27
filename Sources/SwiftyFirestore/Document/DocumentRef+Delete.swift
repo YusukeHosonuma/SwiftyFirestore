@@ -6,7 +6,7 @@
 //  Copyright © 2020 Yusuke Hosonuma. All rights reserved.
 //
 
-extension DocumentRef {
+extension DocumentRefProtocol {
     public func delete() {
         ref.delete()
     }

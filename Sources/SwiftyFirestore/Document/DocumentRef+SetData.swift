@@ -6,7 +6,7 @@
 //  Copyright © 2020 Yusuke Hosonuma. All rights reserved.
 //
 
-extension DocumentRef {
+extension DocumentRefProtocol {
     // TODO: avoid `try!`
     public func setData(_ document: Document) {
         ref.setData(try! document.asData())
