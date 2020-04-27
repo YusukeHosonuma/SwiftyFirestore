@@ -13,7 +13,7 @@ setup: ## Install requirement development tools to system and setup (not include
 
 .PHONY: open
 open: ## Open Xcode 11.4
-	open "/Applications/Xcode-11.4.app" SwiftyFirestore.xcworkspace
+	open "/Applications/Xcode-11.4.1.app" SwiftyFirestore.xcworkspace
 
 .PHONY: build
 build: ## Build
