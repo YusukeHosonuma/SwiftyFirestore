@@ -6,7 +6,7 @@
 //  Copyright © 2020 Yusuke Hosonuma. All rights reserved.
 //
 
-extension DocumentRef {
+extension DocumentRefProtocol {
     public func update(fields: (UpdateFieldBuilder<Document>) -> Void) throws {
         try update(fields: fields) { _ in }
     }

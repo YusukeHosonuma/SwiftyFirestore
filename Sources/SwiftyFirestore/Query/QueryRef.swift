@@ -7,7 +7,6 @@
 //
 
 import FirebaseFirestore
-// import RxSwift
 
 public protocol QueryRef {
     associatedtype Document: FirestoreDocument
@@ -18,6 +17,8 @@ public protocol QueryRef {
 
     var queryRef: Query { get }
 }
+
+// TODO: refactor - separate files
 
 extension QueryRef {
     public typealias Key = Document.CodingKeys

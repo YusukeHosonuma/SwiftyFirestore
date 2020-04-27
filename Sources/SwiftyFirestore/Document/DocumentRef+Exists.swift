@@ -6,7 +6,7 @@
 //  Copyright © 2020 Yusuke Hosonuma. All rights reserved.
 //
 
-extension DocumentRef {
+extension DocumentRefProtocol {
     func exists(completion: @escaping (Result<Bool, Error>) -> Void) {
         ref.getDocument { snapshot, error in
             if let error = error {

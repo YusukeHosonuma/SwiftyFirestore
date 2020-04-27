@@ -8,7 +8,7 @@
 
 import FirebaseFirestore
 
-extension DocumentRef {
+extension DocumentRefProtocol {
     // TODO: refactor
     public func get(completion: @escaping DocumentCompletion) {
         ref.getDocument { snapshot, error in

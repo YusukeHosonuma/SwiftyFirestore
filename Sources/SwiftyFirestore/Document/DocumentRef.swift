@@ -8,14 +8,7 @@
 
 import FirebaseFirestore
 
-public class DocumentRef<Document: FirestoreDocument>: Codable {
-    public typealias Key = Document.CodingKeys
-
-    public typealias VoidCompletion = ((Error?) -> Void)
-    public typealias DocumentCompletion = (Result<Document?, Error>) -> Void
-    // TODO: change `metadata` to `snapshot`
-    public typealias ListenerHandler = (Result<(document: Document?, metadata: SnapshotMetadata), Error>) -> Void
-
+public class DocumentRef<Document: FirestoreDocument>: DocumentRefProtocol, Codable {
     public let ref: DocumentReference
 
 //    public init(_ ref: DocumentReference) {
@@ -39,19 +32,5 @@ public class DocumentRef<Document: FirestoreDocument>: Codable {
 extension DocumentRef: Equatable {
     public static func == (lhs: DocumentRef<Document>, rhs: DocumentRef<Document>) -> Bool {
         lhs.ref == rhs.ref
-    }
-}
-
-extension DocumentRef {
-    // MARK: - Rx
-
-//    func asObservable() -> FirestoreDocumentRefRx<Document> {
-//        FirestoreDocumentRefRx<Document>(ref)
-//    }
-
-    // MARK: Reference
-
-    public func collection<To: FirestoreDocument>(_: KeyPath<Document, To.Type>) -> CollectionRef<To> {
-        CollectionRef(ref)
     }
 }
