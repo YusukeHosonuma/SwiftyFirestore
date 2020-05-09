@@ -15,7 +15,7 @@ extension DocumentRefProtocol {
 
     // MARK: Reference
 
-    public func collection<To: FirestoreDocument>(_: KeyPath<Document, To.Type>) -> CollectionRef<To> {
+    public func collection<To: FirestoreDocument>(_: KeyPath<Document.Has, To.Type>) -> CollectionRef<To> where Document: HasCollection {
         CollectionRef(ref)
     }
 }
