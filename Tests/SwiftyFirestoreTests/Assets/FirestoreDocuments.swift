@@ -31,8 +31,10 @@ extension Root {
     var gist: GistDocument.Type { GistDocument.self }
 }
 
-extension AccountDocument {
-    var repository: RepositoryDocument.Type { RepositoryDocument.self }
+extension AccountDocument: HasCollection {
+    class Has {
+        var repository = RepositoryDocument.self
+    }
 }
 
 // MARK: CollectionGroups

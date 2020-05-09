@@ -53,6 +53,7 @@
 		E5811F69243D61FA00D58FE4 /* CollectionGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */; };
 		E5811F6B243D812700D58FE4 /* CollectionGroupRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F6A243D812700D58FE4 /* CollectionGroupRef.swift */; };
 		E5811F6D243D8A6D00D58FE4 /* DocumentReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */; };
+		E596D2222466EC2B004B7811 /* HasCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E596D2212466EC2B004B7811 /* HasCollection.swift */; };
 		E5A09753244170FF009C3F41 /* DocumentRef+Exists.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A09752244170FF009C3F41 /* DocumentRef+Exists.swift */; };
 		E5A0E9E0244069AB00440B03 /* TransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0E9DF244069AB00440B03 /* TransactionTests.swift */; };
 		E5A0E9E224407C6600440B03 /* TransactionWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0E9E124407C6600440B03 /* TransactionWrapper.swift */; };
@@ -135,6 +136,7 @@
 		E5811F68243D61FA00D58FE4 /* CollectionGroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupTests.swift; sourceTree = "<group>"; };
 		E5811F6A243D812700D58FE4 /* CollectionGroupRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGroupRef.swift; sourceTree = "<group>"; };
 		E5811F6C243D8A6D00D58FE4 /* DocumentReferenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentReferenceTests.swift; sourceTree = "<group>"; };
+		E596D2212466EC2B004B7811 /* HasCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasCollection.swift; sourceTree = "<group>"; };
 		E5A09752244170FF009C3F41 /* DocumentRef+Exists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentRef+Exists.swift"; sourceTree = "<group>"; };
 		E5A0E9DF244069AB00440B03 /* TransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTests.swift; sourceTree = "<group>"; };
 		E5A0E9E124407C6600440B03 /* TransactionWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionWrapper.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				E5A175D62449F0D200E69B63 /* FirestoreData.swift */,
 				E53562BD244AFFA300EE894B /* FirestoreEnum.swift */,
 				E55EFB6F2456DA6800712212 /* DocumentRefProtocol.swift */,
+				E596D2212466EC2B004B7811 /* HasCollection.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				E53562C8244B08AA00EE894B /* DocumentRef+Listen.swift in Sources */,
 				E55C2424243F4DEE009B5566 /* WhereCriteria.swift in Sources */,
 				E5A09753244170FF009C3F41 /* DocumentRef+Exists.swift in Sources */,
+				E596D2222466EC2B004B7811 /* HasCollection.swift in Sources */,
 				E57DE01D2434A6A000308FC0 /* DocumentRef.swift in Sources */,
 				E53562BE244AFFA300EE894B /* FirestoreEnum.swift in Sources */,
 				E53562BC244AFF5F00EE894B /* UpdateData.swift in Sources */,
