@@ -27,6 +27,11 @@ public class CollectionRef<Document: FirestoreDocument>: QueryRef {
 extension CollectionRef {
     // MARK: 📄 Document
 
+    // TODO: test
+    public func document() -> DocumentRef<Document> {
+        DocumentRef(ref: ref.document())
+    }
+
     public func document(_ path: String) -> DocumentRef<Document> {
         DocumentRef(ref: ref.document(path))
     }
