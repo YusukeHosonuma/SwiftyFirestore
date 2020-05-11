@@ -44,7 +44,6 @@
 		E56EA5D32440A4A4008E13C0 /* Alias.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56EA5D22440A4A4008E13C0 /* Alias.swift */; };
 		E56EA5D52440A665008E13C0 /* AliasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56EA5D42440A665008E13C0 /* AliasTests.swift */; };
 		E57DE0062434A4E300308FC0 /* libSwiftyFirestore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5584A602434A3DD007035B6 /* libSwiftyFirestore.a */; };
-		E57DE0122434A54500308FC0 /* SwiftyFirestoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0102434A54500308FC0 /* SwiftyFirestoreTests.swift */; };
 		E57DE01C2434A6A000308FC0 /* QueryWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0162434A6A000308FC0 /* QueryWrapper.swift */; };
 		E57DE01D2434A6A000308FC0 /* DocumentRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0172434A6A000308FC0 /* DocumentRef.swift */; };
 		E57DE01E2434A6A000308FC0 /* QueryRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57DE0182434A6A000308FC0 /* QueryRef.swift */; };
@@ -573,7 +572,6 @@
 				E5502CA42435E121007EC1F1 /* FirestoreTestHelper.swift in Sources */,
 				E5502C9C2435DBF0007EC1F1 /* FirestoreDocuments.swift in Sources */,
 				E51609342442B9FA005A7B87 /* AddDocumentTests.swift in Sources */,
-				E57DE0122434A54500308FC0 /* SwiftyFirestoreTests.swift in Sources */,
 				E5502CA12435DC88007EC1F1 /* FirestoreRelationAlias.swift in Sources */,
 				E53892A8243FE03500F72573 /* XCTestCase+.swift in Sources */,
 			);
