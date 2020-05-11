@@ -8,6 +8,6 @@
 
 public enum FirestoreError: Error {
     case encodeFailed(Error)
-    case decodeFailed(Error)
+    case decodeFailed(Error) // TODO: remove maybe
     case unknown
 }

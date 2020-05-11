@@ -31,7 +31,7 @@ extension FirestoreDocument {
 
     public init(_ snapshot: QueryDocumentSnapshot) throws {
         do {
-            var document = try Firestore.Decoder().decode(Self.self, from: snapshot.data())
+            var document = try snapshot.data(as: Self.self)! // Always success because `QueryDocumentSnapshot#data()` returns not `nil`.
             document.documentReference = DocumentRef(ref: snapshot.reference)
             self = document
         } catch {
@@ -40,11 +40,14 @@ extension FirestoreDocument {
     }
 
     public init?(_ snapshot: DocumentSnapshot) throws {
-        guard let data = snapshot.data() else { return nil }
         do {
-            var document = try Firestore.Decoder().decode(Self.self, from: data)
-            document.documentReference = DocumentRef(ref: snapshot.reference)
-            self = document
+            var document = try snapshot.data(as: Self.self)
+            document?.documentReference = DocumentRef(ref: snapshot.reference)
+            if let document = document {
+                self = document
+            } else {
+                return nil
+            }
         } catch {
             throw FirestoreError.decodeFailed(error)
         }
