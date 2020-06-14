@@ -24,8 +24,8 @@ public class DocumentRef<Document: FirestoreDocument>: DocumentRefProtocol, Coda
     }
 
     public required init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        ref = try values.decode(DocumentReference.self, forKey: .ref)
+        let values = try decoder.singleValueContainer()
+        ref = try values.decode(DocumentReference.self)
     }
 }
 
