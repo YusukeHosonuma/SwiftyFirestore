@@ -27,6 +27,11 @@ public class DocumentRef<Document: FirestoreDocument>: DocumentRefProtocol, Coda
         let values = try decoder.singleValueContainer()
         ref = try values.decode(DocumentReference.self)
     }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(ref)
+    }
 }
 
 extension DocumentRef: Equatable {
