@@ -11,10 +11,6 @@ import FirebaseFirestore
 public class DocumentRef<Document: FirestoreDocument>: DocumentRefProtocol, Codable {
     public let ref: DocumentReference
 
-//    public init(_ ref: DocumentReference) {
-//        self.ref = ref
-//    }
-
     public init(_ ref: Firestore, id: String) {
         self.ref = ref.collection(Document.collectionID).document(id)
     }
@@ -26,6 +22,11 @@ public class DocumentRef<Document: FirestoreDocument>: DocumentRefProtocol, Coda
     public required init(from decoder: Decoder) throws {
         let values = try decoder.singleValueContainer()
         ref = try values.decode(DocumentReference.self)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(ref)
     }
 }
 
